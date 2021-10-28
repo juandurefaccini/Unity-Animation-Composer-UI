@@ -40,6 +40,10 @@ public class AnimationEditor : MonoBehaviour
     private string emocion;
     public TextMeshProUGUI Canvas_IndicadorCantAnimaciones;
 
+    // Estas constantes se utilizan cuando no se ha seleccionado alguna parte del cuerpo o emocion 
+    private const string PARTE_DEL_CUERPO_INDEFINIDA = "Parte del Cuerpo Indefinida";
+    private const string EMOCION_INDEFINIDA = "Emocion Indefinida";
+
     internal void AddAnimToBlockQueue(string animName, string parteDelCuerpo)
     {
         List<string> triggersABorrar = animaciones.Where(q => q.Layer == parteDelCuerpo).Select(q => q.Trigger).ToList();
@@ -84,12 +88,13 @@ public class AnimationEditor : MonoBehaviour
     {
         BibliotecaAnimaciones.CargarAnimaciones(); //cargar la biblioteca de animaciones a la lista de BibliotecaAnimaciones
         cargarAnimationItems(); //cargar la lista de animaciones
-        parteDelCuerpo = "Cara"; //parte del cuerpo por defecto
-        emocion = "Feliz"; // emocion por defecto
+        parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
+        emocion = EMOCION_INDEFINIDA;
         ActualizarListadoAnimaciones();
     }
 
-    /// <summary>Obtiene las animaciones filtradas por parte del cuerpo y por emocion - Autor : Juan Dure
+    /// <summary>Obtiene las animaciones filtradas por parte del cuerpo, si no se ha seleccionado alguna emocion,
+    /// o por parte del cuerpo y emocion, si se ha seleccionado una emocion - Autores : Juan Dure y Tobias Malbos
     /// </summary>
     /// <param name="parteDelCuerpo">Parte del cuerpo</param>
     /// <param name="emocionSeleccionada">Emocion</param>
@@ -97,7 +102,14 @@ public class AnimationEditor : MonoBehaviour
     private List<AnimacionItem> getAnimacionesFiltradas()
     {
         // Retornar animaciones filtradas de la lista de animaciones
-        return animaciones.Where(q => q.Layer == parteDelCuerpo && q.Emocion == emocion).ToList();
+        List<AnimacionItem> filtroParteCuerpo = animaciones.Where(q => q.Layer == parteDelCuerpo).ToList();
+
+        if (emocion != EMOCION_INDEFINIDA)
+        {
+            filtroParteCuerpo = filtroParteCuerpo.Where(q => q.Emocion == emocion).ToList();
+        }
+
+        return filtroParteCuerpo;
     }
 
     /// <summary> Actualizamos el listado de animaciones - Autor : Juan Dure
@@ -169,19 +181,37 @@ public class AnimationEditor : MonoBehaviour
         Canvas_AnimationEditor.SetActive(false);
     }
 
-    /// <summary> Setea parte del cuerpo  - Autor : Juan Dure
+    /// <summary> Setea parte del cuerpo si estas son diferentes, sino la parte del cuerpo se torna indefinida
+    /// Autores : Juan Dure y Tobias Malbos
     /// </summary>
     public void SetearParteDelCuerpo(string parteDelCuerpo)
     {
-        this.parteDelCuerpo = parteDelCuerpo;
+        if (this.parteDelCuerpo != parteDelCuerpo)
+        {
+            this.parteDelCuerpo = parteDelCuerpo;
+        }
+        else
+        {
+            this.parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
+        }
+        
         ActualizarListadoAnimaciones();
     }
 
-    /// <summary> Setea emocion  - Autor : Juan Dure
+    /// <summary> Setea emocion si las emociones son diferentes, sino la emocion se torna indefinida
+    /// Autores : Juan Dure y Tobias Malbos
     /// </summary>    
     public void SetearEmocion(string emocion)
     {
-        this.emocion = emocion;
+        if (this.emocion != emocion)
+        {
+            this.emocion = emocion;
+        }
+        else
+        {
+            this.emocion = EMOCION_INDEFINIDA;
+        }
+        
         ActualizarListadoAnimaciones();
     }
 }
