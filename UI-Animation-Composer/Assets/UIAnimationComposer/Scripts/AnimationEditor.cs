@@ -155,6 +155,24 @@ public class AnimationEditor : MonoBehaviour
         targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
     }
 
+    /// <summary> Se asigna al avatar la animacion que se quiere visualizar por separado  - Autor : Facundo Mozo
+    /// </summary>
+    public void PreviewAnimacion(string animName)
+    {
+        List<TuplaScriptableObject> triggerElegido = new List<TuplaScriptableObject>();
+        AnimacionItem anim = animaciones.Find(x => x.Trigger == animName); //buscar el trigger 
+        TuplaScriptableObject tuplaAux = new TuplaScriptableObject
+        {
+            Trigger = anim.Trigger,
+            Vector = anim.Vector
+        };
+        triggerElegido.Add(tuplaAux);
+        Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);
+        Debug.Log("Trigger PREVIEW Elegido: " + animName);
+        BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(triggerElegido);
+        //enviar al avatar
+        targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
+    }
     /// <summary>activa el panel  - Autor : Camila Garcia Petiet
     /// </summary>
     public void ActivarPanel()
