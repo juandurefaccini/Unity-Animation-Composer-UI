@@ -156,7 +156,7 @@ public class AnimationEditor : MonoBehaviour
         return aux;
     }
 
-    /// <summary>se asignan las animaciones al avatar para que las ejecute  - Autor : Camila Garcia Petiet
+    /// <summary>se asignan las animaciones al avatar para que las ejecute  - Autor : Camila Garcia Petiet. Actualizacion, ahora se paran las animaciones previas y reproduce la actual - Modificacion : Facundo Mozo - 29-10-2021
     /// </summary>
     public void ReproducirAnimacion()
     {
@@ -165,10 +165,11 @@ public class AnimationEditor : MonoBehaviour
         // Debug.Log("Triggers Elegidos: " + triggersElegidos.ToString());
         BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(triggersElegidos);
         //enviar al avatar
+        targetAvatar.GetComponent<AnimationComposer>().ClearAnims();
         targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
     }
 
-    /// <summary> Se asigna al avatar la animacion que se quiere visualizar por separado  - Autor : Facundo Mozo
+    /// <summary> Se asigna al avatar la animacion que se quiere visualizar por separado  - Autor : Facundo Mozo. Actualizacion, ahora se paran las animaciones previas y reproduce la actual - Modificacion : Facundo Mozo - 29-10-2021
     /// </summary>
     public void PreviewAnimacion(string animName)
     {
@@ -180,9 +181,11 @@ public class AnimationEditor : MonoBehaviour
             Vector = anim.Vector
         };
         triggerElegido.Add(tuplaAux);
-        Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);
-        Debug.Log("Trigger PREVIEW Elegido: " + animName);
+        //Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);
+        //Debug.Log("Trigger PREVIEW Elegido: " + animName);
         BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(triggerElegido);
+        // Se eliminan las animaciones que esten en queue y se reproduce la actual
+        targetAvatar.GetComponent<AnimationComposer>().ClearAnims();
         //enviar al avatar
         targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
     }
