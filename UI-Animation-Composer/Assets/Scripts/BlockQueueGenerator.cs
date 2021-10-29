@@ -1,15 +1,15 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using AnimationBlockQueue;
-using AnimationData;
+using AnimationDataScriptableObject;
 public class BlockQueueGenerator
 {
     private const string DEFAULT_TRIGGER = " ";
-    public static BlockQueue GetBlockQueue(List<TuplaScriptableObject> triggerScriptableObjects)
+    public static BlockQueue GetBlockQueue(List<AnimationData> triggerScriptableObjects)
     {
         List<Block> blocks = new List<Block>();
         blocks.Add(new Block());   //El constructor vacio crea la lista de layer info sin necesidad de pasarsela
-        foreach (TuplaScriptableObject tupla in triggerScriptableObjects)
+        foreach (AnimationData tupla in triggerScriptableObjects)
         {
             blocks[0].AddLayerInfo(new LayerInfo(tupla.Trigger));
         }
@@ -24,6 +24,7 @@ public class BlockQueueGenerator
             new LayerInfo("clearLeftArmLayer"),
             new LayerInfo("clearLegsLayer"),
             new LayerInfo("clearRightArmLayer"),
+            new LayerInfo("clearBaseLayer"),
             new LayerInfo("clearTorsoLayer")};
     }
 }
