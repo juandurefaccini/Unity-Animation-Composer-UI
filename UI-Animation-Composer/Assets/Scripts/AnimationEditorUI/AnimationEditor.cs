@@ -62,7 +62,7 @@ public class AnimationEditor : MonoBehaviour
     private void cargarAnimationItems()
     {
         animaciones = new List<AnimacionItem>();
-        foreach (var parteDelCuerpo in BibliotecaAnimaciones.animations)
+        foreach (var parteDelCuerpo in BibliotecaAtomicas.animations)
         {
             foreach (var emocion in parteDelCuerpo.Value)
             {
@@ -87,7 +87,7 @@ public class AnimationEditor : MonoBehaviour
 
     void Start()
     {
-        BibliotecaAnimaciones.CargarAnimaciones(); //cargar la biblioteca de animaciones a la lista de BibliotecaAnimaciones
+        BibliotecaAtomicas.CargarAnimaciones(); //cargar la biblioteca de animaciones a la lista de BibliotecaAnimaciones
         cargarAnimationItems(); //cargar la lista de animaciones
         parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
         emocion = EMOCION_INDEFINIDA;

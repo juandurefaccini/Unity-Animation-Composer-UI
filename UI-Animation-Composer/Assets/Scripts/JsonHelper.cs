@@ -17,10 +17,9 @@ public class JsonHelper
     public static string ToJson(string nombreBloque, List<string> triggers)
     {
         return ToJson(new List<string>{ nombreBloque }, new List<List<string>>{ triggers });
-}
+    }
     
-    
-    /// <summary> Crea un texto json de un bloque a partir de una lista de bloques con sus triggers - Autor: Tobias Malbos
+    /// <summary> Crea un texto json de una cola de bloques a partir de una lista de bloques con sus triggers - Autor: Tobias Malbos
     /// </summary>
     /// <param name="nombreBloques"> Nombre de cada uno de los bloques </param>
     /// <param name="blocks"> Lista que contiene todos bloques con sus respectivos triggers </param>
@@ -47,6 +46,12 @@ public class JsonHelper
         return result;
     }
 
+    /// <summary> Serializa una lista de bloques en base a una lista de listas de triggers y los nombres de
+    /// los respectivos bloques - Autor: Tobias Malbos
+    /// </summary>
+    /// <param name="nombreBloques"> Lista que contiene los nombres de los bloques </param>
+    /// <param name="blocks"> Lista con todos los triggers por cada bloque </param>
+    /// <returns></returns>
     private static string SerializeBlockQueue(List<string> nombreBloques, List<List<string>> blocks)
     {
         string serializedBlockQueue = _tabs + "\"bloques\": [";
