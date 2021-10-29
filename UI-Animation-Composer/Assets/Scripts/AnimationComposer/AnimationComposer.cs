@@ -72,4 +72,16 @@ public class AnimationComposer : MonoBehaviour
     {
         _started = true;
     }
+
+    public void ClearAnims()
+    {
+        var clear = new List<LayerInfo>();
+        for (var l = 1; l < _animator.layerCount; l++)
+        {
+            clear.Add(new LayerInfo("clear" + _animator.GetLayerName(l)));
+        }
+        _blockQueue.Clear();
+        _animsInProgress = 0;
+        _blockQueue.Enqueue(new Block(clear));
+    }
 }
