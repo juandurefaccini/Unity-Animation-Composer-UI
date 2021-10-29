@@ -10,7 +10,8 @@ public class IngresoNombre : MonoBehaviour
 
     public GameObject mensaje;
 
-    private const int MIN_ATOMICAS = 1;
+    public const int MIN_ATOMICAS = 1;
+    
     private const string PATH_CUSTOM_ANIMS = "/Resources/CustomAnimations/";
     
     /// <summary> Funcion que se llama cuando el usuario presiona cancelar - Autor: Tobias Malbos

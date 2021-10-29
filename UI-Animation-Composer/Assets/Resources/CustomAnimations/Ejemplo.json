@@ -1,0 +1,15 @@
+{
+	"bloques": [
+		{
+			"nombre_bloque": "Ejemplo",
+			"triggers": [
+				"AlegreFace",
+				"Excited",
+				"HappyArmR",
+				"ScratchHeadL",
+				"FistPump",
+				"Jump"
+			]
+		}
+	]
+}
