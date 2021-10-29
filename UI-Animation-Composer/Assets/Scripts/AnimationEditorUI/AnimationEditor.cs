@@ -30,12 +30,13 @@ public class AnimationEditor : MonoBehaviour
         }
     }
 
-    private List<string> triggers_seleccionados = new List<string>();
+    public static List<string> triggers_seleccionados { get; } = new List<string>() ;
     private List<AnimacionItem> animaciones = new List<AnimacionItem>();
     public GameObject targetAvatar;
     public GameObject Canvas_AnimationEditor;
     public GameObject Canvas_Lista_Resultados_NodoPadre;
     public GameObject Prefab_Lista_Resultados;
+    public GameObject ingresoNombre;
     private string parteDelCuerpo;
     private string emocion;
     public TextMeshProUGUI Canvas_IndicadorCantAnimaciones;
@@ -53,7 +54,7 @@ public class AnimationEditor : MonoBehaviour
 
     public void BorrarAnimacionesSeleccionadas()
     {
-        triggers_seleccionados = new List<string>();
+        triggers_seleccionados.Clear();
     }
 
     /// <summary>carga la lista de animaciones convirtiendo los triggers en un elemento de tipo AnimacionItem  - Autor : Camila Garcia Petiet
@@ -167,6 +168,25 @@ public class AnimationEditor : MonoBehaviour
         targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
     }
 
+    /// <summary> Se asigna al avatar la animacion que se quiere visualizar por separado  - Autor : Facundo Mozo
+    /// </summary>
+    public void PreviewAnimacion(string animName)
+    {
+        List<TuplaScriptableObject> triggerElegido = new List<TuplaScriptableObject>();
+        AnimacionItem anim = animaciones.Find(x => x.Trigger == animName); //buscar el trigger 
+        TuplaScriptableObject tuplaAux = new TuplaScriptableObject
+        {
+            Trigger = anim.Trigger,
+            Vector = anim.Vector
+        };
+        triggerElegido.Add(tuplaAux);
+        Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);
+        Debug.Log("Trigger PREVIEW Elegido: " + animName);
+        BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(triggerElegido);
+        //enviar al avatar
+        targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
+    }
+    
     /// <summary>activa el panel  - Autor : Camila Garcia Petiet
     /// </summary>
     public void ActivarPanel()
@@ -181,6 +201,11 @@ public class AnimationEditor : MonoBehaviour
         Canvas_AnimationEditor.SetActive(false);
     }
 
+    public void MostrarIngresoNombre()
+    {
+        ingresoNombre.SetActive(true);
+    }
+    
     /// <summary> Setea parte del cuerpo si estas son diferentes, sino la parte del cuerpo se torna indefinida
     /// Autores : Juan Dure y Tobias Malbos
     /// </summary>

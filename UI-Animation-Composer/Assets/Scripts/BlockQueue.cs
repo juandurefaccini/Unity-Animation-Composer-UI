@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 
 namespace AnimationBlockQueue
@@ -31,13 +32,12 @@ namespace AnimationBlockQueue
             return result;
         }
     }
-
+    
     public class Block
     {
         // Clase encargada de almacenar los distintos cambios que se le haran a los layers
         private List<LayerInfo> stateTransitions;
-
-
+        
         // DEPRECATED
         public Block(List<LayerInfo> stateTransitions)
         {
@@ -65,7 +65,7 @@ namespace AnimationBlockQueue
             stateTransitions.Add(layerInfo);
         }
     }
-
+    
     public class LayerInfo
     {
         public string DestinyState { get; }

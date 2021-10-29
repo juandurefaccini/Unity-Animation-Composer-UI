@@ -27,4 +27,9 @@ public class AnimationScriptItem : MonoBehaviour
         // Debug.Log(title.GetComponent<TextMeshProUGUI>().text);
         animationEditor.GetComponent<AnimationEditor>().AddAnimToBlockQueue(title.GetComponent<TextMeshProUGUI>().text, parteDelCuerpo);
     }
+
+    public void PreviewAnimacion()
+    {
+        animationEditor.GetComponent<AnimationEditor>().PreviewAnimacion(title.GetComponent<TextMeshProUGUI>().text);
+    }
 }
