@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using AnimationData;
+using AnimationDataScriptableObject;
 using AnimationBlockQueue;
 using System.Linq;
 using TMPro;
@@ -10,23 +10,31 @@ public class AnimationEditor : MonoBehaviour
 {
     class AnimacionItem
     {
+        public string Nombre;
+        public double Intensidad;
         public string Trigger;
         public double[] Vector;
         public string Layer;
         public string Emocion;
 
-        /// <summary> Carga valores en los atributos del objeto  - Autor : Camila Garcia Petiet
+        /// <summary> Carga valores en los atributos del objeto  - 
+        /// Autor : Camila Garcia Petiet
+        /// ACTUALIZACION 29/10/2021
+        /// Modificacion : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
+        /// Co-Autor: Pedro Procopio
         /// </summary>
-        /// <param name="t">Trigger</param>
-        /// <param name="v">vector de emociones</param>
-        /// <param name="l">Layer</param>
-        /// <param name="e">Emocion</param>
-        public void setAnim(string t, double[] v, string l, string e)
+        /// <param name="Nombre">Nombre a mostrar en la UI</param>
+        /// <param name="Trigger">Trigger</param>
+        /// <param name="Intensidad">Intensidad de la emocion</param>
+        /// <param name="Layer">Layer</param>
+        /// <param name="Emotion">Emocion</param>
+        public void setAnim(string Nombre, double Intensidad, string Trigger, string Layer, string Emotion)
         {
-            Trigger = t;
-            Vector = v;
-            Layer = l;
-            Emocion = e;
+            this.Nombre = Nombre;
+            this.Intensidad = Intensidad;
+            this.Trigger = Trigger;
+            this.Layer = Layer;
+            this.Emocion = Emotion;
         }
     }
 
@@ -58,6 +66,9 @@ public class AnimationEditor : MonoBehaviour
     }
 
     /// <summary>carga la lista de animaciones convirtiendo los triggers en un elemento de tipo AnimacionItem  - Autor : Camila Garcia Petiet
+    /// ACTUALIZACION 29/10/2021
+    /// Modificacion : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
+    /// Co-Autor: Pedro Procopio
     /// </summary>
     private void cargarAnimationItems()
     {
@@ -69,7 +80,7 @@ public class AnimationEditor : MonoBehaviour
                 foreach (var tupla in emocion.Value)
                 {
                     AnimacionItem aux = new AnimacionItem();
-                    aux.setAnim(tupla.Trigger, tupla.Vector, parteDelCuerpo.Key, emocion.Key);
+                    aux.setAnim(tupla.Nombre,tupla.Intensidad,tupla.Trigger, parteDelCuerpo.Key, emocion.Key);
                     animaciones.Add(aux);
                 }
             }
@@ -114,6 +125,9 @@ public class AnimationEditor : MonoBehaviour
     }
 
     /// <summary> Actualizamos el listado de animaciones - Autor : Juan Dure
+    /// ACTUALIZACION 29/10/2021
+    /// Modificacion : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
+    /// Co-Autor: Pedro Procopio
     /// </summary>
     private void ActualizarListadoAnimaciones()
     {
@@ -131,25 +145,32 @@ public class AnimationEditor : MonoBehaviour
         {
             // Debug.Log(q);
             GameObject itemAgregado = Instantiate(Prefab_Lista_Resultados);
+
             itemAgregado.transform.SetParent(Canvas_Lista_Resultados_NodoPadre.transform, false);
-            itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimName(q.Trigger);
+            itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimName(q.Nombre);
+            itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimTrigger(q.Trigger);
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateParteDelCuerpo(q.Layer);
         });
     }
 
-    /// <summary>Busca los triggers seleccionados en el panel y los añade a una lista de tipo TuplaScriptableObject  - Autor : Camila Garcia Petiet
+    /// <summary>Busca los triggers seleccionados en el panel y los añade a una lista de tipo AnimationData  - Autor : Camila Garcia Petiet
+    /// ACTUALIZACION 29/10/2021
+    /// Modificacion : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
+    /// Co-Autor: Pedro Procopio
     /// </summary>
-    ///<returns>Lista de TuplaScriptableObject con las animaciones</returns>
-    private List<TuplaScriptableObject> getTriggers()
+    ///<returns>Lista de AnimationData con las animaciones</returns>
+    private List<AnimationData> getTriggers()
     {
-        List<TuplaScriptableObject> aux = new List<TuplaScriptableObject>();
+        
+        List<AnimationData> aux = new List<AnimationData>();
         foreach (var tr in triggers_seleccionados)
         {
             AnimacionItem anim = animaciones.Find(x => x.Trigger == tr); //buscar el trigger 
-            TuplaScriptableObject tuplaAux = new TuplaScriptableObject
+            AnimationData tuplaAux = new AnimationData
             {
                 Trigger = anim.Trigger,
-                Vector = anim.Vector
+                Intensidad = anim.Intensidad,
+                Nombre = anim.Nombre
             };
             aux.Add(tuplaAux);
         }
@@ -160,24 +181,35 @@ public class AnimationEditor : MonoBehaviour
     /// </summary>
     public void ReproducirAnimacion()
     {
-        List<TuplaScriptableObject> triggersElegidos = this.getTriggers();
-        // Debug.Log("Cantidad de animaciones seleccionadas: " + triggersElegidos.Count);
-        // Debug.Log("Triggers Elegidos: " + triggersElegidos.ToString());
-        BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(triggersElegidos);
-        //enviar al avatar
-        targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
+        List<AnimationData> triggersElegidos = this.getTriggers();
+        if(triggersElegidos.Count > 0)
+        {
+            // Debug.Log("Cantidad de animaciones seleccionadas: " + triggersElegidos.Count);
+            // Debug.Log("Triggers Elegidos: " + triggersElegidos.ToString());
+            BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(triggersElegidos);
+            //enviar al avatar
+            targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
+        }
+        else
+        {
+            Debug.Log("No se seleccionaron animaciones");
+        }
     }
 
     /// <summary> Se asigna al avatar la animacion que se quiere visualizar por separado  - Autor : Facundo Mozo
+    /// ACTUALIZACION 29/10/2021
+    /// Modificacion : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
+    /// Co-Autor: Pedro Procopio
     /// </summary>
     public void PreviewAnimacion(string animName)
     {
-        List<TuplaScriptableObject> triggerElegido = new List<TuplaScriptableObject>();
-        AnimacionItem anim = animaciones.Find(x => x.Trigger == animName); //buscar el trigger 
-        TuplaScriptableObject tuplaAux = new TuplaScriptableObject
+        List<AnimationData> triggerElegido = new List<AnimationData>();
+        AnimacionItem anim = animaciones.Find(x => x.Trigger == animName);
+        AnimationData tuplaAux = new AnimationData
         {
             Trigger = anim.Trigger,
-            Vector = anim.Vector
+            Nombre = anim.Nombre,
+            Intensidad = anim.Intensidad
         };
         triggerElegido.Add(tuplaAux);
         Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);

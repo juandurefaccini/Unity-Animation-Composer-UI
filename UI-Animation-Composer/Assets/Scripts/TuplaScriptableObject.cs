@@ -3,7 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AnimationData
+//Cambiado por Pedro Procopio para que funcione correctamente el Nuevo ScriptableObject
+namespace AnimationDatax
 {
     [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/TuplaScriptableObject", order = 1)]
     public class TuplaScriptableObject : ScriptableObject
