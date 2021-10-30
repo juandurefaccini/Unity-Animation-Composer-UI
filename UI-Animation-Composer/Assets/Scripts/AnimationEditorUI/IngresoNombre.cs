@@ -32,7 +32,7 @@ public class IngresoNombre : MonoBehaviour
         if (esValido(nombre) && AnimationEditor.triggers_seleccionados.Count >= MIN_ATOMICAS)
         {
             GuardarAnimacion(nombre);
-            mostrarMensaje("La animacion fue guardada exitosamente");
+            mostrarMensaje("La animacion fue guardada exitosamente.");
             gameObject.SetActive(false);
         }
         else if (AnimationEditor.triggers_seleccionados.Count >= MIN_ATOMICAS)
@@ -41,7 +41,7 @@ public class IngresoNombre : MonoBehaviour
         }
         else
         {
-            mostrarMensaje("Error al guardar la animacion. La animacion creada debe tener al menos " + MIN_ATOMICAS + " animacion atomica");
+            mostrarMensaje("Error al guardar la animacion. La animacion creada debe tener al menos " + MIN_ATOMICAS + " animacion atomica.");
         }
     }
     
