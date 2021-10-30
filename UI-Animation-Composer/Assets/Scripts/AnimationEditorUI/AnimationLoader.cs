@@ -9,8 +9,6 @@ public class AnimationLoader : MonoBehaviour
     public GameObject prefabItem;
     public GameObject canvasListaAnimaciones;
 
-    private static string CUSTOM_ANIMS_PATH = "/Resources/CustomAnimations/";
-
     // Start is called before the first frame update
     void Start()
     {
