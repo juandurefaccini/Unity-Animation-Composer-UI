@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using AnimationBlockQueue;
 using UnityEngine;
 
-using AnimationData;
-
 public class BibliotecaPersonalizadas: BibliotecaAnimaciones
 {
     public static Dictionary<string, BlockQueue> custom_animations = CargarAnimaciones();

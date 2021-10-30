@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using AnimationBlockQueue;
 using UnityEngine;
 
-using AnimationData;
+using AnimationDataScriptableObject;
 
 public class BibliotecaAtomicas: BibliotecaAnimaciones
 {
-    public static Dictionary<string, Dictionary<string, List<TuplaScriptableObject>>> animations;
+    public static Dictionary<string, Dictionary<string, List<AnimationData>>> animations;
 
     private static BibliotecaAtomicas _instance = null;
 
@@ -28,7 +28,7 @@ public class BibliotecaAtomicas: BibliotecaAnimaciones
     {
         //Cargar un mapa de layers
         char dsc = Path.DirectorySeparatorChar; //Directory Separator Char
-        animations = new Dictionary<string, Dictionary<string, List<TuplaScriptableObject>>>();
+        animations = new Dictionary<string, Dictionary<string, List<AnimationData>>>();
         string animationpath = Directory.GetCurrentDirectory();
         animationpath = animationpath + dsc + "Assets" + dsc + "Resources" + dsc + "ScriptableObjects" + dsc + "TriggersEmotions";
         // Debug.Log(animationpath);
@@ -37,18 +37,18 @@ public class BibliotecaAtomicas: BibliotecaAnimaciones
         foreach (string layerpath in layerEntries)
         {
             string layer = layerpath.Split(Path.DirectorySeparatorChar).Last();
-            animations.Add(layer, new Dictionary<string, List<TuplaScriptableObject>>());
+            animations.Add(layer, new Dictionary<string, List<AnimationData>>());
             string[] emotionEntries = Directory.GetDirectories(layerpath);
             //Por cada emocion en una layer, cargar su coleccion de scriptable objects
             foreach (string emotionpath in emotionEntries)
             {
                 string emotion = emotionpath.Split(Path.DirectorySeparatorChar).Last();
-                animations[layer].Add(emotion, new List<TuplaScriptableObject>());
+                animations[layer].Add(emotion, new List<AnimationData>());
                 string resourcespath = "ScriptableObjects/TriggersEmotions";
                 try // No es necesario, ahora LoadAll retorna una lista vacia y no null.
                 {
-                    TuplaScriptableObject[] listTuplas = (TuplaScriptableObject[])Resources.LoadAll<TuplaScriptableObject>(resourcespath + dsc + layer + dsc + emotion);
-                    foreach (TuplaScriptableObject tupla in listTuplas)
+                    AnimationData[] listTuplas = (AnimationData[])Resources.LoadAll<AnimationData>(resourcespath + dsc + layer + dsc + emotion);
+                    foreach (AnimationData tupla in listTuplas)
                     {
                         animations[layer][emotion].Add(tupla);
                     }
@@ -62,9 +62,9 @@ public class BibliotecaAtomicas: BibliotecaAnimaciones
         }
     }
 
-    public static Dictionary<string, List<TuplaScriptableObject>> GetTriggersByEmocion(string emocion) // Object --> Nuevo scriptable Object
+    public static Dictionary<string, List<AnimationData>> GetTriggersByEmocion(string emocion) // Object --> Nuevo scriptable Object
     {
-        Dictionary<string, List<TuplaScriptableObject>> retorno = new Dictionary<string, List<TuplaScriptableObject>>();
+        Dictionary<string, List<AnimationData>> retorno = new Dictionary<string, List<AnimationData>>();
         Debug.Log(emocion);
         // layer es de tipo <string, Dictionary> 
         foreach (var layer in animations)
