@@ -108,6 +108,8 @@ public class AnimationEditor : MonoBehaviour
 
     /// <summary>Obtiene las animaciones filtradas por parte del cuerpo, si no se ha seleccionado alguna emocion,
     /// o por parte del cuerpo y emocion, si se ha seleccionado una emocion - Autores : Juan Dure y Tobias Malbos
+    /// Modificacion: Facundo Mozo - 30-10-21
+    /// Ahora se permite filtrar animaciones unicamente por emocion
     /// </summary>
     /// <param name="parteDelCuerpo">Parte del cuerpo</param>
     /// <param name="emocionSeleccionada">Emocion</param>
@@ -115,14 +117,23 @@ public class AnimationEditor : MonoBehaviour
     private List<AnimacionItem> getAnimacionesFiltradas()
     {
         // Retornar animaciones filtradas de la lista de animaciones
-        List<AnimacionItem> filtroParteCuerpo = animaciones.Where(q => q.Layer == parteDelCuerpo).ToList();
-
-        if (emocion != EMOCION_INDEFINIDA)
+        List<AnimacionItem> animacionesFiltradas = new List<AnimacionItem>();
+        if (parteDelCuerpo != PARTE_DEL_CUERPO_INDEFINIDA)
         {
-            filtroParteCuerpo = filtroParteCuerpo.Where(q => q.Emocion == emocion).ToList();
+            animacionesFiltradas = animaciones.Where(q => q.Layer == parteDelCuerpo).ToList();
+            if (emocion != EMOCION_INDEFINIDA)
+            {
+                animacionesFiltradas = animacionesFiltradas.Where(q => q.Emocion == emocion).ToList();
+                return animacionesFiltradas;
+            }
+        }
+        else if (emocion != EMOCION_INDEFINIDA)
+        {
+            animacionesFiltradas = animaciones.Where(q => q.Emocion == emocion).ToList();
+            return animacionesFiltradas;
         }
 
-        return filtroParteCuerpo;
+        return animacionesFiltradas;
     }
 
     /// <summary> Actualizamos el listado de animaciones - Autor : Juan Dure
