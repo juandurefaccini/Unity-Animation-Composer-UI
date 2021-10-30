@@ -4,6 +4,7 @@ using UnityEngine;
 public class AnimationScriptItem : MonoBehaviour
 {
     public TextMeshProUGUI title;
+    public TextMeshProUGUI coeficiente;
     private string parteDelCuerpo { get; set; }
     private GameObject animationEditor;
 
@@ -21,13 +22,17 @@ public class AnimationScriptItem : MonoBehaviour
 
     internal void UpdateAnimTrigger(string trigger)
     {
-       this.trigger = trigger;
+        this.trigger = trigger;
     }
-
 
     internal void UpdateParteDelCuerpo(string parteDelCuerpo)
     {
         this.parteDelCuerpo = parteDelCuerpo;
+    }
+
+    internal void UpdateCoeficiente(string coeficiente)
+    {
+        this.coeficiente.GetComponent<TextMeshProUGUI>().text = coeficiente;
     }
 
     public void AddAnimToBlockQueue()

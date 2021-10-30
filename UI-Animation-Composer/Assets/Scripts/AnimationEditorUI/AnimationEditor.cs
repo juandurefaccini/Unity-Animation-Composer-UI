@@ -150,6 +150,7 @@ public class AnimationEditor : MonoBehaviour
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimName(q.Nombre);
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimTrigger(q.Trigger);
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateParteDelCuerpo(q.Layer);
+            itemAgregado.GetComponent<AnimationScriptItem>().UpdateCoeficiente(q.Intensidad.ToString());
         });
     }
 
