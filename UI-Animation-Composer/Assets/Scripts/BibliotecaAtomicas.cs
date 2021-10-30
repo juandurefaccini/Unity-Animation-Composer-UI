@@ -8,12 +8,15 @@ using AnimationDataScriptableObject;
 
 public class BibliotecaAtomicas: BibliotecaAnimaciones
 {
-    public static Dictionary<string, Dictionary<string, List<AnimationData>>> animations;
+    public static readonly Dictionary<string, Dictionary<string, List<AnimationData>>> AtomicAnimations = CargarAnimaciones();
 
-    private static BibliotecaAtomicas _instance = null;
+    private static BibliotecaAtomicas _instance;
 
     private BibliotecaAtomicas() { }
 
+    /// <summary> Obtiene la instancia del singleton de BibliotecaAtomicas - Autor: Tobias Malbos
+    /// </summary>
+    /// <returns></returns>
     public static BibliotecaAnimaciones getInstance()
     {
         if (_instance == null)
@@ -24,13 +27,13 @@ public class BibliotecaAtomicas: BibliotecaAnimaciones
         return _instance;
     }
     
-    public static void CargarAnimaciones()
+    public static Dictionary<string, Dictionary<string, List<AnimationData>>> CargarAnimaciones()
     {
         //Cargar un mapa de layers
         char dsc = Path.DirectorySeparatorChar; //Directory Separator Char
-        animations = new Dictionary<string, Dictionary<string, List<AnimationData>>>();
+        var animations = new Dictionary<string, Dictionary<string, List<AnimationData>>>();
         string animationpath = Directory.GetCurrentDirectory();
-        animationpath = animationpath + dsc + "Assets" + dsc + "Resources" + dsc + "ScriptableObjects" + dsc + "TriggersEmotions";
+        animationpath = animationpath + "/Assets/Resources/ScriptableObjects/TriggersEmotions";
         // Debug.Log(animationpath);
         string[] layerEntries = Directory.GetDirectories(animationpath);
         //Por cada layer en Resources/ScriptableObjects/TriggersEmotions
@@ -60,6 +63,8 @@ public class BibliotecaAtomicas: BibliotecaAnimaciones
                 }
             }
         }
+
+        return animations;
     }
 
     public static Dictionary<string, List<AnimationData>> GetTriggersByEmocion(string emocion) // Object --> Nuevo scriptable Object
@@ -67,15 +72,33 @@ public class BibliotecaAtomicas: BibliotecaAnimaciones
         Dictionary<string, List<AnimationData>> retorno = new Dictionary<string, List<AnimationData>>();
         Debug.Log(emocion);
         // layer es de tipo <string, Dictionary> 
-        foreach (var layer in animations)
+        foreach (var layer in AtomicAnimations)
         {
-            retorno.Add(layer.Key, animations[layer.Key][emocion]);
+            retorno.Add(layer.Key, AtomicAnimations[layer.Key][emocion]);
         }
         return retorno;
     }
 
+    /// <summary> Devuelve una animacion dado su nombre - Autor: Tobias Malbos
+    /// </summary>
+    /// <param name="name"> Nombre de la animacion </param>
+    /// <returns></returns>
     public BlockQueue getAnimation(string name)
     {
-        throw new System.NotImplementedException();
+        foreach (var layer in AtomicAnimations)
+        {
+            foreach (var emotion in layer.Value)
+            {
+                foreach (AnimationData animationData in emotion.Value)
+                {
+                    if (animationData.Nombre == name)
+                    {
+                        return new BlockQueue(new List<Block> {new Block(animationData.Trigger)});
+                    }
+                }
+            }
+        }
+
+        return null;
     }
 }

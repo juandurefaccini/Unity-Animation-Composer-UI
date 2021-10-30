@@ -22,7 +22,11 @@ public class AnimationPlayer : MonoBehaviour
         // Si encontramos en alguna de las bibliotecas una animacion con el nombre provisto la ejecutamos
         if (animacion != null)
         {
-            gameObject.GetComponent<AnimationComposer>().AddBlockQueue(animacion);
+            AnimationComposer composer = gameObject.GetComponent<AnimationComposer>();
+            // Encola por defecto un bloque de limpieza al finalizar la animacion
+            animacion.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
+            composer.ClearAnims();
+            composer.AddBlockQueue(animacion);
         }  
     }
 }
