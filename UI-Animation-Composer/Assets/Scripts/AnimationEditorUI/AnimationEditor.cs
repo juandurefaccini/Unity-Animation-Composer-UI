@@ -38,7 +38,7 @@ public class AnimationEditor : MonoBehaviour
         }
     }
 
-    public static List<string> triggers_seleccionados { get; } = new List<string>() ;
+    public static List<string> triggers_seleccionados { get; } = new List<string>();
     private List<AnimacionItem> animaciones = new List<AnimacionItem>();
     public GameObject targetAvatar;
     public GameObject Canvas_AnimationEditor;
@@ -80,7 +80,7 @@ public class AnimationEditor : MonoBehaviour
                 foreach (var tupla in emocion.Value)
                 {
                     AnimacionItem aux = new AnimacionItem();
-                    aux.setAnim(tupla.Nombre,tupla.Intensidad,tupla.Trigger, parteDelCuerpo.Key, emocion.Key);
+                    aux.setAnim(tupla.Nombre, tupla.Intensidad, tupla.Trigger, parteDelCuerpo.Key, emocion.Key);
                     animaciones.Add(aux);
                 }
             }
@@ -98,7 +98,7 @@ public class AnimationEditor : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(BibliotecaPersonalizadas.getInstance().getAnimation("Ejemplo"));
+        // Debug.Log(BibliotecaPersonalizadas.getInstance().getAnimation("Ejemplo"));
         BibliotecaAtomicas.CargarAnimaciones(); //cargar la biblioteca de animaciones a la lista de BibliotecaAnimaciones
         cargarAnimationItems(); //cargar la lista de animaciones
         parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
@@ -162,6 +162,7 @@ public class AnimationEditor : MonoBehaviour
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimName(q.Nombre);
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateAnimTrigger(q.Trigger);
             itemAgregado.GetComponent<AnimationScriptItem>().UpdateParteDelCuerpo(q.Layer);
+            itemAgregado.GetComponent<AnimationScriptItem>().UpdateCoeficiente(q.Intensidad.ToString());
         });
     }
 
@@ -173,7 +174,7 @@ public class AnimationEditor : MonoBehaviour
     ///<returns>Lista de AnimationData con las animaciones</returns>
     private List<AnimationData> getTriggers()
     {
-        
+
         List<AnimationData> aux = new List<AnimationData>();
         foreach (var tr in triggers_seleccionados)
         {
@@ -194,7 +195,7 @@ public class AnimationEditor : MonoBehaviour
     public void ReproducirAnimacion()
     {
         List<AnimationData> triggersElegidos = this.getTriggers();
-        if(triggersElegidos.Count > 0)
+        if (triggersElegidos.Count > 0)
         {
             // Debug.Log("Cantidad de animaciones seleccionadas: " + triggersElegidos.Count);
             // Debug.Log("Triggers Elegidos: " + triggersElegidos.ToString());
@@ -233,7 +234,7 @@ public class AnimationEditor : MonoBehaviour
         //enviar al avatar
         targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
     }
-    
+
     /// <summary>activa el panel  - Autor : Camila Garcia Petiet
     /// </summary>
     public void ActivarPanel()
@@ -252,7 +253,7 @@ public class AnimationEditor : MonoBehaviour
     {
         ingresoNombre.SetActive(true);
     }
-    
+
     /// <summary> Setea parte del cuerpo si estas son diferentes, sino la parte del cuerpo se torna indefinida
     /// Autores : Juan Dure y Tobias Malbos
     /// </summary>
@@ -266,7 +267,7 @@ public class AnimationEditor : MonoBehaviour
         {
             this.parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
         }
-        
+
         ActualizarListadoAnimaciones();
     }
 
@@ -283,7 +284,19 @@ public class AnimationEditor : MonoBehaviour
         {
             this.emocion = EMOCION_INDEFINIDA;
         }
-        
+
+        ActualizarListadoAnimaciones();
+    }
+
+    /// <summary> Borrar emocion seleccionada de cierta parte del cuerpo
+    /// Autores : Juan Dure
+    /// </summary>    
+    public void BorrarTriggerParteDelCuerpo(string parteDelCuerpo)
+    {
+        // Borro todos los trigger seleccionados (siempre va a ser uno o ninguno) tales que se cumpla que existe una animacion
+        // con ese trigger en esa parte del cuerpo
+        // El count > 0 es para que sea booleano. Siempre que la condicion dentro del removeAll sea verdadera se borra
+        triggers_seleccionados.RemoveAll(x => animaciones.Where(q => q.Layer == parteDelCuerpo && q.Trigger == x).Count() > 0);
         ActualizarListadoAnimaciones();
     }
 }
