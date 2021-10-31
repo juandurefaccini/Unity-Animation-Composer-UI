@@ -287,4 +287,16 @@ public class AnimationEditor : MonoBehaviour
 
         ActualizarListadoAnimaciones();
     }
+
+    /// <summary> Borrar emocion seleccionada de cierta parte del cuerpo
+    /// Autores : Juan Dure
+    /// </summary>    
+    public void BorrarTriggerParteDelCuerpo(string parteDelCuerpo)
+    {
+        // Borro todos los trigger seleccionados (siempre va a ser uno o ninguno) tales que se cumpla que existe una animacion
+        // con ese trigger en esa parte del cuerpo
+        // El count > 0 es para que sea booleano. Siempre que la condicion dentro del removeAll sea verdadera se borra
+        triggers_seleccionados.RemoveAll(x => animaciones.Where(q => q.Layer == parteDelCuerpo && q.Trigger == x).Count() > 0);
+        ActualizarListadoAnimaciones();
+    }
 }

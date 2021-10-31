@@ -668,7 +668,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &201964782
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1739,7 +1739,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 387790816}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LegsLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &387790816
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4036,7 +4048,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 813468830}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BaseLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &813468830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6302,7 +6326,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1188843451}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: TorsoLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1188843451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6444,7 +6480,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1201537930}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: BothArmsLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1201537930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6586,7 +6634,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1255985311}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: RightArmLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1255985311
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7411,7 +7471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00087992434, y: 0.0012817383}
+  m_AnchoredPosition: {x: 0.00087992434, y: 0.0025024414}
   m_SizeDelta: {x: -0.0024156554, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1377845227
@@ -7899,7 +7959,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1521815461}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: LeftArmLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1521815461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11673,7 +11745,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2115173950}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1599947647}
+        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
+        m_MethodName: BorrarTriggerParteDelCuerpo
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: FaceLayer
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2115173950
 MonoBehaviour:
   m_ObjectHideFlags: 0
