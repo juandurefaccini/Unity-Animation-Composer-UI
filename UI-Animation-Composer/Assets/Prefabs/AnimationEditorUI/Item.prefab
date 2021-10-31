@@ -295,8 +295,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 928dfbe070a39813ca3ee7c44eb41ea9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: {fileID: 4375360521712508762}
-  coeficiente: {fileID: 1931316818832593164}
+  TMP_title: {fileID: 4375360521712508762}
+  TMP_intensidad: {fileID: 1931316818832593164}
 --- !u!1 &4375360521712508756
 GameObject:
   m_ObjectHideFlags: 0
