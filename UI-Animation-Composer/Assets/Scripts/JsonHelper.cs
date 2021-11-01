@@ -60,19 +60,19 @@ public class JsonHelper
             Debug.Log("Error. Json mal especificado");
         }
         
-        int posicion = json.IndexOf('[') + 1;
+        int posicion = json.IndexOf('[');
 
         while (posicion != 0)
         {
-            posicion = json.IndexOf('[', posicion) + 1;
+            posicion = json.IndexOf('[', posicion + 1);
 
-            if (posicion == 0)
+            if (posicion == -1)
             {
                 break;
             }
             
-            Block block = DeserializeBlock(json, posicion);            
-            posicion = json.IndexOf(']', posicion);
+            Block block = DeserializeBlock(json, posicion + 1);            
+            posicion = json.IndexOf(']', posicion + 1);
 
             if (block != null)
             {
@@ -91,25 +91,15 @@ public class JsonHelper
     {
         List<LayerInfo> triggers = new List<LayerInfo>();
         int ultimoCorchete = json.IndexOf(']', posicion);
-        int i = 0;
         
         do
         {
-            ++i;
-            int nuevaPosicion = json.IndexOf(',', posicion) + 1;
-
-            if (nuevaPosicion == 0)
-            {
-                break;
-            }
-            
-            int primerasComillas = json.IndexOf('"', nuevaPosicion) + 1;
-            int ultimasComillas = json.IndexOf('"', primerasComillas);
-            
+            int primerasComillas = json.IndexOf('"', posicion + 1) + 1;
+            int ultimasComillas = json.IndexOf('"', primerasComillas + 1);
             string trigger = json.Substring(primerasComillas, ultimasComillas - primerasComillas);
             triggers.Add(new LayerInfo(trigger));
-            posicion = nuevaPosicion;
-        } while (posicion <= ultimoCorchete && i < 10);
+            posicion = json.IndexOf(',', posicion + 1);
+        } while (posicion <= ultimoCorchete && posicion != -1);
 
         if (triggers.Count > 0)
         {
