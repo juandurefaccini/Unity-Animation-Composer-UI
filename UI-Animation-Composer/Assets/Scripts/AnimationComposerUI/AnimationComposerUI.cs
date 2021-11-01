@@ -120,6 +120,7 @@ namespace AnimationComposerUI
         /// <summary> Actualizamos el listado de animaciones - Autor : Juan Dure
         /// </summary>
         /// ACTUALIZACION 29/10/2021 Pedro Procopio : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
+        /// ACTUALIZACION 1/11/2021 Tobias Malbos : Actualizado para asignar el boton de la capa al Item Prefab
         private void ActualizarListadoAnimaciones()
         {
             List<Animacion> listaAnimacionesFiltradas = GETAnimacionesFiltradas();
@@ -131,14 +132,17 @@ namespace AnimationComposerUI
                 Destroy(child.gameObject);
             }
 
+            Button botonCapa = GetBotonCapa();
+            
             // Crear lista de resultados
             listaAnimacionesFiltradas.ForEach(q =>
             {
                 // Debug.Log(q);
-                GameObject itemAgregado = Instantiate(Prefab_Lista_Resultados);
+                GameObject itemAgregado = Instantiate(Prefab_Lista_Resultados, Canvas_Lista_Resultados_NodoPadre.transform, false);
+                AnimationScriptItem scriptItem = itemAgregado.GetComponent<AnimationScriptItem>();
 
-                itemAgregado.transform.SetParent(Canvas_Lista_Resultados_NodoPadre.transform, false);
-                itemAgregado.GetComponent<AnimationScriptItem>().Animacion = q;
+                scriptItem.botonCapa = botonCapa;
+                scriptItem.Animacion = q;
             });
         }
 
@@ -239,6 +243,44 @@ namespace AnimationComposerUI
             // con ese trigger en esa parte del cuerpo
             TriggersSeleccionados.RemoveAll(q => q.Layer == layer);
             ActualizarListadoAnimaciones();
+        }
+
+        /// <summary> Devuelve el boton asociado a la parte del cuerpo que esta seleccionada actualmente. Si no hay
+        /// ninguna parte del cuerpo asociada, se retorna null - Autor : Tobias Malbos
+        /// </summary>
+        /// <returns></returns>
+        private Button GetBotonCapa()
+        {            
+            if (parteDelCuerpo != PARTE_DEL_CUERPO_INDEFINIDA)
+            {
+                Transform panelCapas = GetTransform(transform, "PanelParteDelCuerpo");
+                // Se remueven los ultimos 5 caracteres de la parte del cuerpo seleccionada o bien el substring "Layer"
+                Transform botonCapa = GetTransform(panelCapas, "Boton" + parteDelCuerpo.Remove(parteDelCuerpo.Length - 5));
+                return botonCapa.GetComponent<Button>();
+            }
+
+            return null;
+        }
+
+        /// <summary> Dado un transform padre, y el nombre del objeto que queremos buscar, se retorna el transform que
+        /// coincida con este nombre dentro de la jerarquia de hijos del transform padre - Autor : Tobias Malbos
+        /// </summary>
+        /// <param name="padre"> Transform padre </param>
+        /// <param name="nombre"> Nombre del objeto a buscar </param>
+        /// <returns></returns>
+        private Transform GetTransform(Transform padre, string nombre)
+        {
+            Transform[] hijos = padre.GetComponentsInChildren<Transform>();
+
+            foreach (Transform hijo in hijos)
+            {
+                if (hijo.name == nombre)
+                {
+                    return hijo;
+                }
+            }
+
+            return null;
         }
     }
 }

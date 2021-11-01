@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1502,7 +1502,7 @@ GameObject:
   - component: {fileID: 385766954}
   - component: {fileID: 385766957}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: BotonRightArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1650,12 +1650,12 @@ GameObject:
   - component: {fileID: 387790815}
   - component: {fileID: 387790814}
   m_Layer: 5
-  m_Name: Button (6)
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &387790813
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1750,6 +1750,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: LegsLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 387790812}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &387790816
@@ -2775,7 +2787,7 @@ GameObject:
   - component: {fileID: 504758277}
   - component: {fileID: 504758280}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: BotonLegs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3269,7 +3281,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1070579831}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.99999696
+  m_Size: 0.9999939
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3959,12 +3971,12 @@ GameObject:
   - component: {fileID: 813468829}
   - component: {fileID: 813468828}
   m_Layer: 5
-  m_Name: Button
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &813468827
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4059,6 +4071,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: BaseLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 813468826}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &813468830
@@ -4268,7 +4292,7 @@ GameObject:
   - component: {fileID: 834530379}
   - component: {fileID: 834530382}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: BotonTorso
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5674,7 +5698,7 @@ GameObject:
   - component: {fileID: 1028602681}
   - component: {fileID: 1028602684}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BotonFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6237,12 +6261,12 @@ GameObject:
   - component: {fileID: 1188843450}
   - component: {fileID: 1188843449}
   m_Layer: 5
-  m_Name: Button (6)
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1188843448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6339,6 +6363,18 @@ MonoBehaviour:
           m_StringArgument: TorsoLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1188843447}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1188843451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6391,12 +6427,12 @@ GameObject:
   - component: {fileID: 1201537929}
   - component: {fileID: 1201537928}
   m_Layer: 5
-  m_Name: Button (9)
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1201537927
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6493,6 +6529,18 @@ MonoBehaviour:
           m_StringArgument: BothArmsLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 1201537926}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1201537930
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6545,12 +6593,12 @@ GameObject:
   - component: {fileID: 1255985310}
   - component: {fileID: 1255985309}
   m_Layer: 5
-  m_Name: Button (7)
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1255985308
 RectTransform:
   m_ObjectHideFlags: 0
@@ -6645,6 +6693,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: RightArmLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1255985307}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1255985311
@@ -7471,7 +7531,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00087992434, y: 0.0008544922}
+  m_AnchoredPosition: {x: 0.00087992434, y: 0.000061035156}
   m_SizeDelta: {x: -0.0024156554, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1377845227
@@ -7870,12 +7930,12 @@ GameObject:
   - component: {fileID: 1521815460}
   - component: {fileID: 1521815459}
   m_Layer: 5
-  m_Name: Button (8)
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1521815458
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7970,6 +8030,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: LeftArmLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1521815457}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1521815461
@@ -9590,7 +9662,7 @@ GameObject:
   - component: {fileID: 1853974679}
   - component: {fileID: 1853974682}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: BotonBothArms
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11508,7 +11580,7 @@ GameObject:
   - component: {fileID: 2112183229}
   - component: {fileID: 2112183232}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: BotonLeftArm
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -11656,12 +11728,12 @@ GameObject:
   - component: {fileID: 2115173949}
   - component: {fileID: 2115173948}
   m_Layer: 5
-  m_Name: Button (6)
+  m_Name: Clear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2115173947
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11756,6 +11828,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: FaceLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 2115173946}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &2115173950
