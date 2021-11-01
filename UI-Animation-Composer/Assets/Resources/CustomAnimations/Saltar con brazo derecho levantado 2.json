@@ -1,0 +1,11 @@
+{
+	"bloques": [
+		{
+			"nombre_bloque": "Saltar con brazo derecho levantado 2",
+			"triggers": [
+				"HappyArmR",
+				"Jump"
+			]
+		}
+	]
+}
