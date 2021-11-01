@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465782, g: 0.49641252, b: 0.5748167, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -906,7 +906,7 @@ GameObject:
   - component: {fileID: 257861492}
   - component: {fileID: 257861493}
   m_Layer: 5
-  m_Name: Boton Base
+  m_Name: BotonBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3269,7 +3269,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1070579831}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.9999969
+  m_Size: 0.99999696
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -7471,7 +7471,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00087992434, y: 0.001159668}
+  m_AnchoredPosition: {x: 0.00087992434, y: 0.0008544922}
   m_SizeDelta: {x: -0.0024156554, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1377845227
@@ -8243,6 +8243,8 @@ MonoBehaviour:
   Canvas_Lista_Resultados_NodoPadre: {fileID: 1377845225}
   Canvas_PantallaConfirmacion: {fileID: 1687118956}
   Canvas_IndicadorCantAnimaciones: {fileID: 2021081414}
+  ContenedorBotonesEmocion: {fileID: 471683445}
+  ContenedorBotonesParteDelCuerpo: {fileID: 510886833}
   Prefab_Lista_Resultados: {fileID: 4375360521142429211, guid: f38fa3ed1a7ee93e7b841686e07b612e, type: 3}
 --- !u!1 &1634795889
 GameObject:
@@ -8301,9 +8303,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Base
-
-'
+  m_text: Base
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

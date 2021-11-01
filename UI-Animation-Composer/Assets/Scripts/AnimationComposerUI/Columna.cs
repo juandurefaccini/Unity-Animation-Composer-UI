@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Columna : MonoBehaviour
 {
@@ -26,6 +28,61 @@ public class Columna : MonoBehaviour
         else
         {
             ultimoBoton = next;
+        }
+    }
+    /// <summary> Habilitar los botones de filtrado por emociones cuando NO se selecciona el layer "Base"
+    ///  - Autor : Facundo Mozo  
+    public void HabilitarEmociones()
+    {
+        Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
+        foreach (Button child in allChildren)
+        {
+            child.interactable = true;
+        }
+    }
+    /// <summary> Desahilitar los botones de filtrado por emociones cuando se selecciona el layer "Base"
+    ///  - Autor : Facundo Mozo
+    /// </summary>
+    public void DeshabilitarEmociones()
+    {
+        Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
+        foreach (Button child in allChildren)
+        {
+            child.interactable = false;
+        }
+    }
+    /// <summary> Deshabilitar boton base layer si se selecciona una emocion  - Autor : Facundo Mozo
+    /// </summary>    
+    public void DeshabilitarBaseLayer()
+    {
+        Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
+        foreach (Button child in allChildren)
+        {
+            TextMeshProUGUI aux = child.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            if (aux != null) {
+                if (aux.text == "Base")
+                {     
+                    child.interactable =false;
+                    return;
+                }
+            }
+        }
+    }
+    /// <summary> Habilitar boton base layer si se deselecciona una emocion  - Autor : Facundo Mozo
+    /// </summary>
+    public void HabilitarBaseLayer()
+    {
+       Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
+        foreach (Button child in allChildren)
+        {
+            TextMeshProUGUI aux = child.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+            if (aux != null) {
+                if (aux.text == "Base")
+                {     
+                    child.interactable = true;
+                    return;
+                }
+            }
         }
     }
 }
