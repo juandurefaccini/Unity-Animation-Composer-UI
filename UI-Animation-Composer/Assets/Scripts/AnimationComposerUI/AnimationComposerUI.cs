@@ -253,8 +253,8 @@ namespace AnimationComposerUI
         {            
             if (parteDelCuerpo != PARTE_DEL_CUERPO_INDEFINIDA)
             {
-                string nombreBoton = "Boton" + parteDelCuerpo.Remove(parteDelCuerpo.Length - 5);
                 // Se remueven los ultimos 5 caracteres de la parte del cuerpo seleccionada o bien el substring "Layer"
+                string nombreBoton = "Boton" + parteDelCuerpo.Remove(parteDelCuerpo.Length - 5);
                 Transform botonCapa = ContenedorBotonesParteDelCuerpo.transform.Find(nombreBoton);
                 return botonCapa.GetComponent<Button>();
             }
