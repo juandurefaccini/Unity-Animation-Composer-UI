@@ -253,31 +253,9 @@ namespace AnimationComposerUI
         {            
             if (parteDelCuerpo != PARTE_DEL_CUERPO_INDEFINIDA)
             {
-                Transform panelCapas = GetTransform(transform, "PanelParteDelCuerpo");
                 // Se remueven los ultimos 5 caracteres de la parte del cuerpo seleccionada o bien el substring "Layer"
-                Transform botonCapa = GetTransform(panelCapas, "Boton" + parteDelCuerpo.Remove(parteDelCuerpo.Length - 5));
+                Transform botonCapa = ContenedorBotonesParteDelCuerpo.transform.Find("Boton" + parteDelCuerpo.Remove(parteDelCuerpo.Length - 5));
                 return botonCapa.GetComponent<Button>();
-            }
-
-            return null;
-        }
-
-        /// <summary> Dado un transform padre, y el nombre del objeto que queremos buscar, se retorna el transform que
-        /// coincida con este nombre dentro de la jerarquia de hijos del transform padre - Autor : Tobias Malbos
-        /// </summary>
-        /// <param name="padre"> Transform padre </param>
-        /// <param name="nombre"> Nombre del objeto a buscar </param>
-        /// <returns></returns>
-        private Transform GetTransform(Transform padre, string nombre)
-        {
-            Transform[] hijos = padre.GetComponentsInChildren<Transform>();
-
-            foreach (Transform hijo in hijos)
-            {
-                if (hijo.name == nombre)
-                {
-                    return hijo;
-                }
             }
 
             return null;
