@@ -24,8 +24,8 @@ namespace AnimationComposerUI
         public TextMeshProUGUI Canvas_IndicadorCantAnimaciones;
         public GameObject ContenedorBotonesEmocion;
         public GameObject ContenedorBotonesParteDelCuerpo;
+        public GameObject MensajeNoAnims;
         
-
         // Resultados
         public GameObject Prefab_Lista_Resultados;
 
@@ -120,7 +120,8 @@ namespace AnimationComposerUI
         /// <summary> Actualizamos el listado de animaciones - Autor : Juan Dure
         /// </summary>
         /// ACTUALIZACION 29/10/2021 Pedro Procopio : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
-        /// ACTUALIZACION 1/11/2021 Tobias Malbos : Actualizado para asignar el boton de la capa al Item Prefab
+        /// ACTUALIZACION 1/11/2021 Tobias Malbos : Actualizado para asignar el boton de la capa al Item Prefab y para
+        /// activar el mensaje de sin animaciones en caso de que la cantidad de animaciones filtradas sea 0
         private void ActualizarListadoAnimaciones()
         {
             List<Animacion> listaAnimacionesFiltradas = GETAnimacionesFiltradas();
@@ -131,14 +132,16 @@ namespace AnimationComposerUI
             {
                 Destroy(child.gameObject);
             }
-
-            Button botonCapa = GetBotonCapa();
             
+            // Activa el mensaje de sin animaciones cuando la cantidad de animaciones filtradas es 0
+            MensajeNoAnims.SetActive(listaAnimacionesFiltradas.Count == 0);
+
             // Crear lista de resultados
             listaAnimacionesFiltradas.ForEach(q =>
             {
                 // Debug.Log(q);
                 GameObject itemAgregado = Instantiate(Prefab_Lista_Resultados, Canvas_Lista_Resultados_NodoPadre.transform, false);
+                Button botonCapa = GetBotonCapa(q);
                 AnimationScriptItem scriptItem = itemAgregado.GetComponent<AnimationScriptItem>();
 
                 scriptItem.botonCapa = botonCapa;
@@ -245,21 +248,17 @@ namespace AnimationComposerUI
             ActualizarListadoAnimaciones();
         }
 
-        /// <summary> Devuelve el boton asociado a la parte del cuerpo que esta seleccionada actualmente. Si no hay
-        /// ninguna parte del cuerpo asociada, se retorna null - Autor : Tobias Malbos
+        /// <summary> Devuelve el boton asociado a la parte del cuerpo que anima la animacion dada - Autor : Tobias Malbos
         /// </summary>
         /// <returns></returns>
-        private Button GetBotonCapa()
-        {            
-            if (parteDelCuerpo != PARTE_DEL_CUERPO_INDEFINIDA)
-            {
-                // Se remueven los ultimos 5 caracteres de la parte del cuerpo seleccionada o bien el substring "Layer"
-                string nombreBoton = "Boton" + parteDelCuerpo.Remove(parteDelCuerpo.Length - 5);
-                Transform botonCapa = ContenedorBotonesParteDelCuerpo.transform.Find(nombreBoton);
-                return botonCapa.GetComponent<Button>();
-            }
-
-            return null;
+        private Button GetBotonCapa(Animacion animacion)
+        {
+            // Se remueven los ultimos 5 caracteres de la parte del cuerpo seleccionada o bien el substring "Layer"
+            string capa = animacion.Layer.Remove(animacion.Layer.Length - 5);
+            string nombreBoton = "Boton" + capa;
+            Transform botonCapa = ContenedorBotonesParteDelCuerpo.transform.Find(nombreBoton);
+            
+            return botonCapa.GetComponent<Button>();
         }
     }
 }
