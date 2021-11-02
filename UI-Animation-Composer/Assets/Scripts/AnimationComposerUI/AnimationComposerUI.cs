@@ -11,8 +11,7 @@ namespace AnimationComposerUI
 {
     public class AnimationComposerUI : MonoBehaviour
     {
-
-        public static List<Animacion> TriggersSeleccionados { get; } = new List<Animacion>();
+        public List<Animacion> TriggersSeleccionados = new List<Animacion>();
         private List<Animacion> _animacionesAtomicas = new List<Animacion>();
         public GameObject targetAvatar;
         private string _emocion;
@@ -44,7 +43,7 @@ namespace AnimationComposerUI
         void Start()
         {
             // Debug.Log(BibliotecaPersonalizadas.getInstance().getAnimation("Ejemplo"));
-            BibliotecaAtomicas.CargarAnimaciones();
+            TriggersSeleccionados = new List<Animacion>();
             CargarAnimacionesAtomicas();
             parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
             _emocion = EMOCION_INDEFINIDA;
@@ -265,7 +264,7 @@ namespace AnimationComposerUI
             string capa = animacion.Layer.Remove(animacion.Layer.Length - 5);
             string nombreBoton = "Boton" + capa;
             Transform botonCapa = ContenedorBotonesParteDelCuerpo.transform.Find(nombreBoton);
-            
+
             return botonCapa.GetComponent<Button>();
         }
     }

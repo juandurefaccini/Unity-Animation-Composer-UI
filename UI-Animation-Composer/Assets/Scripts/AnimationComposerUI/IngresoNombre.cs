@@ -1,5 +1,7 @@
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using AnimationBlockQueue;
 using TMPro;
 using UnityEngine;
 
@@ -10,6 +12,7 @@ namespace AnimationComposerUI
         public TMP_InputField inputField;
         public TMP_Text errorMessageText;
 
+        public GameObject editorAnimaciones;
         public GameObject mensaje;
 
         public const int MIN_ATOMICAS = 1;
@@ -27,17 +30,19 @@ namespace AnimationComposerUI
         /// <summary> Se encarga de verificar que el nombre ingresado sea valido y
         /// que al menos haya una cantidad MIN_ATOMICAS de animaciones - Autor: Tobias Malbos
         /// </summary>
+        /// ACTUALIZACION 2/11/21 Tobias Malbos : Actualizado para no acceder a la variable TriggersSeleccionados de manera estatica
         public void AceptarIngresoNombre()
         {
+            int cantidadTriggers = editorAnimaciones.GetComponent<AnimationComposerUI>().TriggersSeleccionados.Count;
             string nombre = inputField.text;
 
-            if (esValido(nombre) && AnimationComposerUI.TriggersSeleccionados.Count >= MIN_ATOMICAS)
+            if (esValido(nombre) && cantidadTriggers >= MIN_ATOMICAS)
             {
                 GuardarAnimacion(nombre);
                 MostrarMensaje("La animacion fue guardada exitosamente.");
                 gameObject.SetActive(false);
             }
-            else if (AnimationComposerUI.TriggersSeleccionados.Count >= MIN_ATOMICAS)
+            else if (cantidadTriggers >= MIN_ATOMICAS)
             {
                 MostrarMensaje("Error al guardar la animacion. No se ingreso un nombre valido.");
             }
@@ -51,9 +56,13 @@ namespace AnimationComposerUI
         /// </summary>
         /// <param name="nombreAnimacion"> Nombre que tendra el .json a generar </param>
         /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion con nueva lista
+        /// ACTUALIZACION 2/11/21 Tobias Malbos : Actualizado para que agregue la nueva animacion dentro de BibliotecaPersonalizadas
         public void GuardarAnimacion(string nombreAnimacion)
         {
-            string json = JsonHelper.ToJson(nombreAnimacion, AnimationComposerUI.TriggersSeleccionados.Select(q => q.Trigger).ToList());
+            List<Animacion> triggersSeleccionados = editorAnimaciones.GetComponent<AnimationComposerUI>().TriggersSeleccionados;
+            BlockQueue animacion = BlockQueueGenerator.GetBlockQueue(triggersSeleccionados.Select(q => q.AnimacionData).ToList());
+            BibliotecaPersonalizadas.CustomAnimations.Add(nombreAnimacion, animacion);
+            string json = JsonHelper.ToJson(nombreAnimacion, triggersSeleccionados.Select(q => q.Trigger).ToList());
             File.WriteAllText(Application.dataPath + PATH_CUSTOM_ANIMS + nombreAnimacion + ".json", json);
             CancelarIngresoNombre();
         }
