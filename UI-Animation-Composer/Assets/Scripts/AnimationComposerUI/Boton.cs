@@ -20,10 +20,10 @@ public class Boton : MonoBehaviour
     public void CambiarColor()
     {   
         //  Pregunto si el boton esta pintado o no
-        if ( GetComponent<UnityEngine.UI.Image>().color == Color.white)
+        if ( GetComponent<Image>().color == Color.white)
         {   //Si no esta pintado, vuelvo blanco el ultimo y lo pinto verde
             columna.GetComponent<Columna>().SetBlanco(transform.gameObject);
-            GetComponent<UnityEngine.UI.Image>().color = Color.green;
+            GetComponent<Image>().color = Color.green;
         }
         else
         {   //Si esta pintado, vuelvo blaco el ultimo, osea este 

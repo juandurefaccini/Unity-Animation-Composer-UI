@@ -140,7 +140,7 @@ namespace AnimationComposerUI
             
             // Activa el mensaje de sin animaciones cuando la cantidad de animaciones filtradas es 0
             MensajeNoAnims.SetActive(listaAnimacionesFiltradas.Count == 0);
-
+            
             // Crear lista de resultados
             listaAnimacionesFiltradas.ForEach(q =>
             {
@@ -205,9 +205,7 @@ namespace AnimationComposerUI
         {
             Canvas_PantallaConfirmacion.SetActive(true);
         }
-
-     
-
+        
         /// <summary> Setea parte del cuerpo si estas son diferentes, sino la parte del cuerpo se torna indefinida
         /// Autores : Juan Dure y Tobias Malbos
         /// </summary>
@@ -215,11 +213,12 @@ namespace AnimationComposerUI
         /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglo de operador ternario, añanido de habilitacion/Deshabilitacion de Emociones si se selecciona el layer "Base"
         public void SetearParteDelCuerpo(string layer)
         {
-            this.parteDelCuerpo = (this.parteDelCuerpo != layer) ?  layer :  PARTE_DEL_CUERPO_INDEFINIDA;
-            if (this.parteDelCuerpo == "BaseLayer")
+            parteDelCuerpo = (parteDelCuerpo != layer) ? layer : PARTE_DEL_CUERPO_INDEFINIDA;
+            if (parteDelCuerpo == "BaseLayer")
             {
                 ContenedorBotonesEmocion.GetComponent<Columna>().DeshabilitarEmociones();
-            }else
+            }
+            else
             {
                 ContenedorBotonesEmocion.GetComponent<Columna>().HabilitarEmociones();
             }
@@ -233,8 +232,8 @@ namespace AnimationComposerUI
         /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglo de operador ternario, añanido de habilitacion/Deshabilitacion de Layer "Base" si hay una emocion seleccionada
         public void SetearEmocion(string emocion)
         {
-            this._emocion = (this._emocion != emocion) ? emocion : this._emocion = EMOCION_INDEFINIDA;
-            if (this._emocion != EMOCION_INDEFINIDA)
+            _emocion = (_emocion != emocion) ? emocion : _emocion = EMOCION_INDEFINIDA;
+            if (_emocion != EMOCION_INDEFINIDA)
             {
                 ContenedorBotonesParteDelCuerpo.GetComponent<Columna>().DeshabilitarBaseLayer();
             }
