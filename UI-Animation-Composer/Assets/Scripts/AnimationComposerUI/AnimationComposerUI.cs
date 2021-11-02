@@ -37,6 +37,9 @@ namespace AnimationComposerUI
         private const string PARTE_DEL_CUERPO_INDEFINIDA = "Parte del Cuerpo Indefinida";
 
         private const string EMOCION_INDEFINIDA = "Emocion Indefinida";
+        
+        private Vector3 posicionInicialAvatar;
+        private Quaternion rotacionInicialAvatar;
 
         void Start()
         {
@@ -45,6 +48,8 @@ namespace AnimationComposerUI
             CargarAnimacionesAtomicas();
             parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
             _emocion = EMOCION_INDEFINIDA;
+            posicionInicialAvatar = targetAvatar.transform.localPosition;
+            rotacionInicialAvatar = targetAvatar.transform.localRotation;
             ActualizarListadoAnimaciones();
         }
 
@@ -161,6 +166,8 @@ namespace AnimationComposerUI
                 TriggersSeleccionados.ForEach(q => Debug.Log(q.Nombre));
                 BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(TriggersSeleccionados.Select(q => q.AnimacionData).ToList()); // Filtro la parte que me interesa, los AnimationData
                 targetAvatar.GetComponent<AnimationComposer>().ClearAnims();
+                targetAvatar.transform.localPosition = posicionInicialAvatar;
+                targetAvatar.transform.localRotation =rotacionInicialAvatar;
                 targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
             }
             else
@@ -179,6 +186,8 @@ namespace AnimationComposerUI
             //Debug.Log("Trigger PREVIEW Elegido: " + animName);
             BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(_animacionesAtomicas.FindAll(q => q.Trigger == animName).Select(q => q.AnimacionData).ToList()); // Uso del FindAll para que me lo convierta a una lista
             targetAvatar.GetComponent<AnimationComposer>().ClearAnims(); // Se eliminan las animaciones que esten en queue
+            targetAvatar.transform.localPosition = posicionInicialAvatar;
+            targetAvatar.transform.localRotation =rotacionInicialAvatar;
             targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue); // Reproduce actual
         }
 
