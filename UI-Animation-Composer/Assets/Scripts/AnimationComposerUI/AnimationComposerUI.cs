@@ -36,9 +36,6 @@ namespace AnimationComposerUI
         private const string PARTE_DEL_CUERPO_INDEFINIDA = "Parte del Cuerpo Indefinida";
 
         private const string EMOCION_INDEFINIDA = "Emocion Indefinida";
-        
-        private Vector3 posicionInicialAvatar;
-        private Quaternion rotacionInicialAvatar;
 
         void Start()
         {
@@ -47,8 +44,6 @@ namespace AnimationComposerUI
             CargarAnimacionesAtomicas();
             parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
             _emocion = EMOCION_INDEFINIDA;
-            posicionInicialAvatar = targetAvatar.transform.localPosition;
-            rotacionInicialAvatar = targetAvatar.transform.localRotation;
             ActualizarListadoAnimaciones();
         }
 
@@ -60,11 +55,19 @@ namespace AnimationComposerUI
             TriggersSeleccionados.Add(_animacionesAtomicas.Find(q => q.Trigger == trigger));
         }
 
-        /// <summary> Borra los triggers seleccionados  - Autor : Juan Dure
+        /// <summary> Borra los triggers seleccionados - Autor : Juan Dure
         /// </summary>
+        /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que desactive los botones de Clear de las capas afectadas
         public void BorrarAnimacionesSeleccionadas()
         {
             targetAvatar.GetComponent<AnimationComposer>().ClearAnims(); // Se eliminan las animaciones que esten en queue
+            
+            TriggersSeleccionados.ForEach(a =>
+            {
+                Button botonCapa = GetBotonCapa(a);
+                botonCapa.transform.Find("Clear").gameObject.SetActive(false);
+            });
+            
             TriggersSeleccionados.Clear();
         }
 
@@ -153,10 +156,10 @@ namespace AnimationComposerUI
             });
         }
 
-        /// <summary>se asignan las animaciones al avatar para que las ejecute  - Autor : Camila Garcia Petiet.
-        /// Actualizacion, ahora se paran las animaciones previas y reproduce la actual - Modificacion : Facundo Mozo - 29-10-2021
+        /// <summary> Se asignan las animaciones al avatar para que las ejecute - Autor : Camila Garcia Petiet.
         /// </summary>
-        /// ACTUALIZACION 31/10/2021 Juan Dure - Refactorizacion con nueva lista, uso de LINQ para filtrar la parte util de la lista 
+        /// ACTUALIZACION 31/10/2021 Juan Dure - Refactorizacion con nueva lista, uso de LINQ para filtrar la parte util de la lista
+        /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que llame al PlayAnimation del AnimationPlayer
         public void ReproducirAnimacion()
         {
             if (TriggersSeleccionados.Count > 0)
@@ -164,10 +167,7 @@ namespace AnimationComposerUI
                 // Debug.Log("Cantidad de animaciones seleccionadas: " + triggersElegidos.Count);
                 TriggersSeleccionados.ForEach(q => Debug.Log(q.Nombre));
                 BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(TriggersSeleccionados.Select(q => q.AnimacionData).ToList()); // Filtro la parte que me interesa, los AnimationData
-                targetAvatar.GetComponent<AnimationComposer>().ClearAnims();
-                targetAvatar.transform.localPosition = posicionInicialAvatar;
-                targetAvatar.transform.localRotation =rotacionInicialAvatar;
-                targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue);
+                targetAvatar.GetComponent<AnimationPlayer>().PlayAnimation(blockQueue);
             }
             else
             {
@@ -179,15 +179,12 @@ namespace AnimationComposerUI
         /// </summary>
         /// ACTUALIZACION 29/10/2021 Pedro Procopio : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
         /// ACTUALIZACION : 31/10/21 Juan Dure : Refactorizacion con nueva lista de animaciones, implementacion con Linq
+        /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que llame al PlayAnimation del AnimationPlayer
         public void PreviewAnimacion(string animName)
         {
             //Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);
             //Debug.Log("Trigger PREVIEW Elegido: " + animName);
-            BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(_animacionesAtomicas.FindAll(q => q.Trigger == animName).Select(q => q.AnimacionData).ToList()); // Uso del FindAll para que me lo convierta a una lista
-            targetAvatar.GetComponent<AnimationComposer>().ClearAnims(); // Se eliminan las animaciones que esten en queue
-            targetAvatar.transform.localPosition = posicionInicialAvatar;
-            targetAvatar.transform.localRotation =rotacionInicialAvatar;
-            targetAvatar.GetComponent<AnimationComposer>().AddBlockQueue(blockQueue); // Reproduce actual
+            targetAvatar.GetComponent<AnimationPlayer>().PlayAnimation(animName);
         }
 
         /// <summary> Activa el panel del animation composer - Autor : Camila Garcia Petiet
@@ -252,7 +249,7 @@ namespace AnimationComposerUI
             // Borro todos los trigger seleccionados (siempre va a ser uno o ninguno) tales que se cumpla que existe una animacion
             // con ese trigger en esa parte del cuerpo
             TriggersSeleccionados.RemoveAll(q => q.Layer == layer);
-            ActualizarListadoAnimaciones();
+            //ActualizarListadoAnimaciones();
         }
 
         /// <summary> Devuelve el boton asociado a la parte del cuerpo que anima la animacion dada - Autor : Tobias Malbos

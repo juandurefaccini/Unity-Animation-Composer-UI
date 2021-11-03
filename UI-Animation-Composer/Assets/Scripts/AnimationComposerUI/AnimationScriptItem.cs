@@ -39,6 +39,6 @@ namespace AnimationComposerUI
         private void UpdateIntensidadText(string intensidad) => TMP_intensidad.GetComponent<TextMeshProUGUI>().text = intensidad;
         public void AddAnimToBlockQueue() => _animationComposerUI.GetComponent<AnimationComposerUI>().AddAnimToBlockQueue(Trigger, Layer);
         public void UpdateLayerClearButton() => botonCapa.transform.Find("Clear").gameObject.SetActive(true);
-        public void PreviewAnimacion() => _animationComposerUI.GetComponent<AnimationComposerUI>().PreviewAnimacion(Trigger);
+        public void PreviewAnimacion() => _animationComposerUI.GetComponent<AnimationComposerUI>().PreviewAnimacion(_animacion.Nombre);
     }
 }

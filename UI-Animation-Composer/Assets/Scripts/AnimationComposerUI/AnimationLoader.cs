@@ -60,7 +60,7 @@ public class AnimationLoader : MonoBehaviour
         if (transBoton != null)
         {
             transBoton.GetComponent<Button>().onClick.AddListener(() => 
-                { avatar.GetComponent<AnimationPlayer>().playAnimation(name); });
+                { avatar.GetComponent<AnimationPlayer>().PlayAnimation(name); });
         }
     }
 }
