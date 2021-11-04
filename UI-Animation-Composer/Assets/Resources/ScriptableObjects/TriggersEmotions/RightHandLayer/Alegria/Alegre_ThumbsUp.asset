@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1b09839e49d420b6b93376807b24bf16, type: 3}
-  m_Name: Enojo_ManoCerrada
+  m_Name: Alegre_ThumbsUp
   m_EditorClassIdentifier: 
-  Intensidad: 0.5
-  Trigger: Right_Hand_Cerrada
-  Nombre: Mano Cerrada
+  Intensidad: 1
+  Trigger: RH_Alegre_Thumbs_Up
+  Nombre: Pulgar Arriba
