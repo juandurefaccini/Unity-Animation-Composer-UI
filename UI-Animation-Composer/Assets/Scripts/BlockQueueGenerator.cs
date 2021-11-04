@@ -19,13 +19,15 @@ public class BlockQueueGenerator
     public static List<LayerInfo> GetCleanBlock()
     {
         return new List<LayerInfo> {
-            new LayerInfo("clearBothArmsLayer"),
-            new LayerInfo("clearFaceLayer"),
-            new LayerInfo("clearLeftArmLayer"),
-            new LayerInfo("clearLegsLayer"),
-            new LayerInfo("clearRightArmLayer"),
             new LayerInfo("clearBaseLayer"),
-            new LayerInfo("clearTorsoLayer")};
+            new LayerInfo("clearTorsoLayer"),
+            new LayerInfo("clearBothArmsLayer"),
+            new LayerInfo("clearLeftHandLayer"),
+            new LayerInfo("clearLeftArmLayer"),
+            new LayerInfo("clearRightHandLayer"),
+            new LayerInfo("clearRightArmLayer"),
+            new LayerInfo("clearLegsLayer"),
+            new LayerInfo("clearFaceLayer")};
     }
 
     public static BlockQueue GetBlockQueue(List<List<AnimationData>> triggerScriptableObjects)
