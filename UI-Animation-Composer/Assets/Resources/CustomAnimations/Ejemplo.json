@@ -1,4 +1,6 @@
 {
+	"emocion": "Alegria",
+	"intensidad": "0.95",
 	"bloques": [
 		{
 			"nombre_bloque": "Ejemplo",

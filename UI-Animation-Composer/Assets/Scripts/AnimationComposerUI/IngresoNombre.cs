@@ -61,7 +61,8 @@ namespace AnimationComposerUI
         {
             List<Animacion> triggersSeleccionados = editorAnimaciones.GetComponent<AnimationComposerUI>().TriggersSeleccionados;
             BlockQueue animacion = BlockQueueGenerator.GetBlockQueue(triggersSeleccionados.Select(q => q.AnimacionData).ToList());
-            BibliotecaPersonalizadas.CustomAnimations.Add(nombreAnimacion, animacion);
+            AnimacionCompuesta compuesta = new AnimacionCompuesta("Neutral", 0D, animacion);
+            BibliotecaPersonalizadas.CustomAnimations.Add(nombreAnimacion, compuesta);
             string json = JsonHelper.ToJson(nombreAnimacion, triggersSeleccionados.Select(q => q.Trigger).ToList());
             File.WriteAllText(Application.dataPath + PATH_CUSTOM_ANIMS + nombreAnimacion + ".json", json);
             CancelarIngresoNombre();

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BibliotecaPersonalizadas: BibliotecaAnimaciones
 {
-    public static readonly Dictionary<string, BlockQueue> CustomAnimations = CargarAnimaciones();
+    public static readonly Dictionary<string, AnimacionCompuesta> CustomAnimations = CargarAnimaciones();
 
     private const string CUSTOM_ANIM_PATH = "/Resources/CustomAnimations/";
     
@@ -28,9 +28,10 @@ public class BibliotecaPersonalizadas: BibliotecaAnimaciones
     /// de las animaciones personalizadas - Autor: Tobias Malbos
     /// </summary>
     /// <returns></returns>
-    private static Dictionary<string, BlockQueue> CargarAnimaciones()
+    /// ACTUALIZACION 5/11/21 Tobias Malbos : Actualizado para que funcione con la AnimacionCompuesta
+    private static Dictionary<string, AnimacionCompuesta> CargarAnimaciones()
     {
-        Dictionary<string, BlockQueue> animations = new Dictionary<string, BlockQueue>();
+        Dictionary<string, AnimacionCompuesta> animations = new Dictionary<string, AnimacionCompuesta>();
         string animsDirectory = Application.dataPath + CUSTOM_ANIM_PATH;
         string[] files = Directory.GetFiles(animsDirectory, "*.json");
         
@@ -38,7 +39,7 @@ public class BibliotecaPersonalizadas: BibliotecaAnimaciones
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
             string jsonContent = File.ReadAllText(animsDirectory + fileName + ".json");
-            BlockQueue blockQueue = JsonHelper.fromJson(jsonContent);
+            AnimacionCompuesta blockQueue = JsonHelper.fromJson(jsonContent);
 
             if (blockQueue != null)
             {
@@ -53,8 +54,9 @@ public class BibliotecaPersonalizadas: BibliotecaAnimaciones
     /// </summary>
     /// <param name="name"> Nombre de la animacion </param>
     /// <returns></returns>
+    /// ACTUALIZACION 5/11/21 Tobias Malbos : Actualizado para que funcione con la AnimacionCompuesta
     public BlockQueue getAnimation(string name)
     {
-        return CustomAnimations[name];
+        return CustomAnimations[name].Animacion;
     }
 }

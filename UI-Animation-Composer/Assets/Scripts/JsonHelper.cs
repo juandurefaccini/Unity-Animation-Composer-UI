@@ -1,11 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using AnimationBlockQueue;
 using AnimationComposerUI;
 using UnityEngine;
 
 public class JsonHelper
 {
+    public static string ATRIBUTO_INDEFINIDO = "Atributo Indefinido";
+    
     private static string _tabs = "";
 
     /// <summary> Crea un texto json de un bloque a partir de una lista de triggers - Autor: Tobias Malbos
@@ -45,21 +48,30 @@ public class JsonHelper
         return result;
     }
 
-    /// <summary> Dado el contenido de un archivo .json, genera un objeto BlockQueue. Si el contenido es invalido
+    /// <summary> Dado el contenido de un archivo .json, genera un objeto AnimacionCompuesta. Si el contenido es invalido
     /// se devuelve null - Autor: Tobias Malbos
     /// </summary>
     /// <param name="json"> Contenido del archivo json </param>
     /// <returns></returns>
-    /// Esto esta hardcodeado, habria que buscar una forma mas sencilla de implementar el serializado y deserializado de los json
-    public static BlockQueue fromJson(string json)
+    /// ACTUALIZACION 5/11/21 Tobias Malbos : Actualizado para que retorne una AnimacionCompuesta (antes devolvia una BlockQueue)
+    public static AnimacionCompuesta fromJson(string json)
     {
-        BlockQueue result = new BlockQueue();
-        
         if (json[0] != '{' || json[json.Length - 1] != '}')
         {
             Debug.Log("Error. Json mal especificado");
+            return null;
+        }
+
+        string emocion = GetAtribute(json, "\"emocion\"");
+        string cadenaIntensidad = GetAtribute(json, "\"intensidad\"");
+        double intensidad = 0D;
+
+        if (cadenaIntensidad != ATRIBUTO_INDEFINIDO)
+        {
+            intensidad = double.Parse(cadenaIntensidad, CultureInfo.InvariantCulture);
         }
         
+        BlockQueue animacion = new BlockQueue();
         int posicion = json.IndexOf('[');
 
         while (posicion != 0)
@@ -76,11 +88,38 @@ public class JsonHelper
 
             if (block != null)
             {
-                result.Enqueue(block);
+                animacion.Enqueue(block);
             }
         }
         
-        return result;
+        return new AnimacionCompuesta(emocion, intensidad, animacion);
+    }
+
+    /// <summary> Busca dentro del contenido, el atributo pasado por parametro, y retorna el valor asociado. Si el
+    /// atributo no existe dentro del json, se devuelve la constante ATRIBUTO_INDEFINIDO - Autor : Tobias Malbos
+    /// </summary>
+    /// <param name="json"> Contenido del json </param>
+    /// <param name="atribute"> Nombre del atributo a buscar </param>
+    /// <returns> Valor del atributo </returns>
+    private static string GetAtribute(string json, string atribute)
+    {
+        int posicion = json.IndexOf(atribute, StringComparison.Ordinal);
+
+        if (posicion != -1)
+        {
+            int finalAtributo;
+            
+            posicion = json.IndexOf(':', posicion + 1);
+            posicion = json.IndexOf('"', posicion + 1) + 1;
+            finalAtributo = json.IndexOf('"', posicion);
+
+            if (posicion != -1 && finalAtributo != -1 && finalAtributo > posicion)
+            {
+                return json.Substring(posicion, finalAtributo - posicion);
+            }
+        }
+        
+        return ATRIBUTO_INDEFINIDO;
     }
 
     /// <summary> Deserializa un bloque dado el contenido y una posicion - Autor: Tobias Malbos
