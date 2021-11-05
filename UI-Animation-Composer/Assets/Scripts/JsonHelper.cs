@@ -54,7 +54,7 @@ public class JsonHelper
     /// <param name="json"> Contenido del archivo json </param>
     /// <returns></returns>
     /// ACTUALIZACION 5/11/21 Tobias Malbos : Actualizado para que retorne una AnimacionCompuesta (antes devolvia una BlockQueue)
-    public static AnimacionCompuesta fromJson(string json)
+    public static AnimacionCompuesta FromJson(string json)
     {
         if (json[0] != '{' || json[json.Length - 1] != '}')
         {

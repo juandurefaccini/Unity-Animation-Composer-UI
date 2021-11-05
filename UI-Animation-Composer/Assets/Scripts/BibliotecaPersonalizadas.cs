@@ -39,7 +39,7 @@ public class BibliotecaPersonalizadas: BibliotecaAnimaciones
         {
             string fileName = Path.GetFileNameWithoutExtension(file);
             string jsonContent = File.ReadAllText(animsDirectory + fileName + ".json");
-            AnimacionCompuesta blockQueue = JsonHelper.fromJson(jsonContent);
+            AnimacionCompuesta blockQueue = JsonHelper.FromJson(jsonContent);
 
             if (blockQueue != null)
             {
