@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b09839e49d420b6b93376807b24bf16, type: 3}
   m_Name: Confianza_Rock
   m_EditorClassIdentifier: 
-  Intensidad: 1
+  Intensidad: 0.88
   Trigger: RH_Confianza_Rock
-  Nombre: Simbolo Rock & Roll
+  Nombre: Rock & Roll (D)

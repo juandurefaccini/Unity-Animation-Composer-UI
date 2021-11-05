@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Intensidad: 0
   Trigger: RH_Confianza_Apuntar
-  Nombre: Levantar Indice
+  Nombre: Apuntar (D)
