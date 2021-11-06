@@ -18,11 +18,13 @@ public class Columna : MonoBehaviour
     /// <summary>Vuelve al color original al ultimo boton clickeado y actualiza el valor del ultim boton clikeado - Autores : Camila Garcia Petiet
     /// </summary>
     /// <param name="next"> nuevo valor del ultimo boton clikeado</param>
+    /// ACTUALIZACION 6/11/21 Tobias Malbos : Cambiado los colores al seleccionar el boton
     public void SetBlanco(GameObject next)
     {
         if (ultimoBoton != null)
         {
-            ultimoBoton.GetComponent<UnityEngine.UI.Image>().color = Color.white;
+            ultimoBoton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = new Color(0.1960784f, 0.1960784f, 0.1960784f);
+            ultimoBoton.GetComponent<Image>().color = Color.white;
             ultimoBoton = next;
         }
         else
@@ -31,7 +33,8 @@ public class Columna : MonoBehaviour
         }
     }
     /// <summary> Habilitar los botones de filtrado por emociones cuando NO se selecciona el layer "Base"
-    ///  - Autor : Facundo Mozo  
+    /// Autor : Facundo Mozo
+    /// </summary>
     public void HabilitarEmociones()
     {
         Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
