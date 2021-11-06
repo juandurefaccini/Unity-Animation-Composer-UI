@@ -1,10 +1,30 @@
 using System.Collections.Generic;
 using AnimationBlockQueue;
+using AnimationComposerUI;
 using AnimationDataScriptableObject;
 
 public class BlockQueueGenerator
 {
     private const string DEFAULT_TRIGGER = " ";
+    
+    /// <summary> Genera una BlockQueue en funcion de una lista de animacion (No agrega un bloque de clear al final)
+    /// Autor : Tobias Malbos
+    /// </summary>
+    /// <param name="animaciones"></param>
+    /// <returns></returns>
+    public static BlockQueue GetBlockQueue(List<Animacion> animaciones)
+    {
+        List<Block> blocks = new List<Block>();
+        blocks.Add(new Block());
+        
+        foreach (Animacion animacion in animaciones)
+        {
+            blocks[0].AddLayerInfo(new LayerInfo(animacion.Trigger));
+        }
+        
+        return new BlockQueue(blocks);
+    }
+    
     public static BlockQueue GetBlockQueue(List<AnimationData> triggerScriptableObjects)
     {
         List<Block> blocks = new List<Block>();

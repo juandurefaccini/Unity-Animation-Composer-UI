@@ -1,0 +1,12 @@
+{
+	"emocion": "Enojo"
+	"intensidad": "1"
+	"bloques": [
+		{
+			"nombre_bloque": "Fuck You",
+			"triggers": [
+				"RH_Enojo_Fuck_You"
+			]
+		}
+	]
+}

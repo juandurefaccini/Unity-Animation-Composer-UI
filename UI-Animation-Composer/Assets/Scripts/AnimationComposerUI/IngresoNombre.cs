@@ -4,12 +4,15 @@ using System.Linq;
 using AnimationBlockQueue;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace AnimationComposerUI
 {
     public class IngresoNombre : MonoBehaviour
     {
         public TMP_InputField inputField;
+        public Slider sliderIntensidad;
+        public TMP_Dropdown emocionDropbox;
         public TMP_Text errorMessageText;
 
         public GameObject editorAnimaciones;
@@ -57,13 +60,14 @@ namespace AnimationComposerUI
         /// <param name="nombreAnimacion"> Nombre que tendra el .json a generar </param>
         /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion con nueva lista
         /// ACTUALIZACION 2/11/21 Tobias Malbos : Actualizado para que agregue la nueva animacion dentro de BibliotecaPersonalizadas
+        /// ACTUALIZACION 6/11/21 Tobias Malbos : Actualizado para que lea la intensidad y la emocion de los componentes correspondientes
         public void GuardarAnimacion(string nombreAnimacion)
         {
             List<Animacion> triggersSeleccionados = editorAnimaciones.GetComponent<AnimationComposerUI>().TriggersSeleccionados;
-            BlockQueue animacion = BlockQueueGenerator.GetBlockQueue(triggersSeleccionados.Select(q => q.AnimacionData).ToList());
-            AnimacionCompuesta compuesta = new AnimacionCompuesta("Neutral", 0D, animacion);
+            BlockQueue animacion = BlockQueueGenerator.GetBlockQueue(triggersSeleccionados);
+            AnimacionCompuesta compuesta = new AnimacionCompuesta(emocionDropbox.captionText.text, sliderIntensidad.value, animacion);
             BibliotecaPersonalizadas.CustomAnimations.Add(nombreAnimacion, compuesta);
-            string json = JsonHelper.ToJson(nombreAnimacion, triggersSeleccionados.Select(q => q.Trigger).ToList());
+            string json = JsonHelper.ToJson(nombreAnimacion, compuesta);
             File.WriteAllText(Application.dataPath + PATH_CUSTOM_ANIMS + nombreAnimacion + ".json", json);
             CancelarIngresoNombre();
         }
