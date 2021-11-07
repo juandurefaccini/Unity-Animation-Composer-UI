@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using AnimationBlockQueue;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -28,7 +29,7 @@ public class AnimationSequencializer : MonoBehaviour
     /// </summary>
     public void BorrarAnimacion(int posicion)
     {
-        Destroy(animacionesSeleccionadas[posicion]);
+        animacionesSeleccionadas[posicion] = null;
     }
     
     /// <summary> Borra las animaciones seleccionadas - Autor : Tobias Malbos
@@ -39,6 +40,7 @@ public class AnimationSequencializer : MonoBehaviour
         {
             BorrarAnimacion(i);
         }
+        Debug.Log("SE BORRO TODO");
     }
 
     private void ActualizarListadoAnimaciones() {  }
@@ -51,8 +53,21 @@ public class AnimationSequencializer : MonoBehaviour
         targetAvatar.GetComponent<AnimationPlayer>().PlayAnimation(blockQueue);
     }
 
-    private BlockQueue GenerateBlockQueue()
+    public BlockQueue GenerateBlockQueue()
     {
-        return new BlockQueue();
+        BlockQueue retorno = new BlockQueue();
+        foreach (GameObject g in animacionesSeleccionadas)
+        {
+            if (g != null){
+                string texto = g.GetComponentInChildren<TMP_Text>().text;
+                Queue<Block> bloques = BibliotecaPersonalizadas.getInstance().getAnimation( texto).GetBlocks();
+                foreach (Block b in bloques)
+                {
+                    retorno.Enqueue(b);
+                }
+            }
+        }
+
+        return retorno;
     }
 }

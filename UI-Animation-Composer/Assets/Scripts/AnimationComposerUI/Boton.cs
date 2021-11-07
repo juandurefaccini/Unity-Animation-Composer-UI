@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-
-public class Boton : MonoBehaviour
+using UnityEngine.EventSystems;
+public class Boton : MonoBehaviour, IDropHandler
 {
     public GameObject columna;
+    public int posicion;
+
 
     /// <summary> Agrega el callback al metodo cuando ocurre el evento de apretar por codigo - Autores : Dure Juan
     /// </summary>
@@ -30,4 +33,24 @@ public class Boton : MonoBehaviour
             columna.GetComponent<Columna>().SetBlanco(transform.gameObject);
         }
     }
+    public void OnDrop(PointerEventData eventData)
+    {
+        //Debug.Log("SOLTO");
+        if (eventData.pointerDrag != null){
+            Debug.Log("Tiene objeto");
+            GameObject capturado = eventData.pointerDrag;
+            TMP_Text texto = capturado.GetComponentInChildren<TMP_Text>();
+            if (texto != null)
+            {
+                Debug.Log("no es nulo");
+                gameObject.GetComponentInChildren<TMP_Text>().text = texto.text;
+                CambiarColor(); 
+            }
+            columna.GetComponent<AnimationSequencializer>().AddAnimToSequencializer(posicion, capturado);
+        }else
+        {
+            Debug.Log("no tiene objeto");
+        }
+    }
+
 }

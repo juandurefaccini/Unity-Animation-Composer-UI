@@ -283,6 +283,7 @@ GameObject:
   - component: {fileID: 1664215314481471543}
   - component: {fileID: 1204279949079862570}
   - component: {fileID: 8648251951880152502}
+  - component: {fileID: 2179920237714345999}
   m_Layer: 0
   m_Name: PlayerItemSecuencial
   m_TagString: Untagged
@@ -423,6 +424,18 @@ MonoBehaviour:
   playButton: {fileID: 7585469578620919526}
   prefabItem: {fileID: 6752496988910806869}
   Name: {fileID: 4065072639932212350}
+--- !u!225 &2179920237714345999
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6752496988910806869}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &7585469578620919526
 GameObject:
   m_ObjectHideFlags: 0
