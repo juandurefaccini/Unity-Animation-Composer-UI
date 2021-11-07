@@ -1,0 +1,12 @@
+{
+	"bloques": [
+		{
+			"nombre_bloque": "Abrir boca emocionado salto",
+			"triggers": [
+				"EnojadoFace",
+				"Excited",
+				"Jump"
+			]
+		}
+	]
+}
