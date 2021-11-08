@@ -30,20 +30,18 @@ public class AnimationManager : MonoBehaviour
     /// <summary> Dado un json con el cual hay que hacer matching, ejecuta la animacion ganadora
     /// - Autor : Camila Garcia Petiet
     /// </summary>
-    /// <param name="json"> Contenido del json </param>
-   /* public void AnimateCharacter(string json)
+    /// <param name="em"> emocion </param>
+    /// <param name="inten"> intension </param>
+   public void AnimateCharacter(string em, double inten)
     {
         emotionInterpreter = GetComponent<EmotionInterpreter>(); // Obtiene el componente hermano
         player = GetComponent<AnimationPlayer>(); // Obtiene el componente hermano
-        //procesar json para sacarle la intencion y la emocion
         BlockQueue animacion= new BlockQueue();
-        string em="Enojo";
-        double inten=0.2;
         animacion = emotionInterpreter.GetMatch(inten, em);
         if(animacion!=null){
             player.PlayAnimation(animacion);
         }else{
             Debug.Log("No hay animaciones compuestas cargadas");
         }
-    }*/
+    }
 }
