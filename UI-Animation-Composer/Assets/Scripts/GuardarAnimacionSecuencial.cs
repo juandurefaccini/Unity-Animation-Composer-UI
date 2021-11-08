@@ -9,7 +9,7 @@ using AnimationComposerUI;
 
 
 
-public class GuardarAnimacionSecuencial : MonoBehaviour
+public class GuardarAnimacionSecuencial : MonoBehaviour, IGuardarAnimacion
 {
     public TMP_Text nombreAnimacion;
     public GameObject editorAnimacioneSecuenciales;
@@ -22,18 +22,35 @@ public class GuardarAnimacionSecuencial : MonoBehaviour
     public void GuardarAnimacion()
     {
         AnimationSequencializer secuencializador = editorAnimacioneSecuenciales.GetComponent<AnimationSequencializer>();
-        GameObject[] animacionesSeleccionadas = secuencializador.animacionesSeleccionadas;
-        List<string> nombresAnimaciones = ExtraerNombresAnimaciones(animacionesSeleccionadas);
+        /*GameObject[] animacionesSeleccionadas = secuencializador.animacionesSeleccionadas;
+        
+        List<string> nombresAnimaciones = ExtraerNombresAnimaciones(animacionesSeleccionadas);*/
+        
         BlockQueue animacion = secuencializador.GenerateBlockQueue();
         AnimacionCompuesta compuesta = new AnimacionCompuesta(emocionDropbox.captionText.text, sliderIntensidad.value, animacion);
         Debug.Log("CANTIDAD DE BLOQUES" + animacion.GetBlocks().Count);
         BibliotecaPersonalizadas.CustomAnimations.Add(nombreAnimacion.text, compuesta);
-        string json = JsonHelper.ToJson(nombresAnimaciones, compuesta);
+        string json = JsonHelper.ToJson(/*nombresAnimaciones, */compuesta);
         File.WriteAllText(Application.dataPath + PATH_CUSTOM_ANIMS + nombreAnimacion.text + ".json", json);
-        GetComponent<IngresoNombre>().CancelarIngresoNombre();
     }
 
-    private List<string> ExtraerNombresAnimaciones(GameObject[] animacionesSeleccionadas)
+    public int CantidadComponentes()
+    {
+        AnimationSequencializer secuencializador = editorAnimacioneSecuenciales.GetComponent<AnimationSequencializer>();
+        int contador = 0;
+        
+        foreach (GameObject g in secuencializador.animacionesSeleccionadas)
+        {
+            if (g != null)
+            {
+                ++contador;
+            }
+        }
+
+        return contador;
+    }
+
+    /*private List<string> ExtraerNombresAnimaciones(GameObject[] animacionesSeleccionadas)
     {
         List<string> retorno = new List<string>();
         foreach (GameObject g in animacionesSeleccionadas)
@@ -45,6 +62,5 @@ public class GuardarAnimacionSecuencial : MonoBehaviour
             }
         }
         return retorno;
-    }
-    
+    }*/
 }

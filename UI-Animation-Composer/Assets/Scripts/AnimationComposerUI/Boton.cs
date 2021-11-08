@@ -6,10 +6,9 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 public class Boton : MonoBehaviour, IDropHandler
 {
+    // 0.1960784f
     public GameObject columna;
-    public int posicion;
-
-
+    
     /// <summary> Agrega el callback al metodo cuando ocurre el evento de apretar por codigo - Autores : Dure Juan
     /// </summary>
     private void Start()
@@ -21,38 +20,36 @@ public class Boton : MonoBehaviour, IDropHandler
     /// </summary>
     /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglado el metodo para tener en cuenta el caso en que se seleccione dos veces el mismo boton
     /// ACTUALIZACION 6/11/21 Tobias Malbos : Cambiado los colores al seleccionar el boton
+    /// ACTUALIZACION 8/11/21 Tobias Malbos : Cambiado para que utilice los colores adecuados de la columna asignada
     public void CambiarColor()
-    {   
+    {
+        Columna col = columna.GetComponent<Columna>();
+        
         //  Pregunto si el boton esta pintado o no
         if ( GetComponent<Image>().color == Color.white)
         {   //Si no esta pintado, vuelvo blanco el ultimo y lo pinto verde
-            columna.GetComponent<Columna>().SetBlanco(transform.gameObject);
-            transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = Color.white;
-            GetComponent<Image>().color = new Color(0.1960784f, 0.1960784f, 0.1960784f);
+            col.SetBlanco(gameObject);
+            transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = col.textSelectedColor;
+            GetComponent<Image>().color = col.buttonSelectedColor;
         }
         else
         {   //Si esta pintado, vuelvo blaco el ultimo, osea este
-            columna.GetComponent<Columna>().SetBlanco(transform.gameObject);
+            col.SetBlanco(gameObject);
         }
     }
+    
     public void OnDrop(PointerEventData eventData)
     {
         //Debug.Log("SOLTO");
         if (eventData.pointerDrag != null){
             Debug.Log("Tiene objeto");
             GameObject capturado = eventData.pointerDrag;
-            TMP_Text texto = capturado.GetComponentInChildren<TMP_Text>();
-            if (texto != null)
-            {
-                Debug.Log("no es nulo");
-                gameObject.GetComponentInChildren<TMP_Text>().text = texto.text;
-                CambiarColor(); 
-            }
+            int posicion = int.Parse(name.Substring(name.Length - 1));
             columna.GetComponent<AnimationSequencializer>().AddAnimToSequencializer(posicion, capturado);
-        }else
+        }
+        else
         {
             Debug.Log("no tiene objeto");
         }
     }
-
 }

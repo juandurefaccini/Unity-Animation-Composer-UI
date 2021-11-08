@@ -13,7 +13,6 @@ public class AnimationLoader : MonoBehaviour
     };
 
     public LoadOptions loadOptions;
-    public int maxBlocks = 0;
     public GameObject avatar;
     public GameObject prefabItem;
     public GameObject canvasListaAnimaciones;
@@ -58,7 +57,7 @@ public class AnimationLoader : MonoBehaviour
     {
         foreach (var animacion in BibliotecaPersonalizadas.CustomAnimations)
         {
-                CreateItemPrefab(animacion.Key);
+            CreateItemPrefab(animacion.Key);
         }
     }
 
@@ -68,11 +67,11 @@ public class AnimationLoader : MonoBehaviour
     private void CreateItemPrefab(string name)
     {
         GameObject itemAgregado = Instantiate(prefabItem, canvasListaAnimaciones.transform, false);
-        Transform transNombre = itemAgregado.transform.Find("Name");
+        TMP_Text nombre = itemAgregado.GetComponentInChildren<TMP_Text>();
 
-        if (transNombre != null)
+        if (nombre != null)
         {
-            transNombre.gameObject.GetComponent<TMP_Text>().text = name;
+            nombre.text = name;
         }
 
         Transform transBoton = itemAgregado.transform.Find("PlayAnimButton");

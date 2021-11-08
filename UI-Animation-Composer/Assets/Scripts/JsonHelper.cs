@@ -18,10 +18,10 @@ public class JsonHelper
     /// <param name="compuesta"> Animacion compuesta </param>
     /// <returns></returns>
     /// ACTUALIZACION 6/11/21 Tobias Malbos : Actualizado para que recibe una AnimacionCompuesta como parametro
-    public static string ToJson(string nombreBloque, AnimacionCompuesta compuesta)
+    /*public static string ToJson(/*string nombreBloque, #1#AnimacionCompuesta compuesta)
     {
-        return ToJson(new List<string>{ nombreBloque }, compuesta);
-    }
+        return ToJson(/*new List<string>{ nombreBloque }, #1#compuesta);
+    }*/
     
     /// <summary> Crea un texto json de una cola de bloques a partir de una animacion compuesta - Autor: Tobias Malbos
     /// </summary>
@@ -29,22 +29,22 @@ public class JsonHelper
     /// <param name="compuesta"> Animacion compuesta </param>
     /// <returns></returns>
     /// ACTUALIZACION 6/11/21 Tobias Malbos : Actualizado para que recibe una AnimacionCompuesta como parametro
-    public static string ToJson(List<string> nombreBloques, AnimacionCompuesta compuesta)
+    public static string ToJson(/*List<string> nombreBloques, */AnimacionCompuesta compuesta)
     {
         if (compuesta.Animacion.IsEmpty())
         {
             throw new ArgumentException("La cantidad de bloques provistas debe ser mayor a 0");
         }
         
-        if (nombreBloques.Count != compuesta.Animacion.GetBlocks().Count)
+        /*if (nombreBloques.Count != compuesta.Animacion.GetBlocks().Count)
         {
             throw new ArgumentException("La cantidad de nombres para los bloques provistas no coincide " +
                                            "con la cantidad de bloques con triggers dados");
-        }
+        }*/
         
         string result = "{";
         _tabs += "\t";
-        result += "\n" + SerializeBlockQueue(nombreBloques, compuesta);
+        result += "\n" + SerializeBlockQueue(/*nombreBloques, */compuesta);
         _tabs = _tabs.Remove(_tabs.Length - 1);
         result += "\n}";
         
@@ -159,19 +159,19 @@ public class JsonHelper
     /// <param name="compuesta"> Animacion compuesta </param>
     /// <returns></returns>
     /// ACTUALIZACION 6/11/21 Tobias Malbos : Actualizado para que recibe una AnimacionCompuesta como parametro y para que guarde la emocion y la intensidad en el json
-    private static string SerializeBlockQueue(List<string> nombreBloques, AnimacionCompuesta compuesta)
+    private static string SerializeBlockQueue(/*List<string> nombreBloques, */AnimacionCompuesta compuesta)
     {
         List<Block> blocks = compuesta.Animacion.GetBlocks().ToList();
-        string serializedBlockQueue = _tabs + "\"emocion\": \"" + compuesta.Emocion + "\"";
-        serializedBlockQueue += "\n" + _tabs + "\"intensidad\": \"" + compuesta.Intensidad + "\"";
+        string serializedBlockQueue = _tabs + "\"emocion\": \"" + compuesta.Emocion + "\",";
+        serializedBlockQueue += "\n" + _tabs + "\"intensidad\": \"" + compuesta.Intensidad + "\",";
         serializedBlockQueue += "\n" + _tabs + "\"bloques\": [";
         _tabs += "\t";
 
-        for (int i = 0; i < nombreBloques.Count; ++i)
+        for (int i = 0; i < compuesta.Animacion.GetBlocks().Count; ++i)
         {
             serializedBlockQueue += "\n" + _tabs + "{";
             _tabs += "\t";
-            serializedBlockQueue += "\n" + SerializeBlock(nombreBloques[i], blocks[i]);
+            serializedBlockQueue += "\n" + SerializeBlock(/*nombreBloques[i], */blocks[i]);
             _tabs = _tabs.Remove(_tabs.Length - 1);
             serializedBlockQueue += "\n" + _tabs + "},";
         }
@@ -189,7 +189,7 @@ public class JsonHelper
     /// <param name="bloque"></param>
     /// <returns></returns>
     /// ACTUALIZACION 6/11/21 Tobias Malbos : Actualizado para que recibe un Block como parametro
-    private static string SerializeBlock(string nombreBloque, Block bloque)
+    private static string SerializeBlock(/*string nombreBloque, */Block bloque)
     {
         List<LayerInfo> triggers = bloque.GetLayerInfos();
         
@@ -198,9 +198,9 @@ public class JsonHelper
             throw new ArgumentException(
                 "La cantidad de triggers debe ser mayor o igual a " + IngresoNombre.MIN_ATOMICAS);
         }
-        
-        string serializedBlock = _tabs + "\"nombre_bloque\": \"" + nombreBloque + "\",";
-        serializedBlock += "\n" + _tabs + "\"triggers\": [";
+
+        /*string serializedBlock = _tabs + "\"nombre_bloque\": \"" + nombreBloque + "\",";*/
+        string serializedBlock = _tabs + "\"triggers\": [";
         _tabs += "\t";
         
         foreach (LayerInfo trigger in triggers)

@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using AnimationBlockQueue;
+using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
@@ -12,26 +14,28 @@ public class DragDrop : MonoBehaviour,IPointerDownHandler, IBeginDragHandler, IE
     public TMP_Text Name;
     private RectTransform rectTransform;
     private Canvas canvas;
+    public BlockQueue colaBloques;
 
     private Transform parent;
 
     private GameObject copia;
     private CanvasGroup canvasGroup;
-    
 
     private void Awake() {
         //rectTransform = GetComponent<RectTransform>();
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
     }
 
-    public void OnPointerDown( PointerEventData eventData)
+    public void OnPointerDown(PointerEventData eventData)
     {
         parent = gameObject.transform.parent;
         copia = Instantiate(prefabItem, canvas.transform, false);
-        Transform transNombre = copia.transform.Find("Name");
-        if (transNombre != null)
+        copia.transform.Find("PlayAnimButton").gameObject.SetActive(false);
+        TMP_Text nombre = copia.GetComponentInChildren<TMP_Text>();
+        
+        if (nombre != null)
         {
-            transNombre.gameObject.GetComponent<TMP_Text>().text = Name.text;
+            nombre.text = Name.text;
         }
         copia.transform.SetParent(canvas.transform);
         copia.transform.position = gameObject.transform.position;
@@ -41,24 +45,25 @@ public class DragDrop : MonoBehaviour,IPointerDownHandler, IBeginDragHandler, IE
         //posInicial = gameObject.transform.position;
     }
     
-    public void OnBeginDrag ( PointerEventData eventData)
+    public void OnBeginDrag(PointerEventData eventData)
     {
-        Debug.Log("On Begin Drag");
+        /*Debug.Log("On Begin Drag");*/
         GetComponent<CanvasGroup>().alpha = 0.4f;
         canvasGroup.blocksRaycasts = false;
     }
-    public void OnDrag ( PointerEventData eventData)
+    
+    public void OnDrag(PointerEventData eventData)
     {
         //Debug.Log("On Drag");
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
 
     }
-    public void OnEndDrag( PointerEventData eventData)
+    
+    public void OnEndDrag(PointerEventData eventData)
     {
-        Object.Destroy(copia);
-        Debug.Log("End Drag");
+        Destroy(copia);
+        //Debug.Log("End Drag");
         GetComponent<CanvasGroup>().alpha = 1f;
         canvasGroup.blocksRaycasts = true;
     }
-    
 }

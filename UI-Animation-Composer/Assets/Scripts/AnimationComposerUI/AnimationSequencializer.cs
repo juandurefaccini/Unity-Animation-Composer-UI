@@ -22,7 +22,22 @@ public class AnimationSequencializer : MonoBehaviour
     internal void AddAnimToSequencializer(int posicion, GameObject animacion)
     {
         animacionesSeleccionadas[posicion] = animacion;
-        ActualizarListadoAnimaciones();
+        AddAnimVisual(posicion, animacion);
+    }
+
+    internal void AddAnimVisual(int posicion, GameObject animacion)
+    {
+        TMP_Text texto = animacion.GetComponentInChildren<TMP_Text>();
+        
+        if (texto != null)
+        {
+            Debug.Log("no es nulo");
+            Transform transAnimacion = FindBotonAnimacion(posicion);
+            transAnimacion.GetComponentInChildren<TMP_Text>().text = texto.text;
+            transAnimacion.GetComponent<Boton>().CambiarColor();
+        }
+        
+        SetActiveCloseButton(true, posicion);
     }
 
     /// <summary> Borrar emocion seleccionada en cierta posicion - Autores : Tobias Malbos
@@ -30,6 +45,14 @@ public class AnimationSequencializer : MonoBehaviour
     public void BorrarAnimacion(int posicion)
     {
         animacionesSeleccionadas[posicion] = null;
+        BorrarAnimacionVisual(posicion);
+    }
+
+    private void BorrarAnimacionVisual(int posicion)
+    {
+        Transform transAnimacion = FindBotonAnimacion(posicion);
+        SetActiveCloseButton(false, posicion);
+        transAnimacion.GetComponentInChildren<TMP_Text>().text = "Animacion " + (posicion + 1);
     }
     
     /// <summary> Borra las animaciones seleccionadas - Autor : Tobias Malbos
@@ -40,16 +63,14 @@ public class AnimationSequencializer : MonoBehaviour
         {
             BorrarAnimacion(i);
         }
-        Debug.Log("SE BORRO TODO");
     }
-
-    private void ActualizarListadoAnimaciones() {  }
 
     /// <summary> Se reproduce la animacion creada hasta el momento - Autor : Tobias Malbos
     /// </summary>
     public void PreviewAnimacion()
     {
         BlockQueue blockQueue = GenerateBlockQueue();
+        blockQueue.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
         targetAvatar.GetComponent<AnimationPlayer>().PlayAnimation(blockQueue);
     }
 
@@ -60,7 +81,7 @@ public class AnimationSequencializer : MonoBehaviour
         {
             if (g != null){
                 string texto = g.GetComponentInChildren<TMP_Text>().text;
-                Queue<Block> bloques = BibliotecaPersonalizadas.getInstance().getAnimation( texto).GetBlocks();
+                Queue<Block> bloques = BibliotecaPersonalizadas.getInstance().getAnimation(texto).GetBlocks();
                 foreach (Block b in bloques)
                 {
                     retorno.Enqueue(b);
@@ -70,4 +91,12 @@ public class AnimationSequencializer : MonoBehaviour
 
         return retorno;
     }
+
+    private void SetActiveCloseButton(bool active, int posicion)
+    {
+        Transform transAnimacion = FindBotonAnimacion(posicion);
+        transAnimacion.Find("Clear").gameObject.SetActive(active);
+    }
+    
+    private Transform FindBotonAnimacion(int posicion) => transform.Find("AnimationSlot" + posicion);
 }

@@ -3,9 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Serialization;
 
 public class Columna : MonoBehaviour
 {
+    public Color buttonSelectedColor;
+    public Color buttonDeselectedColor;
+    public Color textSelectedColor;
+    public Color textDeselectedColor;
+    
     GameObject ultimoBoton;
 
     /// <summary> Inicializa ultimoBoton - Autores : Camila Garcia Petiet
@@ -19,12 +25,13 @@ public class Columna : MonoBehaviour
     /// </summary>
     /// <param name="next"> nuevo valor del ultimo boton clikeado</param>
     /// ACTUALIZACION 6/11/21 Tobias Malbos : Cambiado los colores al seleccionar el boton
+    /// ACTUALIZACION 8/11/21 Tobias Malbos : Cambiado para que utilice colores no constantes
     public void SetBlanco(GameObject next)
     {
         if (ultimoBoton != null)
         {
-            ultimoBoton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = new Color(0.1960784f, 0.1960784f, 0.1960784f);
-            ultimoBoton.GetComponent<Image>().color = Color.white;
+            ultimoBoton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = textDeselectedColor;
+            ultimoBoton.GetComponent<Image>().color = buttonDeselectedColor;
             ultimoBoton = next;
         }
         else
