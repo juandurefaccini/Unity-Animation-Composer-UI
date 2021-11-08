@@ -816,6 +816,8 @@ MonoBehaviour:
   editorAnimacioneSecuenciales: {fileID: 1785826853}
   sliderIntensidad: {fileID: 1190879799}
   emocionDropbox: {fileID: 703186251}
+  loaderSecuencial: {fileID: 2120117679}
+  secuencializador: {fileID: 1785826860}
 --- !u!114 &394422663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3863,7 +3865,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 710700813}
   m_Direction: 2
   m_Value: 1
-  m_Size: 0.999998
+  m_Size: 0.9999929
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -10230,7 +10232,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.0022068024, y: -0.000061035156}
+  m_AnchoredPosition: {x: 0.0022068024, y: -0.0018310547}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1959117889

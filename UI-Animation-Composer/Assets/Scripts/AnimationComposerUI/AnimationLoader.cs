@@ -23,6 +23,13 @@ public class AnimationLoader : MonoBehaviour
     /// ACTUALIZACiON 7/11/21 Tobias Malbos: Actualizado para que utilice un enumerador
     void Start()
     {
+        UpdateAnimations();
+    }
+
+    public void UpdateAnimations()
+    {
+        BorrarAnimaciones();
+        
         if (loadOptions == LoadOptions.LoadAll || loadOptions == LoadOptions.OnlyCustom)
         {
             LoadCustomAnimations();
@@ -31,6 +38,13 @@ public class AnimationLoader : MonoBehaviour
         if (loadOptions == LoadOptions.LoadAll || loadOptions == LoadOptions.OnlyAtomics)
         {
             LoadAtomicAnimations();
+        }
+    }
+
+    public void BorrarAnimaciones()
+    {
+        foreach (Transform child in canvasListaAnimaciones.transform) {
+            Destroy(child.gameObject);
         }
     }
 

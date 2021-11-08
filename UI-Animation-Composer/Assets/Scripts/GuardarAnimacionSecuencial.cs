@@ -15,8 +15,9 @@ public class GuardarAnimacionSecuencial : MonoBehaviour, IGuardarAnimacion
     public GameObject editorAnimacioneSecuenciales;
     public Slider sliderIntensidad;
     public TMP_Dropdown emocionDropbox;
+    public AnimationLoader loaderSecuencial;
+    public AnimationSequencializer secuencializador;
 
-    
     private const string PATH_CUSTOM_ANIMS = "/Resources/CustomAnimations/";
     
     public void GuardarAnimacion()
@@ -32,6 +33,8 @@ public class GuardarAnimacionSecuencial : MonoBehaviour, IGuardarAnimacion
         BibliotecaPersonalizadas.CustomAnimations.Add(nombreAnimacion.text, compuesta);
         string json = JsonHelper.ToJson(/*nombresAnimaciones, */compuesta);
         File.WriteAllText(Application.dataPath + PATH_CUSTOM_ANIMS + nombreAnimacion.text + ".json", json);
+        loaderSecuencial.UpdateAnimations();
+        secuencializador.BorrarAnimacionesSeleccionadas();
     }
 
     public int CantidadComponentes()
