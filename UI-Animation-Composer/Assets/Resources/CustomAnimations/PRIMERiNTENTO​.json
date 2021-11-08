@@ -1,0 +1,25 @@
+{
+	"emocion": "Alegria"
+	"intensidad": "0"
+	"bloques": [
+		{
+			"nombre_bloque": "Ejemplo",
+			"triggers": [
+				"AlegreFace",
+				"Excited",
+				"HappyArmR",
+				"ScratchHeadL",
+				"FistPump",
+				"Jump"
+			]
+		},
+		{
+			"nombre_bloque": "Abrir boca emocionado salto",
+			"triggers": [
+				"EnojadoFace",
+				"Excited",
+				"Jump"
+			]
+		}
+	]
+}

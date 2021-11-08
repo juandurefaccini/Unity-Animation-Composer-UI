@@ -58,10 +58,7 @@ public class AnimationLoader : MonoBehaviour
     {
         foreach (var animacion in BibliotecaPersonalizadas.CustomAnimations)
         {
-            if (maxBlocks > 0 && animacion.Value.GetBlocks().Count <= maxBlocks)
-            {
                 CreateItemPrefab(animacion.Key);
-            }
         }
     }
 
