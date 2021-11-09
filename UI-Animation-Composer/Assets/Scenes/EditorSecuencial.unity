@@ -4815,7 +4815,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 710700813}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.9999969
+  m_Size: 0.99999696
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11047,9 +11047,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9b5bc075ef24140ba0e1014c092b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSelectedColor: {r: 0.12001601, g: 0.8207547, b: 0.17976895, a: 1}
+  buttonSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
-  textSelectedColor: {r: 0.121568635, g: 0.8196079, b: 0.18039216, a: 1}
+  textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   textDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!114 &1785826856
 MonoBehaviour:
@@ -11777,7 +11777,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0011806488, y: 0.0029296875}
+  m_AnchoredPosition: {x: -0.0011806488, y: 0.0031738281}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!1 &1959117889
@@ -12378,10 +12378,10 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.6313726, g: 0.6313726, b: 0.6313726, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:

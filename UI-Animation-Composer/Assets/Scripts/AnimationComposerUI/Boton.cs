@@ -46,6 +46,7 @@ public class Boton : MonoBehaviour, IDropHandler
             GameObject capturado = eventData.pointerDrag;
             int posicion = int.Parse(name.Substring(name.Length - 1));
             columna.GetComponent<AnimationSequencializer>().AddAnimToSequencializer(posicion, capturado);
+            GetComponent<Image>().color = Color.white;
         }
         else
         {
