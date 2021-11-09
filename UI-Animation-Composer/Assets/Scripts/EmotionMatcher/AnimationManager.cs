@@ -20,6 +20,7 @@ public class AnimationManager : MonoBehaviour
         //string em="Enojo";
         //double inten=0.2;
         animacion = emotionInterpreter.GetMatch(intensidad, emocion);
+        animacion.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
         if(animacion!=null){
             player.PlayAnimation(animacion);
         }else{
