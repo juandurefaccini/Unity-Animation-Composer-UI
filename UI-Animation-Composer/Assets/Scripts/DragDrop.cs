@@ -29,26 +29,27 @@ public class DragDrop : MonoBehaviour,IPointerDownHandler, IBeginDragHandler, IE
     public void OnPointerDown(PointerEventData eventData)
     {
         parent = gameObject.transform.parent;
-        copia = Instantiate(prefabItem, canvas.transform, false);
-        copia.transform.Find("PlayAnimButton").gameObject.SetActive(false);
-        TMP_Text nombre = copia.GetComponentInChildren<TMP_Text>();
-        
-        if (nombre != null)
-        {
-            nombre.text = Name.text;
-        }
-        copia.transform.SetParent(canvas.transform);
-        copia.transform.position = gameObject.transform.position;
-        rectTransform = copia.GetComponent<RectTransform>();
-        canvasGroup = copia.GetComponent<CanvasGroup>();
+        GetComponent<CanvasGroup>().alpha = 0.4f;
         //playButton.SetActive(false); 
         //posInicial = gameObject.transform.position;
     }
     
     public void OnBeginDrag(PointerEventData eventData)
     {
+        copia = Instantiate(prefabItem, canvas.transform, false);
+        copia.transform.Find("PlayAnimButton").gameObject.SetActive(false);
+        TMP_Text nombre = copia.GetComponentInChildren<TMP_Text>();
+        if (nombre != null)
+        {
+            nombre.text = Name.text;
+        }
+        copia.transform.SetParent(canvas.transform);
+        copia.transform.position = gameObject.transform.position;
+        copia.GetComponent<CanvasGroup>().alpha = 1f;
+        rectTransform = copia.GetComponent<RectTransform>();
+        canvasGroup = copia.GetComponent<CanvasGroup>();
         /*Debug.Log("On Begin Drag");*/
-        GetComponent<CanvasGroup>().alpha = 0.4f;
+        
         canvasGroup.blocksRaycasts = false;
     }
     
