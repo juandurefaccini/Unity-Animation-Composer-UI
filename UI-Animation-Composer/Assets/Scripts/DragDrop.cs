@@ -8,7 +8,7 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class DragDrop : MonoBehaviour,IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragDrop : MonoBehaviour,IPointerDownHandler,IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public GameObject prefabItem;
     public TMP_Text Name;
@@ -28,8 +28,15 @@ public class DragDrop : MonoBehaviour,IPointerDownHandler, IBeginDragHandler, IE
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        parent = gameObject.transform.parent;
+        //parent = gameObject.transform.parent;
         GetComponent<CanvasGroup>().alpha = 0.4f;
+        //playButton.SetActive(false); 
+        //posInicial = gameObject.transform.position;
+    }
+    public void OnPointerUp(PointerEventData eventData)
+    {
+        //parent = gameObject.transform.parent;
+        GetComponent<CanvasGroup>().alpha = 1f;
         //playButton.SetActive(false); 
         //posInicial = gameObject.transform.position;
     }
