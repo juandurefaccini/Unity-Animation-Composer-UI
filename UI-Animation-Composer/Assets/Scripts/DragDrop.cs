@@ -8,39 +8,39 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
 
-public class DragDrop : MonoBehaviour,IPointerDownHandler,IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragDrop : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     public GameObject prefabItem;
     public TMP_Text Name;
     private RectTransform rectTransform;
     private Canvas canvas;
     public BlockQueue colaBloques;
-
     private Transform parent;
-
     private GameObject copia;
     private CanvasGroup canvasGroup;
 
-    private void Awake() {
-        //rectTransform = GetComponent<RectTransform>();
+    /// <summary> Se obtiene el componente canvas. Esto se utilizara para establecer el parent de la instancia a crear cuando se comienza a hacer el drag  - Autores : Facundo Mozo
+    /// </summary>
+    private void Awake()
+    {
         canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
     }
-
+    /// <summary> Al hacer click sobre un boton de la lista de animaciones se setea el alpha para que se vea que 
+    /// esta siendo seleccionado - Autores : Facundo Mozo
+    /// </summary>
     public void OnPointerDown(PointerEventData eventData)
     {
-        //parent = gameObject.transform.parent;
         GetComponent<CanvasGroup>().alpha = 0.4f;
-        //playButton.SetActive(false); 
-        //posInicial = gameObject.transform.position;
     }
+    /// <summary> Al dejar de hacer click se reinicia el alpha al valor original - Autores : Facundo Mozo
+    /// </summary>
     public void OnPointerUp(PointerEventData eventData)
     {
-        //parent = gameObject.transform.parent;
         GetComponent<CanvasGroup>().alpha = 1f;
-        //playButton.SetActive(false); 
-        //posInicial = gameObject.transform.position;
     }
-    
+    /// <summary> Al iniciar "Drag" o arrastre de boton se crea una instancia la cual sera la arrastrada 
+    ///  Los datos son tomados de la lista de animaciones - Autores : Facundo Mozo
+    /// </summary>
     public void OnBeginDrag(PointerEventData eventData)
     {
         copia = Instantiate(prefabItem, canvas.transform, false);
@@ -55,22 +55,21 @@ public class DragDrop : MonoBehaviour,IPointerDownHandler,IPointerUpHandler, IBe
         copia.GetComponent<CanvasGroup>().alpha = 1f;
         rectTransform = copia.GetComponent<RectTransform>();
         canvasGroup = copia.GetComponent<CanvasGroup>();
-        /*Debug.Log("On Begin Drag");*/
-        
         canvasGroup.blocksRaycasts = false;
     }
-    
+    /// <summary> Actualiza la posision de la instancia creada haciendola coindir con la del mouse. debido a la diferencia de scalas se tiene en cuenta la del canvas para que no se genere error 
+    ///- Autores : Facundo Mozo
+    /// </summary>
     public void OnDrag(PointerEventData eventData)
     {
-        //Debug.Log("On Drag");
         rectTransform.anchoredPosition += eventData.delta / canvas.scaleFactor;
-
     }
-    
+    /// <summary> Al finalizar "Drag" o arrastre de boton destruye la instancia creada al inicio y retorna el 
+    ///color normal al boton original - Autores : Facundo Mozo
+    /// </summary>
     public void OnEndDrag(PointerEventData eventData)
     {
         Destroy(copia);
-        //Debug.Log("End Drag");
         GetComponent<CanvasGroup>().alpha = 1f;
         canvasGroup.blocksRaycasts = true;
     }
