@@ -49,7 +49,7 @@ namespace AnimationComposerUI
             }
         }
 
-        /// <summary> Deshabilitar boton base layer si se selecciona una emocion  - Autor : Facundo Mozo
+        /// <summary> Deshabilitar boton base layer si se selecciona una emocion - Autor : Facundo Mozo
         /// </summary>
         /// <param name="nombre"> Nombre del boton a setear la interactividad </param>
         /// <param name="interactable"> Define si la columna es interactuable o no </param>
@@ -69,11 +69,11 @@ namespace AnimationComposerUI
             }
         }
     
-        /// <summary> Inicializa ultimoBoton - Autores : Camila Garcia Petiet
+        /// <summary> Inicializa ultimoBoton - Autora : Camila Garcia Petiet
         /// </summary>
         private void Start() => _ultimoBoton = null;
 
-        /// <summary> Cambia el color de texto y relleno del boton actual
+        /// <summary> Cambia el color de texto y relleno del boton actual - Autora : Camila Garcia Petiet
         /// </summary>
         /// <param name="textColor"> Color del texto </param>
         /// <param name="fillColor"> Color de relleno </param>

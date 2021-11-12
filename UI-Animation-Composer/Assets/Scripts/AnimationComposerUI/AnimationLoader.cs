@@ -19,6 +19,8 @@ namespace AnimationComposerUI
         public GameObject prefabItem;
         public GameObject canvasListaAnimaciones;
 
+        /// <summary> Actualiza el listado de animaciones dependiendo de las opciones de carga - Autor : Tobias Malbos
+        /// </summary>
         public void UpdateAnimations()
         {
             BorrarAnimaciones();
@@ -65,7 +67,6 @@ namespace AnimationComposerUI
 
         /// <summary> Instancia ItemPrefabs por cada animacion personalizada cargada - Autor: Tobias Malbos
         /// </summary>
-        /// ACTUALIZACION 7/11/21 Tobias Malbos : Actualizado para que solo se puedan cargar animaciones que esten por debajo de un numero maximo de bloques especificado
         private void LoadCustomAnimations()
         {
             foreach (var animacion in BibliotecaPersonalizadas.CustomAnimations)
@@ -76,7 +77,7 @@ namespace AnimationComposerUI
 
         /// <summary> Instancia y configura el Prefab que representa la vista de la animacion - Autor: Tobias Malbos
         /// </summary>
-        /// <param name="nombre"> Nombre de la animacion</param>
+        /// <param name="nombre"> Nombre de la animacion </param>
         private void CreateItemPrefab(string nombre)
         {
             GameObject itemAgregado = Instantiate(prefabItem, canvasListaAnimaciones.transform, false);

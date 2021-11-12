@@ -53,8 +53,8 @@ namespace AnimationComposerUI
         /// <summary> Verifica que el nombre no este vacio y que no haya otro archivo con el mismo nombre dentro del directorio
         /// Autor: Tobias Malbos
         /// </summary>
-        /// <param name="nombre"></param>
-        /// <returns></returns>
+        /// <param name="nombre"> Nombre de la animacion a guardar </param>
+        /// <returns> Validez del nombre de la animacion a guardar </returns>
         private static bool ESValido(string nombre) => !File.Exists(Application.dataPath + PathCustomAnims + nombre + ".json") && nombre.Length > 0;
 
         /// <summary> Abre una caja de dialogo con un mensaje - Autor: Tobias Malbos

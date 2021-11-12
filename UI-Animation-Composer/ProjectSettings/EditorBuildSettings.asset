@@ -6,12 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/AnimationEditor.unity
+    path: Assets/Scenes/Escenas Viejas/AnimationEditor.unity
     guid: b4ec459ca7948c17e8c9b225822c12f5
   - enabled: 1
-    path: Assets/Scenes/EditorSecuencial.unity
+    path: Assets/Scenes/Escenas Viejas/EditorSecuencial.unity
     guid: 8452ee86d8bc32f41a6888e9c5c470fd
   - enabled: 1
-    path: Assets/Scenes/DemostracionEditor.unity
+    path: Assets/Scenes/Escenas Viejas/DemostracionEditor.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
   m_configObjects: {}
