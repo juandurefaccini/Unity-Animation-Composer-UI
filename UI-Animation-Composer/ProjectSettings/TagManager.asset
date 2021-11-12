@@ -6,6 +6,7 @@ TagManager:
   tags:
   - AnimationEditor
   - Canvas
+  - Avatar
   layers:
   - Default
   - TransparentFX

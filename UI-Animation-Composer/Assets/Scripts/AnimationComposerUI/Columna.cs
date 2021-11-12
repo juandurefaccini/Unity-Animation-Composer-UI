@@ -1,98 +1,88 @@
-using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using UnityEngine.Serialization;
 
-public class Columna : MonoBehaviour
+namespace AnimationComposerUI
 {
-    public Color buttonSelectedColor;
-    public Color buttonDeselectedColor;
-    public Color textSelectedColor;
-    public Color textDeselectedColor;
+    public class Columna : MonoBehaviour
+    {
+        public Color buttonSelectedColor;
+        public Color buttonDeselectedColor;
+        public Color textSelectedColor;
+        public Color textDeselectedColor;
+
+        private GameObject _ultimoBoton;
+
+        /// <summary> Vuelve al color original al ultimo boton clickeado y actualiza el valor del ultimo boton clickeado
+        /// Autora : Camila Garcia Petiet
+        /// </summary>
+        /// <param name="boton"> Boton presionado </param>
+        public void UpdateButton(GameObject boton)
+        {
+            if (_ultimoBoton != null)
+            {
+                ChangeActualButtonColors(textDeselectedColor, buttonDeselectedColor);
+            } 
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(textSelectedColor, buttonSelectedColor);
+            }
+        }
     
-    GameObject ultimoBoton;
-
-    /// <summary> Inicializa ultimoBoton - Autores : Camila Garcia Petiet
-    /// </summary>
-    void Start()
-    {
-        ultimoBoton = null;
-    }
-
-    /// <summary>Vuelve al color original al ultimo boton clickeado y actualiza el valor del ultim boton clikeado - Autores : Camila Garcia Petiet
-    /// </summary>
-    /// <param name="next"> nuevo valor del ultimo boton clikeado</param>
-    /// ACTUALIZACION 6/11/21 Tobias Malbos : Cambiado los colores al seleccionar el boton
-    /// ACTUALIZACION 8/11/21 Tobias Malbos : Cambiado para que utilice colores no constantes
-    public void SetBlanco(GameObject next)
-    {
-        if (ultimoBoton != null)
+        /// <summary> Setea la interactabilidad de los botones de la columna - Autor : Facundo Mozo
+        /// </summary>
+        /// <param name="interactable"> Define si la columna es interactuable o no </param>
+        /// ACTUALIZACION Tobias Malbos 11/11/21 : Generalizacion a una sola funcion
+        public void SetColumnInteractability(bool interactable)
         {
-            ultimoBoton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = textDeselectedColor;
-            ultimoBoton.GetComponent<Image>().color = buttonDeselectedColor;
-            ultimoBoton = next;
-        }
-        else
-        {
-            ultimoBoton = next;
-        }
-    }
-    /// <summary> Habilitar los botones de filtrado por emociones cuando NO se selecciona el layer "Base"
-    /// Autor : Facundo Mozo
-    /// </summary>
-    public void HabilitarEmociones()
-    {
-        Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
-        foreach (Button child in allChildren)
-        {
-            child.interactable = true;
-        }
-    }
-    /// <summary> Desahilitar los botones de filtrado por emociones cuando se selecciona el layer "Base"
-    ///  - Autor : Facundo Mozo
-    /// </summary>
-    public void DeshabilitarEmociones()
-    {
-        Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
-        foreach (Button child in allChildren)
-        {
-            child.interactable = false;
-        }
-    }
-    /// <summary> Deshabilitar boton base layer si se selecciona una emocion  - Autor : Facundo Mozo
-    /// </summary>    
-    public void DeshabilitarBaseLayer()
-    {
-        Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
-        foreach (Button child in allChildren)
-        {
-            TextMeshProUGUI aux = child.gameObject.GetComponentInChildren<TextMeshProUGUI>();
-            if (aux != null) {
-                if (aux.text == "Base")
-                {     
-                    child.interactable =false;
-                    return;
-                }
+            Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
+        
+            foreach (Button child in allChildren)
+            {
+                child.interactable = interactable;
             }
         }
-    }
-    /// <summary> Habilitar boton base layer si se deselecciona una emocion  - Autor : Facundo Mozo
-    /// </summary>
-    public void HabilitarBaseLayer()
-    {
-       Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
-        foreach (Button child in allChildren)
+
+        /// <summary> Deshabilitar boton base layer si se selecciona una emocion  - Autor : Facundo Mozo
+        /// </summary>
+        /// <param name="nombre"> Nombre del boton a setear la interactividad </param>
+        /// <param name="interactable"> Define si la columna es interactuable o no </param>
+        /// ACTUALIZACION Tobias Malbos 11/11/21 : Generalizacion a una sola funcion
+        public void SetButtonInteractability(string nombre, bool interactable)
         {
-            TextMeshProUGUI aux = child.gameObject.GetComponentInChildren<TextMeshProUGUI>();
-            if (aux != null) {
-                if (aux.text == "Base")
-                {     
-                    child.interactable = true;
-                    return;
-                }
+            Button[] allChildren = gameObject.GetComponentsInChildren<Button>();
+        
+            foreach (Button child in allChildren)
+            {
+                TextMeshProUGUI tmpName = child.gameObject.GetComponentInChildren<TextMeshProUGUI>();
+
+                if (tmpName == null || tmpName.text != nombre) continue;
+            
+                child.interactable = interactable;
+                return;
             }
+        }
+    
+        /// <summary> Inicializa ultimoBoton - Autores : Camila Garcia Petiet
+        /// </summary>
+        private void Start() => _ultimoBoton = null;
+
+        /// <summary> Cambia el color de texto y relleno del boton actual
+        /// </summary>
+        /// <param name="textColor"> Color del texto </param>
+        /// <param name="fillColor"> Color de relleno </param>
+        /// ACTUALIZACION 6/11/21 Tobias Malbos : Cambiado los colores al seleccionar el boton
+        /// ACTUALIZACION 8/11/21 Tobias Malbos : Cambiado para que utilice colores no constantes
+        private void ChangeActualButtonColors(Color textColor, Color fillColor)
+        {
+            _ultimoBoton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = textColor;
+            _ultimoBoton.GetComponent<Image>().color = fillColor;
         }
     }
 }

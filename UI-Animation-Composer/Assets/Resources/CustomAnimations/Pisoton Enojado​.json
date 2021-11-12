@@ -1,0 +1,13 @@
+{
+	"emocion": "Alegria",
+	"intensidad": "0",
+	"bloques": [
+		{
+			"triggers": [
+				"AngryFace",
+				"Torso_Enojo_CruzarBrazos",
+				"Stomp"
+			]
+		}
+	]
+}

@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class SceneChanger : MonoBehaviour
+namespace AnimationComposerUI
 {
-    public void ChangeScene(int sceneID)
+    public class SceneChanger : MonoBehaviour
     {
-        SceneManager.LoadScene(sceneID);
+        /// <summary> Ejecuta el cambio de escena - Autor : Tobias Malbos
+        /// </summary>
+        /// <param name="sceneID"> ID de la escena a cambiar </param>
+        public void ChangeScene(int sceneID)
+        {
+            SceneManager.LoadScene(sceneID);
+        }
     }
 }

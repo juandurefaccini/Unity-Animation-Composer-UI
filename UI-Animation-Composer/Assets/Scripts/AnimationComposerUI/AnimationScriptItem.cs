@@ -1,29 +1,31 @@
-using System;
 using System.Globalization;
+using AnimationCreator;
 using TMPro;
 using UnityEngine;
-using AnimationDataScriptableObject;
 using UnityEngine.UI;
 
 namespace AnimationComposerUI
 {
     public class AnimationScriptItem : MonoBehaviour
     {
-        public TextMeshProUGUI TMP_title;
-        public TextMeshProUGUI TMP_intensidad;
+        public TextMeshProUGUI tmpTitle;
+        public TextMeshProUGUI tmpIntensidad;
         public Button botonCapa;
-        private GameObject _animationComposerUI;
+        
         private Animacion _animacion;
+
+        private static GameObject _avatar;
+        private static GameObject _animationComposerUI;
+        
         public Animacion Animacion
         {
-            private get { return _animacion; }
             set
             {
                 if (value != null)
                 {
                     _animacion = value;
-                    UpdateAnimNameText(value.Nombre);
-                    UpdateIntensidadText(value.Intensidad.ToString(CultureInfo.InvariantCulture));
+                    tmpTitle.text = value.Nombre;
+                    tmpIntensidad.text = value.Intensidad.ToString(CultureInfo.InvariantCulture);
                 }
                 else
                 {
@@ -31,14 +33,18 @@ namespace AnimationComposerUI
                 }
             }
         }
-
-        private string Trigger => _animacion.Trigger;
-        private string Layer => _animacion.Layer;
-        private void Start() => _animationComposerUI = GameObject.FindWithTag("AnimationEditor");
-        private void UpdateAnimNameText(string nombre) => TMP_title.GetComponent<TextMeshProUGUI>().text = nombre;
-        private void UpdateIntensidadText(string intensidad) => TMP_intensidad.GetComponent<TextMeshProUGUI>().text = intensidad;
+        
         public void AddAnimToBlockQueue() => _animationComposerUI.GetComponent<AnimationComposerUI>().AddAnimToBlockQueue(Trigger, Layer);
         public void UpdateLayerClearButton() => botonCapa.transform.Find("Clear").gameObject.SetActive(true);
-        public void PreviewAnimacion() => _animationComposerUI.GetComponent<AnimationComposerUI>().PreviewAnimacion(_animacion.Nombre);
+        public void PreviewAnimacion() => _avatar.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(_animacion.Trigger);
+        
+        private string Trigger => _animacion.Trigger;
+        private string Layer => _animacion.Layer;
+
+        private void Start()
+        {
+            _animationComposerUI = GameObject.FindWithTag("AnimationEditor");
+            _avatar = GameObject.FindWithTag("Avatar");
+        }
     }
 }

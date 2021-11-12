@@ -1,0 +1,12 @@
+{
+	"emocion": "Enojo",
+	"intensidad": "1",
+	"bloques": [
+		{
+			"triggers": [
+				"AngryGesture",
+				"RH_Enojo_Fuck_You"
+			]
+		}
+	]
+}

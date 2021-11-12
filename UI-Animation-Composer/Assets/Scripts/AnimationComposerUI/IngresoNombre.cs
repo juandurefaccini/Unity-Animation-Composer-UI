@@ -1,10 +1,7 @@
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using AnimationBlockQueue;
+using AnimationCreator;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace AnimationComposerUI
 {
@@ -15,9 +12,8 @@ namespace AnimationComposerUI
 
         public GameObject mensaje;
 
-        public const int MIN_ATOMICAS = 1;
-
-        private const string PATH_CUSTOM_ANIMS = "/Resources/CustomAnimations/";
+        private const int MINAtomicas = 1;
+        private const string PathCustomAnims = "/Resources/CustomAnimations/";
 
         /// <summary> Funcion que se llama cuando el usuario presiona cancelar - Autor: Tobias Malbos
         /// </summary>
@@ -33,25 +29,24 @@ namespace AnimationComposerUI
         /// ACTUALIZACION 2/11/21 Tobias Malbos : Actualizado para no acceder a la variable TriggersSeleccionados de manera estatica
         public void AceptarIngresoNombre(string tipoComponente)
         {
-            if (GetComponent(tipoComponente) is IGuardarAnimacion guardadoAnimacion)
-            {
-                int cantidadTriggers = guardadoAnimacion.CantidadComponentes();
-                string nombre = inputField.text;
+            if (!(GetComponent(tipoComponente) is IGuardarAnimacion guardadoAnimacion)) return;
+            
+            int cantidadTriggers = guardadoAnimacion.CantidadComponentes();
+            string nombre = inputField.text;
 
-                if (esValido(nombre) && cantidadTriggers >= MIN_ATOMICAS)
-                {
-                    guardadoAnimacion.GuardarAnimacion();
-                    MostrarMensaje("La animacion fue guardada exitosamente.");
-                    CancelarIngresoNombre();
-                }
-                else if (cantidadTriggers >= MIN_ATOMICAS)
-                {
-                    MostrarMensaje("Error al guardar la animacion. No se ingreso un nombre valido.");
-                }
-                else
-                {
-                    MostrarMensaje("Error al guardar la animacion. La animacion creada debe tener al menos " + MIN_ATOMICAS + " animacion atomica.");
-                }
+            if (ESValido(nombre) && cantidadTriggers >= MINAtomicas)
+            {
+                guardadoAnimacion.GuardarAnimacion();
+                MostrarMensaje("La animacion fue guardada exitosamente.");
+                CancelarIngresoNombre();
+            }
+            else if (cantidadTriggers >= MINAtomicas)
+            {
+                MostrarMensaje("Error al guardar la animacion. No se ingreso un nombre valido.");
+            }
+            else
+            {
+                MostrarMensaje("Error al guardar la animacion. La animacion creada debe tener al menos " + MINAtomicas + " animacion atomica.");
             }
         }
 
@@ -60,16 +55,16 @@ namespace AnimationComposerUI
         /// </summary>
         /// <param name="nombre"></param>
         /// <returns></returns>
-        private bool esValido(string nombre) => !File.Exists(Application.dataPath + PATH_CUSTOM_ANIMS + nombre + ".json") && nombre.Length > 0;
+        private static bool ESValido(string nombre) => !File.Exists(Application.dataPath + PathCustomAnims + nombre + ".json") && nombre.Length > 0;
 
         /// <summary> Abre una caja de dialogo con un mensaje - Autor: Tobias Malbos
         /// </summary>
-        /// <param name="mensaje"> Mensaje a mostrar </param>
-        private void MostrarMensaje(string mensaje)
+        /// <param name="message"> Mensaje a mostrar </param>
+        private void MostrarMensaje(string message)
         {
-            Debug.Log(mensaje);
-            this.mensaje.SetActive(true);
-            errorMessageText.text = mensaje;
+            Debug.Log(message);
+            mensaje.SetActive(true);
+            errorMessageText.text = message;
         }
     }
 }

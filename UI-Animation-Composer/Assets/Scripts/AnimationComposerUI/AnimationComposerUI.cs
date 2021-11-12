@@ -1,58 +1,47 @@
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using AnimationBlockQueue;
-using AnimationDataScriptableObject;
+using AnimationComposer;
+using AnimationCreator;
+using AnimationPlayer;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
+using Utils;
 
 namespace AnimationComposerUI
 {
     public class AnimationComposerUI : MonoBehaviour
     {
         public List<Animacion> TriggersSeleccionados = new List<Animacion>();
-        private List<Animacion> _animacionesAtomicas = new List<Animacion>();
+        private readonly List<Animacion> _animacionesAtomicas = new List<Animacion>();
         public GameObject targetAvatar;
-        private string _emocion;
 
         // UI
-        public GameObject Canvas_AnimationEditor;
-        public GameObject Canvas_Lista_Resultados_NodoPadre;
-        public GameObject Canvas_PantallaConfirmacion;
-        public TextMeshProUGUI Canvas_IndicadorCantAnimaciones;
-        public GameObject ContenedorBotonesEmocion;
-        public GameObject ContenedorBotonesParteDelCuerpo;
-        public GameObject MensajeNoAnims;
+        public GameObject canvasListaResultadosNodoPadre;
+        public TextMeshProUGUI canvasIndicadorCantAnimaciones;
+        public GameObject contenedorBotonesEmocion;
+        public GameObject contenedorBotonesParteDelCuerpo;
+        public GameObject mensajeNoAnims;
         
         // Resultados
-        public GameObject Prefab_Lista_Resultados;
+        public GameObject prefabListaResultados;
 
         // Previsualizacion
-        private string parteDelCuerpo;
+        private string _parteDelCuerpo;
+        private string _emocion;
 
         // Estas constantes se utilizan cuando no se ha seleccionado alguna parte del cuerpo o emocion 
+        private const string ParteDelCuerpoIndefinida = "Parte del Cuerpo Indefinida";
+        private const string EmocionIndefinida = "Emocion Indefinida";
 
-        private const string PARTE_DEL_CUERPO_INDEFINIDA = "Parte del Cuerpo Indefinida";
-
-        private const string EMOCION_INDEFINIDA = "Emocion Indefinida";
-
-        void Start()
-        {
-            // Debug.Log(BibliotecaPersonalizadas.getInstance().getAnimation("Ejemplo"));
-            TriggersSeleccionados = new List<Animacion>();
-            CargarAnimacionesAtomicas();
-            parteDelCuerpo = PARTE_DEL_CUERPO_INDEFINIDA;
-            _emocion = EMOCION_INDEFINIDA;
-            ActualizarListadoAnimaciones();
-        }
-
-        /// <summary> Agrega a la lista de triggers seleccionados el trigger seleccionado  - Autor : Juan Dure
+        /// <summary> Agrega a la lista de triggers seleccionados el trigger seleccionado - Autor : Juan Dure
         /// </summary>
         internal void AddAnimToBlockQueue(string trigger, string layer)
         {
-            TriggersSeleccionados.RemoveAll(q => q.Layer == layer); // Elimino el trigger que trabaje sobre la misma parte del cuerpo
-            TriggersSeleccionados.Add(_animacionesAtomicas.Find(q => q.Trigger == trigger));
+            Animacion agregada = _animacionesAtomicas.Find(q => q.Trigger == trigger);
+            // Elimino el trigger que trabaje sobre la misma parte del cuerpo
+            TriggersSeleccionados.RemoveAll(q => q.Layer == layer); 
+            TriggersSeleccionados.Add(agregada);
         }
 
         /// <summary> Borra los triggers seleccionados - Autor : Juan Dure
@@ -60,17 +49,79 @@ namespace AnimationComposerUI
         /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que desactive los botones de Clear de las capas afectadas
         public void BorrarAnimacionesSeleccionadas()
         {
-            targetAvatar.GetComponent<AnimationComposer>().ClearAnims(); // Se eliminan las animaciones que esten en queue
+            // Se eliminan las animaciones que esten en queue
+            targetAvatar.GetComponent<AnimationComposer.AnimationComposer>().ClearAnims(); 
             
             TriggersSeleccionados.ForEach(a =>
             {
                 Button botonCapa = GetBotonCapa(a);
-                botonCapa.transform.Find("Clear").gameObject.SetActive(false);
+                Transform transClear = botonCapa.transform.Find("Clear");
+                transClear.gameObject.SetActive(false);
             });
             
             TriggersSeleccionados.Clear();
         }
 
+        /// <summary> Se asignan las animaciones al avatar para que las ejecute - Autor : Camila Garcia Petiet.
+        /// </summary>
+        /// ACTUALIZACION 31/10/2021 Juan Dure - Refactorizacion con nueva lista, uso de LINQ para filtrar la parte util de la lista
+        /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que llame al PlayAnimation del AnimationPlayer
+        public void ReproducirAnimacion()
+        {
+            if (TriggersSeleccionados.Count > 0)
+            {
+                TriggersSeleccionados.ForEach(q => Debug.Log(q.Nombre));
+                // Filtro la parte que me interesa, los AnimationData
+                List<AnimationData> animationDatas = TriggersSeleccionados.Select(q => q.AnimacionData).ToList();
+                BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(animationDatas);
+                targetAvatar.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueue);
+            }
+            else
+            {
+                Debug.Log("No se seleccionaron animaciones");
+            }
+        }
+
+        /// <summary> Setea parte del cuerpo si estas son diferentes, sino la parte del cuerpo se torna indefinida
+        /// Autores : Juan Dure y Tobias Malbos
+        /// </summary>
+        /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion usando operador ternario
+        /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglo de operador ternario, añanido de habilitacion/Deshabilitacion de Emociones si se selecciona el layer "Base"
+        public void SetearParteDelCuerpo(string layer)
+        {
+            _parteDelCuerpo = _parteDelCuerpo != layer ? layer : ParteDelCuerpoIndefinida;
+            contenedorBotonesEmocion.GetComponent<Columna>().SetColumnInteractability(_parteDelCuerpo != "BaseLayer");
+            ActualizarListadoAnimaciones();
+        }
+
+        /// <summary> Setea emocion si las emociones son diferentes, sino la emocion se torna indefinida
+        /// Autores : Juan Dure y Tobias Malbos
+        /// </summary>    
+        /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion usando operador ternario
+        /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglo de operador ternario, añanido de habilitacion/Deshabilitacion de Layer "Base" si hay una emocion seleccionada
+        public void SetearEmocion(string emocion)
+        {
+            _emocion = _emocion != emocion ? emocion : _emocion = EmocionIndefinida;
+            contenedorBotonesParteDelCuerpo.GetComponent<Columna>().SetButtonInteractability("Base", _emocion == EmocionIndefinida);
+            ActualizarListadoAnimaciones();
+        }
+
+        /// <summary> Borrar emocion seleccionada de cierta parte del cuerpo
+        /// Autores : Juan Dure
+        /// </summary>
+        /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion con nueva lista usando LINQ
+        // Borro todos los trigger seleccionados (siempre va a ser uno o ninguno) tales que se cumpla que existe una animacion con ese trigger en esa parte del cuerpo
+        public void BorrarTriggerParteDelCuerpo(string layer) => TriggersSeleccionados.RemoveAll(q => q.Layer == layer);
+
+        private void Start()
+        {
+            TriggersSeleccionados = new List<Animacion>();
+            CargarAnimacionesAtomicas();
+            _parteDelCuerpo = ParteDelCuerpoIndefinida;
+            _emocion = EmocionIndefinida;
+            ActualizarListadoAnimaciones();
+        }
+        
         /// <summary>carga la lista de animaciones convirtiendo los triggers en un elemento de tipo AnimacionItem  - Autor : Camila Garcia Petiet
         /// </summary>
         /// ACTUALIZACION 29/10/2021 Pedro Procopio : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
@@ -87,16 +138,14 @@ namespace AnimationComposerUI
                     }
                 }
             }
+            
             SetAnimacionesCargadas(_animacionesAtomicas.Count);
         }
-
+        
         /// <summary> Actualiza el indicador de cantidad de animaciones cargadas  - Autor : Juan Dure
         /// </summary>
-        private void SetAnimacionesCargadas(int cantidad)
-        {
-            Canvas_IndicadorCantAnimaciones.GetComponent<TextMeshProUGUI>().text = cantidad.ToString() + " animaciones cargadas";
-        }
-
+        private void SetAnimacionesCargadas(int cantidad) => canvasIndicadorCantAnimaciones.text = cantidad + " animaciones cargadas";
+        
         /// <summary> Obtiene las animaciones filtradas por parte del cuerpo, si no se ha seleccionado alguna emocion,
         /// o por parte del cuerpo y emocion, si se ha seleccionado una emocion - Autores : Juan Dure y Tobias Malbos
         /// </summary>
@@ -106,24 +155,24 @@ namespace AnimationComposerUI
         {
             // Retornar animaciones filtradas de la lista de animaciones
             List<Animacion> animacionesFiltradas = new List<Animacion>();
-            if (parteDelCuerpo != PARTE_DEL_CUERPO_INDEFINIDA)
+            
+            if (_parteDelCuerpo != ParteDelCuerpoIndefinida)
             {
-                animacionesFiltradas = _animacionesAtomicas.Where(q => q.Layer == parteDelCuerpo).ToList();
-                if (_emocion != EMOCION_INDEFINIDA)
+                animacionesFiltradas = _animacionesAtomicas.Where(q => q.Layer == _parteDelCuerpo).ToList();
+                
+                if (_emocion != EmocionIndefinida)
                 {
                     animacionesFiltradas = animacionesFiltradas.Where(q => q.Emocion == _emocion).ToList();
-                    return animacionesFiltradas;
                 }
             }
-            else if (_emocion != EMOCION_INDEFINIDA)
+            else if (_emocion != EmocionIndefinida)
             {
                 animacionesFiltradas = _animacionesAtomicas.Where(q => q.Emocion == _emocion).ToList();
-                return animacionesFiltradas;
             }
 
             return animacionesFiltradas;
         }
-
+        
         /// <summary> Actualizamos el listado de animaciones - Autor : Juan Dure
         /// </summary>
         /// ACTUALIZACION 29/10/2021 Pedro Procopio : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
@@ -132,126 +181,28 @@ namespace AnimationComposerUI
         private void ActualizarListadoAnimaciones()
         {
             List<Animacion> listaAnimacionesFiltradas = GETAnimacionesFiltradas();
-            // Debug.Log("Cantidad de animaciones resultantes: " + listaAnimacionesFiltradas.Count);
 
             // Limpiar lista de resultados
-            foreach (Transform child in Canvas_Lista_Resultados_NodoPadre.transform)
+            foreach (Transform child in canvasListaResultadosNodoPadre.transform)
             {
                 Destroy(child.gameObject);
             }
             
             // Activa el mensaje de sin animaciones cuando la cantidad de animaciones filtradas es 0
-            MensajeNoAnims.SetActive(listaAnimacionesFiltradas.Count == 0);
+            mensajeNoAnims.SetActive(listaAnimacionesFiltradas.Count == 0);
             
             // Crear lista de resultados
-            listaAnimacionesFiltradas.ForEach(q =>
+            listaAnimacionesFiltradas.ForEach(animacion =>
             {
-                // Debug.Log(q);
-                GameObject itemAgregado = Instantiate(Prefab_Lista_Resultados, Canvas_Lista_Resultados_NodoPadre.transform, false);
-                Button botonCapa = GetBotonCapa(q);
+                GameObject itemAgregado = Instantiate(prefabListaResultados, canvasListaResultadosNodoPadre.transform, false);
+                Button botonCapa = GetBotonCapa(animacion);
                 AnimationScriptItem scriptItem = itemAgregado.GetComponent<AnimationScriptItem>();
 
                 scriptItem.botonCapa = botonCapa;
-                scriptItem.Animacion = q;
+                scriptItem.Animacion = animacion;
             });
         }
-
-        /// <summary> Se asignan las animaciones al avatar para que las ejecute - Autor : Camila Garcia Petiet.
-        /// </summary>
-        /// ACTUALIZACION 31/10/2021 Juan Dure - Refactorizacion con nueva lista, uso de LINQ para filtrar la parte util de la lista
-        /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que llame al PlayAnimation del AnimationPlayer
-        public void ReproducirAnimacion()
-        {
-            if (TriggersSeleccionados.Count > 0)
-            {
-                // Debug.Log("Cantidad de animaciones seleccionadas: " + triggersElegidos.Count);
-                TriggersSeleccionados.ForEach(q => Debug.Log(q.Nombre));
-                BlockQueue blockQueue = BlockQueueGenerator.GetBlockQueue(TriggersSeleccionados.Select(q => q.AnimacionData).ToList()); // Filtro la parte que me interesa, los AnimationData
-                targetAvatar.GetComponent<AnimationPlayer>().PlayAnimation(blockQueue);
-            }
-            else
-            {
-                Debug.Log("No se seleccionaron animaciones");
-            }
-        }
-
-        /// <summary> Se asigna al avatar la animacion que se quiere visualizar por separado  - Autor : Facundo Mozo
-        /// </summary>
-        /// ACTUALIZACION 29/10/2021 Pedro Procopio : Actualizado para que funcione con los nuevos datos de la clase AnimationDataScriptableObject
-        /// ACTUALIZACION : 31/10/21 Juan Dure : Refactorizacion con nueva lista de animaciones, implementacion con Linq
-        /// ACTUALIZACION 3/11/21 Tobias Malbos : Actualizado para que llame al PlayAnimation del AnimationPlayer
-        public void PreviewAnimacion(string animName)
-        {
-            //Debug.Log("Cantidad de animaciones seleccionadas: " + triggerElegido.Count);
-            //Debug.Log("Trigger PREVIEW Elegido: " + animName);
-            targetAvatar.GetComponent<AnimationPlayer>().PlayAnimation(animName);
-        }
-
-        /// <summary> Activa el panel del animation composer - Autor : Camila Garcia Petiet
-        /// </summary>
-        public void ActivarPanel() => Canvas_AnimationEditor.SetActive(true);
-
-        /// <summary> Desactiva el panel del animation composer  - Autor : Camila Garcia Petiet
-        /// </summary>    
-        public void DesactivarPanel() => Canvas_AnimationEditor.SetActive(false);
-
-        /// <summary> Activa el panel de confirmacion de nombre  - Autor : Camila Garcia Petiet
-        /// </summary>    
-        public void MostrarIngresoNombre()
-        {
-            Canvas_PantallaConfirmacion.SetActive(true);
-        }
         
-        /// <summary> Setea parte del cuerpo si estas son diferentes, sino la parte del cuerpo se torna indefinida
-        /// Autores : Juan Dure y Tobias Malbos
-        /// </summary>
-        /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion usando operador ternario
-        /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglo de operador ternario, añanido de habilitacion/Deshabilitacion de Emociones si se selecciona el layer "Base"
-        public void SetearParteDelCuerpo(string layer)
-        {
-            parteDelCuerpo = (parteDelCuerpo != layer) ? layer : PARTE_DEL_CUERPO_INDEFINIDA;
-            if (parteDelCuerpo == "BaseLayer")
-            {
-                ContenedorBotonesEmocion.GetComponent<Columna>().DeshabilitarEmociones();
-            }
-            else
-            {
-                ContenedorBotonesEmocion.GetComponent<Columna>().HabilitarEmociones();
-            }
-            ActualizarListadoAnimaciones();
-        }
-
-        /// <summary> Setea emocion si las emociones son diferentes, sino la emocion se torna indefinida
-        /// Autores : Juan Dure y Tobias Malbos
-        /// </summary>    
-        /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion usando operador ternario
-        /// ACTUALIZACION 31/10/21 Facundo Mozo : Arreglo de operador ternario, añanido de habilitacion/Deshabilitacion de Layer "Base" si hay una emocion seleccionada
-        public void SetearEmocion(string emocion)
-        {
-            _emocion = (_emocion != emocion) ? emocion : _emocion = EMOCION_INDEFINIDA;
-            if (_emocion != EMOCION_INDEFINIDA)
-            {
-                ContenedorBotonesParteDelCuerpo.GetComponent<Columna>().DeshabilitarBaseLayer();
-            }
-            else
-            {
-                ContenedorBotonesParteDelCuerpo.GetComponent<Columna>().HabilitarBaseLayer();
-            }
-            ActualizarListadoAnimaciones();
-        }
-
-        /// <summary> Borrar emocion seleccionada de cierta parte del cuerpo
-        /// Autores : Juan Dure
-        /// </summary>
-        /// ACTUALIZACION 31/10/21 Juan Dure : Refactorizacion con nueva lista usando LINQ
-        public void BorrarTriggerParteDelCuerpo(string layer)
-        {
-            // Borro todos los trigger seleccionados (siempre va a ser uno o ninguno) tales que se cumpla que existe una animacion
-            // con ese trigger en esa parte del cuerpo
-            TriggersSeleccionados.RemoveAll(q => q.Layer == layer);
-            //ActualizarListadoAnimaciones();
-        }
-
         /// <summary> Devuelve el boton asociado a la parte del cuerpo que anima la animacion dada - Autor : Tobias Malbos
         /// </summary>
         /// <returns></returns>
@@ -260,7 +211,7 @@ namespace AnimationComposerUI
             // Se remueven los ultimos 5 caracteres de la parte del cuerpo seleccionada o bien el substring "Layer"
             string capa = animacion.Layer.Remove(animacion.Layer.Length - 5);
             string nombreBoton = "Boton" + capa;
-            Transform botonCapa = ContenedorBotonesParteDelCuerpo.transform.Find(nombreBoton);
+            Transform botonCapa = contenedorBotonesParteDelCuerpo.transform.Find(nombreBoton);
 
             return botonCapa.GetComponent<Button>();
         }

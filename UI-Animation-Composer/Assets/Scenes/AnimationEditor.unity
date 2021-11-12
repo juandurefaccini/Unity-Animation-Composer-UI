@@ -268,7 +268,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35998957}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af6f729539c6af64f962482c00057334, type: 3}
   m_Name: 
@@ -282,7 +282,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 35998957}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 98776db21ffe6184683696ce70735b73, type: 3}
   m_Name: 
@@ -1443,9 +1443,8 @@ GameObject:
   - component: {fileID: 231694492}
   - component: {fileID: 231694491}
   - component: {fileID: 231694490}
-  - component: {fileID: 231694493}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: BotonEnojo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1527,6 +1526,18 @@ MonoBehaviour:
           m_StringArgument: Enojo
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 471683451}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 231694488}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &231694491
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1565,19 +1576,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 231694488}
   m_CullTransparentMesh: 1
---- !u!114 &231694493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231694488}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 471683445}
 --- !u!1 &235509183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1684,7 +1682,6 @@ GameObject:
   - component: {fileID: 257861491}
   - component: {fileID: 257861490}
   - component: {fileID: 257861489}
-  - component: {fileID: 257861493}
   - component: {fileID: 257861492}
   m_Layer: 5
   m_Name: BotonBase
@@ -1770,6 +1767,18 @@ MonoBehaviour:
           m_StringArgument: BaseLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 257861487}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &257861490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1828,19 +1837,6 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &257861493
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 257861487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &275446845
 GameObject:
   m_ObjectHideFlags: 0
@@ -2859,7 +2855,6 @@ GameObject:
   - component: {fileID: 385766956}
   - component: {fileID: 385766955}
   - component: {fileID: 385766954}
-  - component: {fileID: 385766957}
   m_Layer: 5
   m_Name: BotonRightArm
   m_TagString: Untagged
@@ -2944,6 +2939,18 @@ MonoBehaviour:
           m_StringArgument: RightArmLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 385766952}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &385766955
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2982,19 +2989,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 385766952}
   m_CullTransparentMesh: 1
---- !u!114 &385766957
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 385766952}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &387790812
 GameObject:
   m_ObjectHideFlags: 0
@@ -4213,9 +4207,8 @@ GameObject:
   - component: {fileID: 478156737}
   - component: {fileID: 478156736}
   - component: {fileID: 478156735}
-  - component: {fileID: 478156738}
   m_Layer: 5
-  m_Name: Button (3)
+  m_Name: BotonMiedo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4297,6 +4290,18 @@ MonoBehaviour:
           m_StringArgument: Miedo
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 471683451}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 478156733}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &478156736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4335,19 +4340,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 478156733}
   m_CullTransparentMesh: 1
---- !u!114 &478156738
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 478156733}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 471683445}
 --- !u!1 &486226051
 GameObject:
   m_ObjectHideFlags: 0
@@ -4560,7 +4552,6 @@ GameObject:
   - component: {fileID: 504758279}
   - component: {fileID: 504758278}
   - component: {fileID: 504758277}
-  - component: {fileID: 504758280}
   m_Layer: 5
   m_Name: BotonLegs
   m_TagString: Untagged
@@ -4645,6 +4636,18 @@ MonoBehaviour:
           m_StringArgument: LegsLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 504758275}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &504758278
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4683,19 +4686,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 504758275}
   m_CullTransparentMesh: 1
---- !u!114 &504758280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 504758275}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &510886833
 GameObject:
   m_ObjectHideFlags: 0
@@ -5155,7 +5145,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1070579832}
   m_HandleRect: {fileID: 1070579831}
   m_Direction: 2
-  m_Value: 1
+  m_Value: 0
   m_Size: 0.99999696
   m_NumberOfSteps: 0
   m_OnValueChanged:
@@ -6768,7 +6758,6 @@ GameObject:
   - component: {fileID: 834530381}
   - component: {fileID: 834530380}
   - component: {fileID: 834530379}
-  - component: {fileID: 834530382}
   m_Layer: 5
   m_Name: BotonTorso
   m_TagString: Untagged
@@ -6853,6 +6842,18 @@ MonoBehaviour:
           m_StringArgument: TorsoLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 834530377}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &834530380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6891,19 +6892,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 834530377}
   m_CullTransparentMesh: 1
---- !u!114 &834530382
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 834530377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &835516710
 GameObject:
   m_ObjectHideFlags: 0
@@ -6916,9 +6904,8 @@ GameObject:
   - component: {fileID: 835516714}
   - component: {fileID: 835516713}
   - component: {fileID: 835516712}
-  - component: {fileID: 835516715}
   m_Layer: 5
-  m_Name: Button (5)
+  m_Name: BotonTristeza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7000,6 +6987,18 @@ MonoBehaviour:
           m_StringArgument: Tristeza
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 471683451}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 835516710}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &835516713
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7038,19 +7037,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 835516710}
   m_CullTransparentMesh: 1
---- !u!114 &835516715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 835516710}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 471683445}
 --- !u!1 &843539745
 GameObject:
   m_ObjectHideFlags: 0
@@ -7276,9 +7262,8 @@ GameObject:
   - component: {fileID: 874476772}
   - component: {fileID: 874476771}
   - component: {fileID: 874476770}
-  - component: {fileID: 874476773}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: BotonConfianza
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7360,6 +7345,18 @@ MonoBehaviour:
           m_StringArgument: Confianza
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 471683451}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 874476768}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &874476771
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7398,19 +7395,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 874476768}
   m_CullTransparentMesh: 1
---- !u!114 &874476773
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874476768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 471683445}
 --- !u!1 &890481453
 GameObject:
   m_ObjectHideFlags: 0
@@ -8181,9 +8165,8 @@ GameObject:
   - component: {fileID: 1007398729}
   - component: {fileID: 1007398728}
   - component: {fileID: 1007398727}
-  - component: {fileID: 1007398730}
   m_Layer: 5
-  m_Name: Button (4)
+  m_Name: BotonSorpresa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8265,6 +8248,18 @@ MonoBehaviour:
           m_StringArgument: Sorpresa
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 471683451}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1007398725}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1007398728
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8303,19 +8298,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007398725}
   m_CullTransparentMesh: 1
---- !u!114 &1007398730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007398725}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 471683445}
 --- !u!1 &1028602679
 GameObject:
   m_ObjectHideFlags: 0
@@ -8328,7 +8310,6 @@ GameObject:
   - component: {fileID: 1028602683}
   - component: {fileID: 1028602682}
   - component: {fileID: 1028602681}
-  - component: {fileID: 1028602684}
   m_Layer: 5
   m_Name: BotonFace
   m_TagString: Untagged
@@ -8413,6 +8394,18 @@ MonoBehaviour:
           m_StringArgument: FaceLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1028602679}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1028602682
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8451,19 +8444,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1028602679}
   m_CullTransparentMesh: 1
---- !u!114 &1028602684
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028602679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &1057695082
 GameObject:
   m_ObjectHideFlags: 0
@@ -10026,7 +10006,6 @@ GameObject:
   - component: {fileID: 1299506365}
   - component: {fileID: 1299506364}
   - component: {fileID: 1299506363}
-  - component: {fileID: 1299506362}
   - component: {fileID: 1299506361}
   m_Layer: 5
   m_Name: BotonRightHand
@@ -10076,19 +10055,6 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &1299506362
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1299506359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!114 &1299506363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10143,6 +10109,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: RightHandLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1299506359}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1299506364
@@ -11013,7 +10991,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.00087992434, y: 0.00048828125}
+  m_AnchoredPosition: {x: 0.00087992434, y: 0.003112793}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1377845227
@@ -12040,14 +12018,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetAvatar: {fileID: 35998957}
-  Canvas_AnimationEditor: {fileID: 1599947642}
-  Canvas_Lista_Resultados_NodoPadre: {fileID: 1377845225}
-  Canvas_PantallaConfirmacion: {fileID: 1687118956}
-  Canvas_IndicadorCantAnimaciones: {fileID: 2021081414}
-  ContenedorBotonesEmocion: {fileID: 471683445}
-  ContenedorBotonesParteDelCuerpo: {fileID: 510886833}
-  MensajeNoAnims: {fileID: 332503538}
-  Prefab_Lista_Resultados: {fileID: 4375360521142429211, guid: f38fa3ed1a7ee93e7b841686e07b612e, type: 3}
+  canvasListaResultadosNodoPadre: {fileID: 1377845225}
+  canvasIndicadorCantAnimaciones: {fileID: 2021081414}
+  contenedorBotonesEmocion: {fileID: 471683445}
+  contenedorBotonesParteDelCuerpo: {fileID: 510886833}
+  mensajeNoAnims: {fileID: 332503538}
+  prefabListaResultados: {fileID: 4375360521142429211, guid: f38fa3ed1a7ee93e7b841686e07b612e, type: 3}
 --- !u!114 &1599947648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12281,7 +12257,6 @@ GameObject:
   - component: {fileID: 1646196221}
   - component: {fileID: 1646196220}
   - component: {fileID: 1646196219}
-  - component: {fileID: 1646196218}
   - component: {fileID: 1646196222}
   m_Layer: 5
   m_Name: Mensaje
@@ -12311,18 +12286,6 @@ RectTransform:
   m_AnchoredPosition: {x: 966.717, y: -533}
   m_SizeDelta: {x: 800, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1646196218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646196216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eed8d736f9a88884a84296c11b3be1fe, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1646196219
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12414,7 +12377,6 @@ GameObject:
   - component: {fileID: 1646835688}
   - component: {fileID: 1646835687}
   - component: {fileID: 1646835686}
-  - component: {fileID: 1646835685}
   - component: {fileID: 1646835684}
   m_Layer: 5
   m_Name: BotonLeftHand
@@ -12464,19 +12426,6 @@ MonoBehaviour:
   m_FlexibleWidth: 1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
---- !u!114 &1646835685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1646835682}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!114 &1646835686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12531,6 +12480,18 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: LeftHandLayer
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1646835682}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1646835687
@@ -13797,7 +13758,6 @@ GameObject:
   - component: {fileID: 1853974681}
   - component: {fileID: 1853974680}
   - component: {fileID: 1853974679}
-  - component: {fileID: 1853974682}
   m_Layer: 5
   m_Name: BotonBothArms
   m_TagString: Untagged
@@ -13882,6 +13842,18 @@ MonoBehaviour:
           m_StringArgument: BothArmsLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 1853974677}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1853974680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13920,19 +13892,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1853974677}
   m_CullTransparentMesh: 1
---- !u!114 &1853974682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1853974677}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &1887866051
 GameObject:
   m_ObjectHideFlags: 0
@@ -14212,6 +14171,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 07065cde181d977418e0e542b5b0144e, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 07065cde181d977418e0e542b5b0144e, type: 3}
+      propertyPath: m_TagString
+      value: Avatar
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 07065cde181d977418e0e542b5b0144e, type: 3}
       propertyPath: m_Controller
@@ -15332,17 +15295,17 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1599947647}
-        m_TargetAssemblyTypeName: AnimationEditor, Assembly-CSharp
-        m_MethodName: MostrarIngresoNombre
-        m_Mode: 1
+      - m_Target: {fileID: 1687118956}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 0
+          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &2016526866
 MonoBehaviour:
@@ -16157,7 +16120,6 @@ GameObject:
   - component: {fileID: 2112183231}
   - component: {fileID: 2112183230}
   - component: {fileID: 2112183229}
-  - component: {fileID: 2112183232}
   m_Layer: 5
   m_Name: BotonLeftArm
   m_TagString: Untagged
@@ -16242,6 +16204,18 @@ MonoBehaviour:
           m_StringArgument: LeftArmLayer
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 510886839}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2112183227}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2112183230
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16280,19 +16254,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2112183227}
   m_CullTransparentMesh: 1
---- !u!114 &2112183232
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2112183227}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 510886833}
 --- !u!1 &2115173946
 GameObject:
   m_ObjectHideFlags: 0
@@ -16564,10 +16525,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1646196218}
-        m_TargetAssemblyTypeName: Mensaje, Assembly-CSharp
-        m_MethodName: CerrarMensaje
-        m_Mode: 1
+      - m_Target: {fileID: 1646196216}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -16641,9 +16602,8 @@ GameObject:
   - component: {fileID: 2128978574}
   - component: {fileID: 2128978573}
   - component: {fileID: 2128978572}
-  - component: {fileID: 2128978575}
   m_Layer: 5
-  m_Name: Button
+  m_Name: BotonAlegria
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -16725,6 +16685,18 @@ MonoBehaviour:
           m_StringArgument: Alegria
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 471683451}
+        m_TargetAssemblyTypeName: Columna, Assembly-CSharp
+        m_MethodName: UpdateButton
+        m_Mode: 2
+        m_Arguments:
+          m_ObjectArgument: {fileID: 2128978570}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2128978573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16763,19 +16735,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2128978570}
   m_CullTransparentMesh: 1
---- !u!114 &2128978575
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2128978570}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cfe946c58db89764db6b43c657f5f32e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  columna: {fileID: 471683445}
 --- !u!1 &2145143106
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,48 +1,46 @@
-using System.Collections;
-using System.Collections.Generic;
+using AnimationComposer;
 using UnityEngine;
-using AnimationBlockQueue;
-using AnimationEmotionInterpreter;
+using Utils;
 
-public class AnimationManager : MonoBehaviour
+namespace EmotionMatcher
 {
-    // El chat se comunica conmigo para que me pueda hacer las animaciones, una vez obtenida la respuesta del network manager
-    private EmotionInterpreter emotionInterpreter;
-    private AnimationPlayer player;
-    public string emocion;
-    public double intensidad;
-
-    private void Start() {
-        emotionInterpreter = GetComponent<EmotionInterpreter>(); // Obtiene el componente hermano
-        player = GetComponent<AnimationPlayer>(); // Obtiene el componente hermano
-        //procesar json para sacarle la intencion y la emocion
-        BlockQueue animacion= new BlockQueue();
-        //string em="Enojo";
-        //double inten=0.2;
-        animacion = emotionInterpreter.GetMatch(intensidad, emocion);
-        animacion.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
-        if(animacion!=null){
-            player.PlayAnimation(animacion);
-        }else{
-            Debug.Log("No hay animaciones compuestas cargadas");
-        }
-    }
-
-    /// <summary> Dado un json con el cual hay que hacer matching, ejecuta la animacion ganadora
-    /// - Autor : Camila Garcia Petiet
-    /// </summary>
-    /// <param name="em"> emocion </param>
-    /// <param name="inten"> intension </param>
-   public void AnimateCharacter(string em, double inten)
+    public class AnimationManager : MonoBehaviour
     {
-        emotionInterpreter = GetComponent<EmotionInterpreter>(); // Obtiene el componente hermano
-        player = GetComponent<AnimationPlayer>(); // Obtiene el componente hermano
-        BlockQueue animacion= new BlockQueue();
-        animacion = emotionInterpreter.GetMatch(inten, em);
-        if(animacion!=null){
-            player.PlayAnimation(animacion);
-        }else{
-            Debug.Log("No hay animaciones compuestas cargadas");
+        // El chat se comunica conmigo para que me pueda hacer las animaciones, una vez obtenida la respuesta del network manager
+        public string emocion;
+        public double intensidad;
+        
+        private EmotionInterpreter _emotionInterpreter;
+        private AnimationPlayer.AnimationPlayer _player;
+
+        /// <summary> Dado un json con el cual hay que hacer matching, ejecuta la animacion ganadora
+        /// - Autora : Camila Garcia Petiet
+        /// </summary>
+        /// <param name="emotion"> emocion </param>
+        /// <param name="intensity"> intension </param>
+        public void AnimateCharacter(string emotion, double intensity)
+        {
+            _emotionInterpreter = GetComponent<EmotionInterpreter>(); // Obtiene el componente hermano
+            _player = GetComponent<AnimationPlayer.AnimationPlayer>(); // Obtiene el componente hermano
+            BlockQueue animacion = _emotionInterpreter.GetMatch(intensity, emotion);
+            
+            if(animacion != null) 
+            {
+                _player.PlayAnimation(animacion);
+            }
+            else
+            {
+                Debug.Log("No hay animaciones compuestas cargadas");
+            }
+        }
+        
+        private void Start() {
+            _emotionInterpreter = GetComponent<EmotionInterpreter>(); // Obtiene el componente hermano
+            _player = GetComponent<AnimationPlayer.AnimationPlayer>(); // Obtiene el componente hermano
+            //procesar json para sacarle la intencion y la emocion
+            BlockQueue animacion = _emotionInterpreter.GetMatch(intensidad, emocion);
+            animacion.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
+            _player.PlayAnimation(animacion);
         }
     }
 }
