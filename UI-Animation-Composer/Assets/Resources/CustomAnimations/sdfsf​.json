@@ -1,0 +1,19 @@
+{
+	"emocion": "Alegria",
+	"intensidad": "0,634105205535889",
+	"bloques": [
+		{
+			"triggers": [
+				"AngryGesture",
+				"RH_Enojo_Fuck_You"
+			]
+		},
+		{
+			"triggers": [
+				"AngryFace",
+				"Torso_Enojo_CruzarBrazos",
+				"Stomp"
+			]
+		}
+	]
+}
