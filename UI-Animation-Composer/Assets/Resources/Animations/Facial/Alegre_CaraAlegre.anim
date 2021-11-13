@@ -42,7 +42,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthSmile
-    path: Wolf3D_Head
+    path: Wolf3D.Avatar_Renderer_Head
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -70,7 +70,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthShrugUpper
-    path: Wolf3D_Head
+    path: Wolf3D.Avatar_Renderer_Head
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -154,7 +154,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthSmile
-    path: Wolf3D_Teeth
+    path: Wolf3D.Avatar_Renderer_Teeth
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -182,7 +182,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthShrugUpper
-    path: Wolf3D_Teeth
+    path: Wolf3D.Avatar_Renderer_Teeth
     classID: 137
     script: {fileID: 0}
   m_PPtrCurves: []
@@ -282,7 +282,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthSmile
-    path: Wolf3D_Head
+    path: Wolf3D.Avatar_Renderer_Head
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -310,7 +310,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthShrugUpper
-    path: Wolf3D_Head
+    path: Wolf3D.Avatar_Renderer_Head
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -394,7 +394,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthSmile
-    path: Wolf3D_Teeth
+    path: Wolf3D.Avatar_Renderer_Teeth
     classID: 137
     script: {fileID: 0}
   - curve:
@@ -422,7 +422,7 @@ AnimationClip:
       m_PostInfinity: 2
       m_RotationOrder: 4
     attribute: blendShape.mouthShrugUpper
-    path: Wolf3D_Teeth
+    path: Wolf3D.Avatar_Renderer_Teeth
     classID: 137
     script: {fileID: 0}
   m_EulerEditorCurves: []
