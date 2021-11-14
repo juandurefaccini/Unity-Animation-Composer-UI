@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using AnimationComposer;
 using AnimationPlayer;
+using Newtonsoft.Json;
 using UnityEngine;
 
 namespace Utils
@@ -31,6 +32,21 @@ namespace Utils
             result += "\n" + SerializeBlockQueue(compuesta);
             _tabs = _tabs.Remove(_tabs.Length - 1);
             result += "\n}";
+        
+            return result;
+        }
+        
+        /// <summary> Crea un texto json de una cola de bloques a partir de una animacion compuesta - Autor: Juan Dure
+        /// </summary>
+        /// <param name="compuesta"> Animacion compuesta </param>
+        /// <returns></returns>
+        public static string ToJson(String nombreAccion, Dictionary<string,string> props)
+        {
+            string result = "\"" + nombreAccion + "\":";
+            _tabs += "\t";
+            result += "\n" + JsonConvert.SerializeObject(props);
+            _tabs = _tabs.Remove(_tabs.Length - 1);
+            result += "\n";
         
             return result;
         }

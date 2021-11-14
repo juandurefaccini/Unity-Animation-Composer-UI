@@ -811,6 +811,7 @@ GameObject:
   - component: {fileID: 4776592090040858994}
   - component: {fileID: -5202371177510484395}
   - component: {fileID: 2442516689527893897}
+  - component: {fileID: 5204249545803614477}
   m_Layer: 5
   m_Name: Agarrar Action
   m_TagString: Untagged
@@ -960,6 +961,18 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &5204249545803614477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776592090040858996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 593185790f60e86438f2ad03004b102e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4776592090055198974
 GameObject:
   m_ObjectHideFlags: 0
