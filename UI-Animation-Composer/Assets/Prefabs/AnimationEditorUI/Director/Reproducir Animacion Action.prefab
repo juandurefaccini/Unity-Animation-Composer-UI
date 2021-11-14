@@ -1005,6 +1005,8 @@ GameObject:
   - component: {fileID: 5689902410041743392}
   - component: {fileID: 5689902410041743399}
   - component: {fileID: 5689902410041743398}
+  - component: {fileID: 681989708805494461}
+  - component: {fileID: -6661218594037911916}
   m_Layer: 5
   m_Name: Reproducir Animacion Action
   m_TagString: Untagged
@@ -1127,6 +1129,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &681989708805494461
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689902410041743396}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f707f5b1f126e4b866899cb158b8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action_prefab: {fileID: 5689902410041743396}
+  nombre: {fileID: 5689902408572675756}
+--- !u!225 &-6661218594037911916
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5689902410041743396}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1 &5689902410122693316
 GameObject:
   m_ObjectHideFlags: 0
