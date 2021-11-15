@@ -1592,6 +1592,9 @@ GameObject:
   - component: {fileID: 8547999465250405094}
   - component: {fileID: 8547999465250405089}
   - component: {fileID: 8547999465250405088}
+  - component: {fileID: 7588602183412714106}
+  - component: {fileID: -4129785595675297839}
+  - component: {fileID: 8278647496790960471}
   m_Layer: 5
   m_Name: Dar Objeto_Action
   m_TagString: Untagged
@@ -1715,6 +1718,44 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
+--- !u!114 &7588602183412714106
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547999465250405090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 23f707f5b1f126e4b866899cb158b8bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  action_prefab: {fileID: 8547999465250405090}
+  nombre: {fileID: 8547999464840753693}
+--- !u!225 &-4129785595675297839
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547999465250405090}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!114 &8278647496790960471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8547999465250405090}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ab405da5fdc0b984ea711a743003f158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8547999465252638435
 GameObject:
   m_ObjectHideFlags: 0
