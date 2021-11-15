@@ -10,6 +10,7 @@ namespace AnimationComposerUI
         public List<GameObject> objectsToSwap;
         
         private TabButton _selectedTab;
+        public GameObject targetAvatar;
 
         public void Subscribe(TabButton button)
         {
@@ -29,6 +30,7 @@ namespace AnimationComposerUI
             {
                 objectsToSwap[i].SetActive(i == index);
             }
+            targetAvatar.GetComponent<AnimationComposer.AnimationComposer>().ClearAnims();
         }
 
         private void ResetTabs()

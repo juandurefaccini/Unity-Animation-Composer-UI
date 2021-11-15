@@ -34,6 +34,42 @@ namespace AnimationComposerUI
                 ChangeActualButtonColors(textSelectedColor, buttonSelectedColor);
             }
         }
+
+        public void UpdateButtonCoordinator(GameObject boton)
+        {
+            if (_ultimoBoton != null)
+            {
+                ChangeActualButtonColors(Color.white, Color.white);
+            } 
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(Color.white, Color.cyan);
+            }
+        }
+
+        public void UpdateButtonTab(GameObject boton)
+        {
+            if (_ultimoBoton != null)
+            {
+                ChangeActualButtonColors(Color.white,new Color(128f,128f,128f));
+            } 
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(Color.white, Color.black);
+            }
+        }
     
         /// <summary> Setea la interactabilidad de los botones de la columna - Autor : Facundo Mozo
         /// </summary>
