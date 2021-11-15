@@ -39,7 +39,6 @@ namespace AnimationComposerUI
         public void OnBeginDrag(PointerEventData eventData)
         {
             _copia = Instantiate(prefabItem, _canvas.transform, false);
-            _copia.transform.Find("PlayAnimButton").gameObject.SetActive(false);
             _copia.GetComponentInChildren<TMP_Text>().text = nombre.text;
             _copia.transform.position = gameObject.transform.position;
             _copia.GetComponent<CanvasGroup>().alpha = 1f;

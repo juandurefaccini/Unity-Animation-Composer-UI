@@ -65,12 +65,12 @@ GameObject:
   - component: {fileID: 4776592089437374335}
   - component: {fileID: 4776592089437374334}
   m_Layer: 5
-  m_Name: InputField (TMP)
+  m_Name: avatar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4776592089437374209
 RectTransform:
   m_ObjectHideFlags: 0
@@ -86,9 +86,9 @@ RectTransform:
   m_Father: {fileID: 4776592090040858997}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4776592089437374332
@@ -478,12 +478,12 @@ GameObject:
   - component: {fileID: 4776592089786096319}
   - component: {fileID: 4776592089786096318}
   m_Layer: 5
-  m_Name: InputField (TMP) (2)
+  m_Name: animacion
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4776592089786096449
 RectTransform:
   m_ObjectHideFlags: 0
@@ -499,9 +499,9 @@ RectTransform:
   m_Father: {fileID: 4776592090040858997}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4776592089786096316
@@ -809,9 +809,9 @@ GameObject:
   - component: {fileID: 4776592090040858992}
   - component: {fileID: 4776592090040858995}
   - component: {fileID: 4776592090040858994}
-  - component: {fileID: -5202371177510484395}
   - component: {fileID: 2442516689527893897}
-  - component: {fileID: 5204249545803614477}
+  - component: {fileID: 4258378829863453685}
+  - component: {fileID: 9012200592232260676}
   m_Layer: 5
   m_Name: Agarrar Action
   m_TagString: Untagged
@@ -935,20 +935,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_HorizontalFit: 2
   m_VerticalFit: 2
---- !u!114 &-5202371177510484395
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4776592090040858996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 23f707f5b1f126e4b866899cb158b8bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  action_prefab: {fileID: 4776592090040858996}
-  nombre: {fileID: 4776592090601621567}
 --- !u!225 &2442516689527893897
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -961,7 +947,7 @@ CanvasGroup:
   m_Interactable: 1
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
---- !u!114 &5204249545803614477
+--- !u!114 &4258378829863453685
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -970,9 +956,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 4776592090040858996}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 593185790f60e86438f2ad03004b102e, type: 3}
+  m_Script: {fileID: 11500000, guid: bae2869be7a458b4aaee4dd3c915c7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nombre: Accion_Agarrar
+--- !u!114 &9012200592232260676
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4776592090040858996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d33ccd8d6c89eae4989dc233eb64aab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabItem: {fileID: 4776592090040858996}
+  nombre: {fileID: 4776592090601621567}
 --- !u!1 &4776592090055198974
 GameObject:
   m_ObjectHideFlags: 0
@@ -1430,12 +1431,12 @@ GameObject:
   - component: {fileID: 4776592090575492845}
   - component: {fileID: 4776592090575492844}
   m_Layer: 5
-  m_Name: InputField (TMP) (1)
+  m_Name: objeto
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4776592090575492847
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1451,9 +1452,9 @@ RectTransform:
   m_Father: {fileID: 4776592090040858997}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 100, y: -85}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4776592090575492842
