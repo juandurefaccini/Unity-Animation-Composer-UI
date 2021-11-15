@@ -11,7 +11,7 @@ namespace AnimationComposerUI
         public Color textSelectedColor;
         public Color textDeselectedColor;
 
-        private GameObject _ultimoBoton;
+        public GameObject _ultimoBoton;
 
         /// <summary> Vuelve al color original al ultimo boton clickeado y actualiza el valor del ultimo boton clickeado
         /// Autora : Camila Garcia Petiet
