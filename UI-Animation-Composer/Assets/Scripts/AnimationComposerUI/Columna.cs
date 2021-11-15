@@ -11,7 +11,7 @@ namespace AnimationComposerUI
         public Color textSelectedColor;
         public Color textDeselectedColor;
 
-        private GameObject _ultimoBoton;
+        public GameObject _ultimoBoton;
 
         /// <summary> Vuelve al color original al ultimo boton clickeado y actualiza el valor del ultimo boton clickeado
         /// Autora : Camila Garcia Petiet
@@ -32,6 +32,42 @@ namespace AnimationComposerUI
             {
                 _ultimoBoton = boton;
                 ChangeActualButtonColors(textSelectedColor, buttonSelectedColor);
+            }
+        }
+
+        public void UpdateButtonCoordinator(GameObject boton)
+        {
+            if (_ultimoBoton != null)
+            {
+                ChangeActualButtonColors(Color.white, Color.white);
+            } 
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(Color.white, Color.cyan);
+            }
+        }
+
+        public void UpdateButtonTab(GameObject boton)
+        {
+            if (_ultimoBoton != null)
+            {
+                ChangeActualButtonColors(Color.white,new Color(128f,128f,128f));
+            } 
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(Color.white, Color.black);
             }
         }
     
