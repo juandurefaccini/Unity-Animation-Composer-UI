@@ -41,7 +41,10 @@ namespace AnimationPlayer
                     animations.Add(fileName.Remove(fileName.Length - 1), blockQueue);
                 }
             }
-
+            foreach (string key in animations.Keys)
+            {
+                Debug.Log(key);
+            }
             return animations;
         }
 

@@ -1,0 +1,16 @@
+{
+	"emocion": "Alegria",
+	"intensidad": "0",
+	"bloques": [
+		{
+			"triggers": [
+				"MoveHandToBoard"
+			]
+		},
+		{
+			"triggers": [
+				"Right_Alegre_Sosteniendo"
+			]
+		}
+	]
+}

@@ -1,0 +1,12 @@
+{
+	"emocion": "Alegria",
+	"intensidad": "0",
+	"bloques": [
+		{
+			"triggers": [
+				"Right_Alegre_Sosteniendo",
+				"RH_Alegre_Abierta"
+			]
+		}
+	]
+}
