@@ -9,6 +9,6 @@ public class BotonPrefab : MonoBehaviour
     
    public void encontrarPadre() {
        _padreBoton = transform.parent;
-       _padreBoton.GetComponent<Columna>().UpdateButton(boton);
+       _padreBoton.GetComponent<Columna>().UpdateButtonPrefab(boton);
    }
 }

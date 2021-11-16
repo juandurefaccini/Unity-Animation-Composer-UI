@@ -10,8 +10,12 @@ namespace AnimationComposerUI
         public Color buttonDeselectedColor;
         public Color textSelectedColor;
         public Color textDeselectedColor;
-
+        public GameObject primerBoton;
         public GameObject _ultimoBoton;
+        private void Start() {
+            primerBoton.transform.Find("Text (TMP)").GetComponent<TMP_Text>().color = Color.white;
+            primerBoton.GetComponent<Image>().color = Color.black;
+        }
 
         /// <summary> Vuelve al color original al ultimo boton clickeado y actualiza el valor del ultimo boton clickeado
         /// Autora : Camila Garcia Petiet
@@ -21,7 +25,7 @@ namespace AnimationComposerUI
         {
             if (_ultimoBoton != null)
             {
-                ChangeActualButtonColors(textDeselectedColor, buttonDeselectedColor);
+                ChangeActualButtonColors(textDeselectedColor,buttonDeselectedColor);
             } 
         
             if (_ultimoBoton == boton)
@@ -39,15 +43,37 @@ namespace AnimationComposerUI
         {
             if (_ultimoBoton != null)
             {
-                ChangeActualButtonColors(textDeselectedColor,buttonDeselectedColor);
+                ChangeActualButtonColors(Color.white, new Color(128f, 128f,128f));
             }
-
-            if (_ultimoBoton == boton) return;
-            
-            _ultimoBoton = boton;
-            ChangeActualButtonColors(textSelectedColor, buttonSelectedColor);
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(Color.white, Color.black);
+            }
         }
     
+        public void UpdateButtonPrefab(GameObject boton)
+        {
+            if (_ultimoBoton != null)
+            {
+                ChangeActualButtonColors(Color.white, new Color(128f, 128f,128f));
+            }
+        
+            if (_ultimoBoton == boton)
+            {
+                _ultimoBoton = null;
+            }
+            else
+            {
+                _ultimoBoton = boton;
+                ChangeActualButtonColors(Color.white, Color.cyan);
+            }
+        }
         /// <summary> Setea la interactabilidad de los botones de la columna - Autor : Facundo Mozo
         /// </summary>
         /// <param name="interactable"> Define si la columna es interactuable o no </param>
