@@ -996,7 +996,7 @@ GameObject:
   - component: {fileID: 7964071007252656389}
   - component: {fileID: 7964071007252656388}
   m_Layer: 5
-  m_Name: ubicacion
+  m_Name: silla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
