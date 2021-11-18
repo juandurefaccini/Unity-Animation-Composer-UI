@@ -1,0 +1,38 @@
+{
+	"avatar1" : {
+		"avatar": "A",
+		"desfase": "0",
+		"bloques": [
+			{
+				"triggers": [
+					"Right_Alegre_Sosteniendo",
+					"RH_Alegre_Abierta"
+				]
+			},
+			{
+				"triggers": [
+					"Right_Alegre_Apuntar",
+					"RH_Alegre_Abierta"
+				]
+			}
+		]
+	},
+	"avatar2" : {
+		"avatar": "B",
+		"desfase": "0",
+		"bloques": [
+			{
+				"triggers": [
+					"Right_Alegre_Sosteniendo",
+					"RH_Alegre_Abierta"
+				]
+			},
+			{
+				"triggers": [
+					"Right_Alegre_Apuntar",
+					"RH_Alegre_Abierta"
+				]
+			}
+		]
+	}
+}

@@ -6,7 +6,7 @@ using TMPro;
 using AnimationComposerUI;
 using AnimationComposer;
 using AnimationPlayer;
-using Utils;
+
 
 
 namespace AnimationCreator
@@ -19,66 +19,15 @@ namespace AnimationCreator
         public GameObject slider2;
         public GameObject columna1;
         public GameObject columna2;
-        private GameObject[] animacionesSeleccionadas;
-        
-        
+        public PreviewCoordinada previewCoordinada;
 
-        
-        
-        public void reproducirAnimacionCordinada(float offset1, float offset2, string animacion1, string animacion2)
-        {
-            BlockQueue blockQueueAvatar1 = GenerateBlockQueue(animacion1);
-            blockQueueAvatar1.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
-            BlockQueue blockQueueAvatar2 = GenerateBlockQueue(animacion2);
-            blockQueueAvatar2.Enqueue(new Block(BlockQueueGenerator.GetCleanBlock()));
-            float diferencia = 0;
-            if ( offset1 < offset2)
-            {
-                diferencia = offset2 - offset1;
-                StartCoroutine(wait(offset1,blockQueueAvatar1,avatar1));
-                //avatar1.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueueAvatar1);
-                StartCoroutine(wait(offset1+diferencia,blockQueueAvatar2,avatar2));
-                //StartCoroutine(wait(diferencia));
-                //avatar2.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueueAvatar2);
-            }
-            else
-            {
-                if (offset1 == offset2)
-                {
-                    StartCoroutine(wait(offset1,blockQueueAvatar1,avatar1));
-                    StartCoroutine(wait(offset1,blockQueueAvatar2,avatar2));
-                    //StartCoroutine(wait(offset1));
-                    //avatar1.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueueAvatar1);
-                    //avatar2.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueueAvatar2);
-                }
-                else
-                {
-                    if (offset1 > offset2)
-                    {
-                        diferencia = offset1 - offset2;
-                        StartCoroutine(wait(offset2,blockQueueAvatar2,avatar2));
-                        StartCoroutine(wait(offset2+diferencia,blockQueueAvatar1,avatar1));
-                        //StartCoroutine(wait(diferencia));
-                        //avatar2.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueueAvatar2);
-                        //StartCoroutine(wait(offset1));
-                        //avatar1.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(blockQueueAvatar1);
-                    }
-                }
-            }
-        }
-
-        IEnumerator wait(float tiempo,BlockQueue queue, GameObject avatar)
-        {
-            yield return new WaitForSecondsRealtime(tiempo);
-            avatar.GetComponent<AnimationPlayer.AnimationPlayer>().PlayAnimation(queue);
-        }
-
-
-
+        /// <summary> Metodo utilizado para obtener la informacion seleccionada por el usuario y reproducir un preview de la animacion coordinada con los valores actuales
+        /// Autor : Facundo Mozo
+        /// </summary>
         public void previewAnimacionCordinada()
         {
-            float off1 = slider1.transform.GetComponent<Slider>().value;
-            float off2 = slider2.transform.GetComponent<Slider>().value;
+            float off1 = GetDesfase1();
+            float off2 = GetDesfase2();
             GameObject colum1 = columna1.GetComponent<Columna>()._ultimoBoton;
             string anim1 = "";
             if (colum1 != null)
@@ -87,28 +36,54 @@ namespace AnimationCreator
             string anim2 = "";
             if (colum2 != null)
                 anim2 = colum2.GetComponentInChildren<TextMeshProUGUI>().text;  
-            
-            reproducirAnimacionCordinada(off1, off2, anim1, anim2);
-            //reproducirAnimacionCordinada(off1, off2, "Gesto enojo", "Gesto enojo");
-
+            previewCoordinada.reproducirAnimacionCordinada(avatar1, avatar2, off1, off2, anim1, anim2);
+        }
+        /// <summary> Metodo utilizado para obtener una lista de BlockQueue de las animaciones compuestas personalizadas seleccionadas para el guardado en un json 
+        /// /// Autor : Facundo Mozo
+        /// </summary>
+        public List<BlockQueue> GenerateBlockQueues()
+        {
+            List<BlockQueue> retorno = new List<BlockQueue>();
+            BlockQueue blockQueue = new BlockQueue();
+            Queue<Block> bloques = BibliotecaPersonalizadas.GETInstance().GETAnimation(columna1.GetComponent<Columna>()._ultimoBoton.GetComponentInChildren<TextMeshProUGUI>().text).GetBlocks();
+            foreach (Block block in bloques)
+            {
+                blockQueue.Enqueue(block);
+            }
+            retorno.Add(blockQueue);
+            bloques = BibliotecaPersonalizadas.GETInstance().GETAnimation(columna2.GetComponent<Columna>()._ultimoBoton.GetComponentInChildren<TextMeshProUGUI>().text).GetBlocks();
+            foreach (Block block in bloques)
+            {
+                blockQueue.Enqueue(block);
+            }
+            retorno.Add(blockQueue);
+            return retorno;
+        }
+        public float GetDesfase1()
+        {
+            return slider1.transform.GetComponent<Slider>().value;
+        }
+        public float GetDesfase2()
+        {
+            return slider2.transform.GetComponent<Slider>().value;
+        }
+        /// <summary> Metodo utilizado para borrar las animaciones seleccionadas hasta el momento, se utiliza para reiniciar la seleccion una vez que se guarda la animacion cordinada 
+        /// Autor : Facundo Mozo
+        /// </summary>
+        public void BorrarAnimacionesSeleccionadas()
+        {
+            if (columna1.GetComponent<Columna>()._ultimoBoton != null)
+                columna1.GetComponent<Columna>().UpdateButtonPrefab(columna1.GetComponent<Columna>()._ultimoBoton);
+            if (columna2.GetComponent<Columna>()._ultimoBoton != null)
+                columna2.GetComponent<Columna>().UpdateButtonPrefab(columna2.GetComponent<Columna>()._ultimoBoton);
         }
 
-
-        /// <summary> Se reproduce la animacion creada hasta el momento - Autor : Tobias Malbos
-            /// </summary>
-
-            /// <summary> Genera una BlockQueue con las animaciones compuestas seleccionadas - Autor : Tobias Malbos
-            /// </summary>
-            /// <returns></returns>
-            public BlockQueue GenerateBlockQueue(string animacion)
-            {
-                BlockQueue blockQueue = new BlockQueue();
-                Queue<Block> bloques =BibliotecaPersonalizadas.GETInstance().GETAnimation(animacion).GetBlocks();  
-                foreach (Block block in bloques)
-                {
-                    blockQueue.Enqueue(block);
-                }
-                return blockQueue;
-            }
+        public bool AreAnimacionesSeleccionadas()
+        {   
+            if (columna1.GetComponent<Columna>()._ultimoBoton == null || columna2.GetComponent<Columna>()._ultimoBoton == null)
+                return false;
+            else
+                return true;
+        }
     }
 }

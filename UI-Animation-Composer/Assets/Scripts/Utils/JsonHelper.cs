@@ -35,6 +35,34 @@ namespace Utils
         
             return result;
         }
+        /// <summary> Crea un texto json de una cola de bloques a partir de una animacion coordinada - Autor: Facundo Mozo
+        /// </summary>
+        /// <param name="coordinada"> Animacion coordinada </param>
+        /// <returns></returns>
+        public static string ToJson(List<AnimacionCoordinada> coordinada)
+        {
+            if (coordinada[0].Animacion.IsEmpty() || coordinada[1].Animacion.IsEmpty())
+            {
+                throw new ArgumentException("La cantidad de bloques provistas debe ser mayor a 0");
+            }
+
+            string result = "{";
+            _tabs += "\t";
+            result += "\n"+_tabs+"\"avatar1\" : {";
+            _tabs += "\t";
+            result += "\n"+ SerializeBlockQueue(coordinada[0]);
+            _tabs = _tabs.Remove(_tabs.Length - 1);
+            result += "\n" + _tabs + "},";
+            result += "\n" + _tabs + "\"avatar2\" : {";
+            _tabs += "\t";
+            result += "\n" + SerializeBlockQueue(coordinada[1]);
+            _tabs = _tabs.Remove(_tabs.Length - 1);
+            result += "\n" + _tabs + "}";
+            _tabs = _tabs.Remove(_tabs.Length - 1);
+            result += "\n}";
+
+            return result;
+        }
         
         /// <summary> Crea un texto json de una cola de bloques a partir de una animacion compuesta - Autor: Juan Dure
         /// </summary>
@@ -158,6 +186,34 @@ namespace Utils
             _tabs += "\t";
 
             for (int i = 0; i < compuesta.Animacion.GetBlocks().Count; ++i)
+            {
+                serializedBlockQueue += "\n" + _tabs + "{";
+                _tabs += "\t";
+                serializedBlockQueue += "\n" + SerializeBlock(blocks[i]);
+                _tabs = _tabs.Remove(_tabs.Length - 1);
+                serializedBlockQueue += "\n" + _tabs + "},";
+            }
+
+            serializedBlockQueue = serializedBlockQueue.Remove(serializedBlockQueue.Length - 1);
+            _tabs = _tabs.Remove(_tabs.Length - 1);
+            serializedBlockQueue += "\n" + _tabs + "]";
+
+            return serializedBlockQueue;
+        }
+
+        /// <summary> Serializa una lista de bloques en base a una animacion compuesta - Autor: Facundo Mozo
+        /// </summary>
+        /// <param name="coordinada"> Animacion coordinada </param>
+        /// <returns></returns>
+        private static string SerializeBlockQueue(AnimacionCoordinada coordinada)
+        {
+            List<Block> blocks = coordinada.Animacion.GetBlocks().ToList();
+            string serializedBlockQueue = _tabs + "\"avatar\": \"" + coordinada.Avatar + "\",";
+            serializedBlockQueue += "\n" + _tabs + "\"desfase\": \"" + coordinada.Desfase + "\",";
+            serializedBlockQueue += "\n" + _tabs + "\"bloques\": [";
+            _tabs += "\t";
+
+            for (int i = 0; i < coordinada.Animacion.GetBlocks().Count; ++i)
             {
                 serializedBlockQueue += "\n" + _tabs + "{";
                 _tabs += "\t";
