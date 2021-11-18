@@ -2484,11 +2484,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4862745, g: 0.4862745, b: 0.4862745, a: 1}
-    m_HighlightedColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
-    m_PressedColor: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -2532,7 +2532,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3295,7 +3295,6 @@ MonoBehaviour:
   buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
   textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   textDeselectedColor: {r: 0.1960784, g: 0.1960784, b: 0.1960784, a: 1}
-  primerBoton: {fileID: 0}
   _ultimoBoton: {fileID: 0}
 --- !u!1 &120358629
 GameObject:
@@ -3480,7 +3479,6 @@ MonoBehaviour:
   buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
   textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   textDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
-  primerBoton: {fileID: 0}
   _ultimoBoton: {fileID: 0}
 --- !u!114 &141047314
 MonoBehaviour:
@@ -6016,7 +6014,6 @@ MonoBehaviour:
   buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
   textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   textDeselectedColor: {r: 0.1960784, g: 0.1960784, b: 0.1960784, a: 1}
-  primerBoton: {fileID: 0}
   _ultimoBoton: {fileID: 0}
 --- !u!114 &285119471
 MonoBehaviour:
@@ -14781,7 +14778,7 @@ GameObject:
   - component: {fileID: 619088389}
   - component: {fileID: 619088391}
   - component: {fileID: 619088390}
-  - component: {fileID: 619088393}
+  - component: {fileID: 619088392}
   m_Layer: 5
   m_Name: Contenedor
   m_TagString: Untagged
@@ -14837,7 +14834,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 619088388}
   m_CullTransparentMesh: 1
---- !u!114 &619088393
+--- !u!114 &619088392
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -14846,9 +14843,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 619088388}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fa4f34aea78e35d4bbd1ec4e0e6cff0e, type: 3}
+  m_Script: {fileID: 11500000, guid: ac9b5bc075ef24140ba0e1014c092b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  buttonSelectedColor: {r: 0, g: 1, b: 1, a: 1}
+  buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
+  textDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  _ultimoBoton: {fileID: 0}
 --- !u!1 &624262712
 GameObject:
   m_ObjectHideFlags: 0
@@ -15089,6 +15091,7 @@ GameObject:
   - component: {fileID: 638366018}
   - component: {fileID: 638366020}
   - component: {fileID: 638366019}
+  - component: {fileID: 638366021}
   m_Layer: 5
   m_Name: Contenedor
   m_TagString: Untagged
@@ -15144,6 +15147,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638366017}
   m_CullTransparentMesh: 1
+--- !u!114 &638366021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 638366017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9b5bc075ef24140ba0e1014c092b6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buttonSelectedColor: {r: 0, g: 1, b: 1, a: 1}
+  buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
+  textDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  _ultimoBoton: {fileID: 0}
 --- !u!1 &639870884
 GameObject:
   m_ObjectHideFlags: 0
@@ -22266,12 +22286,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9b5bc075ef24140ba0e1014c092b6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buttonSelectedColor: {r: 0, g: 0, b: 0, a: 0}
-  buttonDeselectedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 0}
-  textSelectedColor: {r: 1, g: 1, b: 1, a: 0}
-  textDeselectedColor: {r: 1, g: 1, b: 1, a: 0}
-  primerBoton: {fileID: 2002997330}
-  _ultimoBoton: {fileID: 2002997330}
+  buttonSelectedColor: {r: 0, g: 0, b: 0, a: 1}
+  buttonDeselectedColor: {r: 0.5019608, g: 0.5019608, b: 0.5019608, a: 1}
+  textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
+  textDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
+  _ultimoBoton: {fileID: 0}
 --- !u!1 &1028843821
 GameObject:
   m_ObjectHideFlags: 0
@@ -29570,7 +29589,6 @@ MonoBehaviour:
   buttonDeselectedColor: {r: 1, g: 1, b: 1, a: 1}
   textSelectedColor: {r: 1, g: 1, b: 1, a: 1}
   textDeselectedColor: {r: 0.1960784, g: 0.1960784, b: 0.1960784, a: 1}
-  primerBoton: {fileID: 0}
   _ultimoBoton: {fileID: 0}
 --- !u!114 &1338821353
 MonoBehaviour:
@@ -36838,11 +36856,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4862745, g: 0.4862745, b: 0.4862745, a: 1}
-    m_HighlightedColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
-    m_PressedColor: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -36886,7 +36904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -37816,11 +37834,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4862745, g: 0.4862745, b: 0.4862745, a: 1}
-    m_HighlightedColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
-    m_PressedColor: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -37851,18 +37869,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &1717064389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37876,7 +37882,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -38439,7 +38445,6 @@ MonoBehaviour:
   buttonDeselectedColor: {r: 0, g: 0, b: 0, a: 0}
   textSelectedColor: {r: 0, g: 1, b: 0.99215686, a: 0}
   textDeselectedColor: {r: 1, g: 1, b: 1, a: 0}
-  primerBoton: {fileID: 0}
   _ultimoBoton: {fileID: 0}
 --- !u!1 &1757353696
 GameObject:
@@ -43587,11 +43592,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4862745, g: 0.4862745, b: 0.4862745, a: 1}
-    m_HighlightedColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
-    m_PressedColor: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -43635,7 +43640,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -46584,11 +46589,11 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 0.4862745, g: 0.4862745, b: 0.4862745, a: 1}
-    m_HighlightedColor: {r: 0.39607844, g: 0.39607844, b: 0.39607844, a: 1}
-    m_PressedColor: {r: 0.39607847, g: 0.39607847, b: 0.39607847, a: 1}
-    m_SelectedColor: {r: 1, g: 1, b: 1, a: 1}
-    m_DisabledColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.745283, g: 0.745283, b: 0.745283, a: 1}
+    m_HighlightedColor: {r: 1, g: 1, b: 1, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_SelectedColor: {r: 0, g: 0, b: 0, a: 1}
+    m_DisabledColor: {r: 1, g: 1, b: 1, a: 0}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
   m_SpriteState:
@@ -46632,7 +46637,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7075472, g: 0.7075472, b: 0.7075472, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
