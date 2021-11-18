@@ -1,0 +1,13 @@
+{
+	"emocion": "Enojo",
+	"intensidad": "0,561188042163849",
+	"bloques": [
+		{
+			"triggers": [
+				"Legs_Miedo_Golpeado",
+				"JoyfullJump",
+				"HandWave"
+			]
+		}
+	]
+}

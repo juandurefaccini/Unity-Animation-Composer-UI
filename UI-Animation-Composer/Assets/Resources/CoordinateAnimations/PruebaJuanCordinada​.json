@@ -1,0 +1,64 @@
+{
+	"avatar1" : {
+		"avatar": "A",
+		"desfase": "3,662796",
+		"bloques": [
+			{
+				"triggers": [
+					"Legs_Miedo_Golpeado",
+					"JoyfullJump",
+					"HandWave"
+				]
+			},
+			{
+				"triggers": [
+					"clearBaseLayer",
+					"clearTorsoLayer",
+					"clearBothArmsLayer",
+					"clearLeftHandLayer",
+					"clearLeftArmLayer",
+					"clearRightHandLayer",
+					"clearRightArmLayer",
+					"clearLegsLayer",
+					"clearFaceLayer"
+				]
+			},
+			{
+				"triggers": [
+					"MoveHandFromBoard"
+				]
+			}
+		]
+	},
+	"avatar2" : {
+		"avatar": "B",
+		"desfase": "0",
+		"bloques": [
+			{
+				"triggers": [
+					"Legs_Miedo_Golpeado",
+					"JoyfullJump",
+					"HandWave"
+				]
+			},
+			{
+				"triggers": [
+					"clearBaseLayer",
+					"clearTorsoLayer",
+					"clearBothArmsLayer",
+					"clearLeftHandLayer",
+					"clearLeftArmLayer",
+					"clearRightHandLayer",
+					"clearRightArmLayer",
+					"clearLegsLayer",
+					"clearFaceLayer"
+				]
+			},
+			{
+				"triggers": [
+					"MoveHandFromBoard"
+				]
+			}
+		]
+	}
+}

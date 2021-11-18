@@ -8,8 +8,11 @@ namespace AnimationComposerUI
     {
         public List<TabButton> tabButtons;
         public List<GameObject> objectsToSwap;
-        private TabButton _selectedTab;
+        public TabButton _selectedTab;
         public GameObject targetAvatar;
+        //public TabButton primerBotton;
+
+
 
         public void Subscribe(TabButton button)
         {

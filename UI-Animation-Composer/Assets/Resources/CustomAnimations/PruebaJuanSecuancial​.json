@@ -1,0 +1,31 @@
+{
+	"emocion": "Miedo",
+	"intensidad": "0,73702734708786",
+	"bloques": [
+		{
+			"triggers": [
+				"Legs_Miedo_Golpeado",
+				"JoyfullJump",
+				"HandWave"
+			]
+		},
+		{
+			"triggers": [
+				"Right_Alegre_Sosteniendo"
+			]
+		},
+		{
+			"triggers": [
+				"clearBaseLayer",
+				"clearTorsoLayer",
+				"clearBothArmsLayer",
+				"clearLeftHandLayer",
+				"clearLeftArmLayer",
+				"clearRightHandLayer",
+				"clearRightArmLayer",
+				"clearLegsLayer",
+				"clearFaceLayer"
+			]
+		}
+	]
+}
