@@ -1,8 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using AnimationComposer;
-using UnityEngine;
-using Utils; // Para directory
+
+using Utils;
+using System;
+
+using System.Linq;  // Para directory
 
 namespace AnimationPlayer
 {
@@ -26,14 +29,17 @@ namespace AnimationPlayer
         /// ACTUALIZACION 5/11/21 Tobias Malbos : Actualizado para que funcione con la AnimacionCompuesta
         private static Dictionary<string, AnimacionCompuesta> CargarAnimaciones()
         {
+            char dsc = Path.DirectorySeparatorChar; 
             var animations = new Dictionary<string, AnimacionCompuesta>();
-            string animsDirectory = Application.dataPath + CustomAnimPath;
-            string[] files = Directory.GetFiles(animsDirectory, "*.json");
-        
+            string animationpath = Directory.GetCurrentDirectory();
+            animationpath = animationpath+dsc+"Assets"+dsc+"Resources"+dsc+"CustomAnimations"+dsc;
+            string[] files = Directory.GetFiles(animationpath, "*.json");
+            
+           
             foreach (string file in files)
             {
                 string fileName = Path.GetFileNameWithoutExtension(file);
-                string jsonContent = File.ReadAllText(animsDirectory + fileName + ".json");
+                string jsonContent = File.ReadAllText(animationpath + fileName + ".json");
                 AnimacionCompuesta blockQueue = JsonHelper.FromJson(jsonContent);
 
                 if (blockQueue != null)
@@ -43,7 +49,7 @@ namespace AnimationPlayer
             }
             foreach (string key in animations.Keys)
             {
-                Debug.Log(key);
+               
             }
             return animations;
         }
