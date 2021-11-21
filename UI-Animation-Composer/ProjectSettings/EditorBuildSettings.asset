@@ -14,7 +14,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Escenas Viejas/DemostracionEditor.unity
     guid: 9fc0d4010bbf28b4594072e72b8655ab
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Editor.unity
     guid: b05d706b35625bd4d911144682315d51
+  - enabled: 1
+    path: Assets/Scenes/DemoAnimationPlayer.unity
+    guid: f700f243efe96cf45876f74cb94b3332
   m_configObjects: {}

@@ -59,6 +59,6 @@ namespace AnimationPlayer
         /// <param name="name"> Nombre de la animacion </param>
         /// <returns></returns>
         /// ACTUALIZACION 5/11/21 Tobias Malbos : Actualizado para que funcione con la AnimacionCompuesta
-        public BlockQueue GETAnimation(string name) => CustomAnimations[name].Animacion;
+        public BlockQueue GETAnimation(string name) => CustomAnimations[name]?.Animacion;
     }
 }

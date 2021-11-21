@@ -1,0 +1,13 @@
+{
+	"emocion": "Alegria",
+	"intensidad": "0,637312293052673",
+	"bloques": [
+		{
+			"triggers": [
+				"MoveHandFromBoard",
+				"EnojadoFace",
+				"Jump"
+			]
+		}
+	]
+}

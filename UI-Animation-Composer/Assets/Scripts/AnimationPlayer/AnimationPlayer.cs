@@ -25,7 +25,8 @@ namespace AnimationPlayer
         {
             // Primero buscamos dentro de las animaciones atomicas
             // Si no la encontramos dentro de las atomicas, buscamos sobre la biblioteca de las personalizadas
-            BlockQueue animacion = BibliotecaAtomicas.GETInstance().GETAnimation(nombre) ?? BibliotecaPersonalizadas.GETInstance().GETAnimation(nombre);
+            //BlockQueue animacion = BibliotecaAtomicas.GETInstance().GETAnimation(nombre) ?? BibliotecaPersonalizadas.GETInstance().GETAnimation(nombre);
+            BlockQueue animacion = BibliotecaPersonalizadas.GETInstance().GETAnimation(nombre);
 
             // Si no encontramos en alguna de las bibliotecas una animacion con el nombre provisto no ejecutamos nada
             if (animacion == null) return;
